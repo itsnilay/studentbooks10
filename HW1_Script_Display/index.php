@@ -7,6 +7,7 @@
     <body> 
         <?php
         echo "How are you?";
+        echo "How's your day going?";
         ?>
     </body>
 </html>
