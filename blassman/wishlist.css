@@ -1,0 +1,80 @@
+body
+{
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 18px;
+    background-color: #7fffff;
+}
+
+input
+{
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.viewWishList
+{
+    position: absolute;
+    left: 70%;
+    width: 15%;
+    top: 70%;
+}
+
+.createWishList
+{
+    position: absolute;
+    left: 12%;
+    top: 25%;
+    color: blue;
+    font-size: 30px;
+}
+
+.logon
+{
+    position: absolute;
+    left: 70%;
+    width: 15%;
+    top: 5%;
+}
+
+.logo
+{
+    position: fixed;
+    left: 10px;
+    width: 80%;
+    top: 10px;
+}
+
+.error
+{
+    color:red;
+    font-weight:bold;
+}
+
+.welcome
+{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 24px;
+}                      
+
+.enterData
+{
+    position: relative;
+    left: 35%;
+    vertical-align: top;
+}
+
+.button
+{
+    top: 40%;
+    text-align: center;
+}
+
+.buttonsOnEditWishList
+{
+    position: absolute;
+    top: 20%;
+    right: 20%;
+}
+
