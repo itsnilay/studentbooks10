@@ -11,6 +11,8 @@
     $wisher = WishDB::getInstance()->get_wisher($_SESSION["user"]);
 
     $wishDescriptionIsEmpty = false;
+    $dateIsInvalid = false;
+    $dateIsPast = false;
 
     /** Check that the Request method is POST, which means that the data
      * was submitted from the form for entering the wish data on the editWish.php
@@ -32,6 +34,11 @@
         else if (!WishDB::getInstance()->is_valid_date($_POST["dueDate"]))
         {
             $dateIsInvalid = true;
+        }
+        /** Check if date has already passed **/
+        else if (WishDB::getInstance()->is_date_past($_POST["dueDate"]))
+        {
+            $dateIsPast = true;
         }
         /** Check (by ID) if the wish doesn't already exist. **/
         else if ($_POST["wishID"] == "")
@@ -77,6 +84,10 @@
                     echo("<font color=\"#ff0000\">* Invalid date.</font>");
             ?>
             (format: YYYY-MM-DD)
+            <?php
+                if ($dateIsPast)
+                    echo("<font color=\"#ff0000\">* Date entered is in the past.</font>");
+            ?>
             <br/>
             <input type="submit" name="saveWish" value="Save Changes"/>
             <input type="submit" name="back" value="Back to the List"/>

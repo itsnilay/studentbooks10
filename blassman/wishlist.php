@@ -30,7 +30,9 @@
                     $desc = $row["description"];
                     $dueDate = $row["due_date"];
                     echo "<tr><td>" . strip_tags($desc,'<br><p><h1>')."</td>";
-                    echo "<td>". strip_tags($dueDate)."</td></tr>\n";
+                    echo "<td>";
+                    WishDB::getInstance()->print_checked_date(strip_tags($dueDate));
+                    echo "</td></tr>\n";
                 }
             ?>
         </table>

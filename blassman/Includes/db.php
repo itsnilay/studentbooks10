@@ -89,6 +89,29 @@
                 return true; // NOTE: blank date is considered valid
         }
 
+        public function is_date_past ($date) //  expects $date as string
+        {
+            if ($date != "")
+            {
+                $dueStamp = strtotime($date) + 24*60*60 - 1;
+                if ($dueStamp)
+                {
+                    $timeStamp = time();
+                    if ($dueStamp < $timeStamp)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        public function print_checked_date ($date) // expects $date as string
+        {
+            if ($this->is_date_past($date))
+                echo "<font color=\"#ff0000\">".$date."</font>";
+            else
+                echo $date;
+        }
+
         public function get_wisher ($name)
         {
             $name = mysql_real_escape_string($name);

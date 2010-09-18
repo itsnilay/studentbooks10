@@ -20,12 +20,16 @@
             <?php
                 $wisher = WishDB::getInstance()->get_wisher($_SESSION["user"]);
                 $result = WishDB::getInstance()->get_wishes_by_wisher_id($wisher["id"]);
+                $nowdate = getdate();
+                $currentDate = $nowdate["year"] * 10000 + $nowdate["month"] * 100 + $nowdate["day"];
                 while ($row = mysql_fetch_array($result))
                 {
                     strip_tags($row["description"],'<br><p><h1>');
                     echo "<tr><td>" . $row["description"]."</td>";
                     strip_tags($row["due_date"],'<br><p><h1>');
-                    echo "<td>".$row["due_date"]."</td>";
+                    echo "<td>";
+                    WishDB::getInstance()->print_checked_date($row["due_date"]);
+                    echo "</td>";
                     $wishID = $row["id"];
             ?>
                     <td>
