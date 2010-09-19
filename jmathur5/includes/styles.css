@@ -1,0 +1,153 @@
+ /**BASIC **/
+html{
+	height: 100%;
+	font-size: 100%; 
+}
+html{
+	width:100%;
+	font-size: 100%; /* IE hack*/
+	}
+body,h1, h2, h3,h4,h5,h6,p,ol,ul,form,blockquote{
+	padding:0;
+}
+ol, ul{
+	margin-left: 15px;
+}
+
+
+body{
+	font: 15px "Gill Sans","Trebuchet MS",Tahoma, Verdana, Arial, Helvetica, sans-serif;
+        background: url('../img/bodybg.png') repeat-x top center;
+	color: grey/*#b8bcc0;*/ 
+	
+}
+h1,h2,h3,h4,h5,h6{
+	text-indent: 10px;
+	color: #b8bcc0;
+	width: 100%;
+	letter-spacing: 2px;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+h1{
+	font-size: 30px;
+	text-align: center;
+}
+
+h2{
+	font-size: 20px;
+	border-bottom: 1px solid #bcbfc2;
+}
+
+			
+p,ul,ol,blockquote{
+	text-align: justify;
+	line-height: 1.5em;
+	margin-bottom: 1em;
+}
+
+ul li{
+	color: #254d81;
+}
+
+a{
+	color:#254d81; 
+	text-decoration: none;
+}
+a img{
+	border: none;
+}
+	
+a:hover{
+	 color: #6a591f;
+	 text-decoration: underline;
+	 border-bottom: #6a591f solid 2px; 
+}
+a:hover img{
+	border-bottom: none;
+}
+
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+	
+/*WRAPPER*/
+#wrapper{
+	margin: 20px auto;
+	width:770px;
+	min-height: 500px;
+	padding: 20px;
+}
+
+#wrapper_inner{
+	margin: 0px;
+	padding: 20px;
+	background: url('../img/mainbg.png') repeat-x top center;
+	width: 100%; 
+	float: left;
+}
+
+/*NAVIGATION*/
+#main_nav{
+	float: left;
+	width: 100%; 
+	margin: 0px;
+	padding: 0px;
+	background: white;
+	text-transform: lowercase;
+	font-size: 12px;
+        margin-bottom: 30px;
+}
+#main_nav img{
+	float: left;
+}
+#main_nav ul{
+	float: right;
+	padding: 6px 0 7px 0; /*6px should equal top padding of "ul li a" below, 7px should equal bottom padding + bottom border of "ul li a" below*/
+	margin: 0;
+	margin-top: 50px;/*100px*/
+	text-align: right;
+}
+
+#main_nav ul li{
+	display: inline;
+}
+
+#main_nav ul li a{
+	color: #42474B;
+	padding: 6px 3px 4px 3px; /*top padding is 6px, bottom padding is 4px*/
+	margin-right: 20px; /*spacing between each menu link*/
+	text-decoration: none;
+	font-size: 14px;
+	letter-spacing: 2px;
+	
+}
+
+#main_nav ul li a:hover, #main_nav ul li a.selected{
+	color:#737F86;
+        border-bottom: none;
+}
+
+#main_nav #currentpage a {
+	color:#737F86;
+	font-weight: 500;
+	background: #F3F3F3;
+}
+
+
+/*FOOTER*/
+#footer{
+	float: left;
+	width: 100%;
+	background: #ffffff;
+}
+#footer p{
+				
+}
+
+#pic_footer{
+	width: 100%;
+}
