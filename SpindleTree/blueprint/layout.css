@@ -1,0 +1,222 @@
+ /**BASIC **/
+body,h1, h2, h3,h4,h5,h6,p,ol,ul,form,blockquote{
+	padding:0;
+}
+body{
+	font: "Gill Sans","Trebuchet MS",Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	background-repeat: no-repeat;
+}
+
+p,ul,ol,blockquote{
+	text-align: justify;
+	line-height: 1.5em;
+	margin-bottom: 1em;
+} 
+
+h1,h2,h3{
+    color:#254d81;
+    font-weight: 300;
+}
+
+h1{
+    font-size: 18px;
+}
+
+a{
+    color:#254d81; 
+    text-decoration: none;
+}
+a img{
+    border: none;
+}
+	
+a:hover{
+     color: #444444;
+}
+a:hover img{
+    border-bottom: none;
+}
+
+p a:hover, li a:hover{
+    
+}
+	
+/*WRAPPER*/
+#wrapper{
+	
+}
+#wrapper_inner{
+	margin: 0px;
+        padding: 10px;
+        margin-top: 10px;
+	min-height: 500px;
+	float: left;
+        border: 1px solid #dadada;
+        background: #ffffff;
+}
+
+/*HORIZONTAL NAVIGATION*/
+.solidblockmenu{
+
+    height: 40px;
+    border:1px solid #dadada;
+    background: #dadada url('../img/blockdefault.gif') top center repeat-x;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.solidblockmenu ul{
+    margin: 0;
+    padding: 0;    
+    font: bold 14px Arial;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 1em;
+    
+}
+
+.solidblockmenu li{
+    display: inline;
+}
+
+.solidblockmenu li a{
+    float: left;
+    color: #dadada;
+    padding: 12px 11px;
+    text-decoration: none;
+    border-right: 1px solid white;
+}
+
+span{
+    color:#537086;
+    font-size: 15px;
+}
+p{
+    text-align: left;
+}
+.solidblockmenu li a:visited{
+  
+}
+
+.solidblockmenu li a:hover, .solidblockmenu li .current{
+    color: #324350;
+    background: transparent url('../img/blockactive.gif') center center repeat-x;
+}
+
+/*SEARCH BAR*/
+#search_bar{
+    border: 1px solid #dadada;
+    height: 45px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: #dadada url('../img/blockdefault.gif') center center repeat-x;
+}
+
+#searchbox {
+    border: 1px solid #dadada;
+    padding: 3px;
+    width: 375px;
+}
+
+/*RIGHT COLUMN NAV*/
+.arrowlistmenu{
+    height:250px;
+    background: #ffffff url('../img/rightnav_bg.png') repeat-x top right;
+    border: 1px solid #dadada;
+}
+
+.arrowlistmenu .headerbar{
+font: bold 14px Arial;
+color: #444444;
+background: #dadada url('../img/blockdefault.gif') bottom left repeat-x;
+margin-bottom: 10px; /*bottom spacing between header and rest of content*/
+padding: 4px 0 4px 10px; /*header text is indented 10px*/
+height:25px;
+}
+
+.arrowlistmenu ul{
+list-style-type: none;
+margin: 0;
+padding: 0;
+margin-bottom: 8px; /*bottom spacing between each UL and rest of content*/
+}
+
+.arrowlistmenu ul li{
+padding-bottom: 2px; /*bottom spacing between menu items*/
+}
+
+.arrowlistmenu ul li a{
+background: url(media/arrowbullet.png) no-repeat center left; /*custom bullet list image*/
+display: block;
+padding: 2px 0;
+padding-left: 19px; /*link text is indented 19px*/
+text-decoration: none;
+font-weight: bold;
+}
+
+.arrowlistmenu ul li a:visited{
+color: #444444;
+}
+
+.arrowlistmenu ul li a:hover{ /*hover state CSS*/
+color: #444444;
+background-color: #F3F3F3;
+text-decoration: none;
+border-bottom: none;
+}
+
+/*MAIN CONTENT*/
+#main_content{
+	width: 535px;
+	min-height: 450px;
+	background: #172435;
+	float: left;
+	padding: 10px;
+	margin: 0px;
+}
+
+.content_wrapper{
+    min-height: 240px;
+    border-top: 1px solid #dadada;
+    float: left;
+    padding: 10px;
+    background: #ffffff url('../img/bottom_fade.png') repeat-x bottom left;
+}
+ 
+.rgt_border_column{
+    background: #ffffff;
+    border-right: 1px solid #dadada;
+    margin: 5px;
+    float: left;
+    padding: 3px;
+}
+.mid_column{
+    background: #ffffff;
+    border-right: 1px solid #dadada;
+    margin: 5px;
+    float: left;
+    padding: 3px;
+}
+.lft_border_column{
+    background: #ffffff;
+    border-right: 1px solid #dadada;
+    margin: 5px;
+    float: left;
+    padding: 3px;
+}
+
+/*FOOTER*/
+#footer{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #dadada;
+    float: left;
+    
+}
+#footer p {
+    color: #dadada;
+    margin: 0 auto;
+    text-align: center;
+}

@@ -1,12 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SpindleTree</title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<?php 
+$page_title ='Spindle Tree | ';
+include('include/header.php');
+?>
+	 <h1>Check Out</h1>
+<?php 
+include('include/footer.php');
+?>	
+		
