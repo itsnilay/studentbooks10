@@ -59,28 +59,28 @@ $terrible_book_amount = 3;
 
 <ul id="used_books" class="span-18 last">
     <li id="like_new" class="odd">
-        <span class="condition">Like New (<?php echo $like_new_book_amount ?>)</span>
-        <span class="price"><?php echo '\$$like_new_book_price' ?></span>
-        <a class="buy_button">(buy)</a>
-        <span class="description">Excepteur sint occaecat, sunt in...</span>
+        <span class="condition span-3">Like New (<?php echo $like_new_book_amount ?>)</span>
+        <span class="price span-2">$<?php echo $like_new_book_price ?></span>
+        <a class="buy_button span-1">(buy)</a>
+        <span class="description span-12 last">Excepteur sint occaecat, sunt in...</span>
     </li>
-    <li id="very_good" class="even"
-        <span class="condition">Very Good (<?php echo $very_good_book_amount ?>)</span>
-        <span class="condition"><?php echo '\$$very_good_book_price' ?></span>
-        <a class="buy_button">(buy)</a>
-        <span class="description">Excepteur sint occaecat, sunt in...</span>
+    <li id="very_good" class="even">
+        <span class="condition span-3">Very Good (<?php echo $very_good_book_amount ?>)</span>
+        <span class="price span-2">$<?php echo $very_good_book_price ?></span>
+        <a class="buy_button span-1">(buy)</a>
+        <span class="description span-12 last">Excepteur sint occaecat, sunt in...</span>
     </li>
     <li id="good" class="odd">
-        <span class="condition">Good (<?php echo $good_book_amount ?>)</span>
-        <span class="condition"><?php echo '\$$good_book_price' ?></span>
-        <a class="buy_button">(buy)</a>
-        <span class="description">Excepteur sint occaecat, sunt in culpa...</span>
+        <span class="condition span-3">Good (<?php echo $good_book_amount ?>)</span>
+        <span class="price span-2">$<?php echo $good_book_price ?></span>
+        <a class="buy_button span-1">(buy)</a>
+        <span class="description span-12 last">Excepteur sint occaecat, sunt in culpa...</span>
     </li>
     <li id="terrible" class="even">
-        <span class="condition">Terrible (<?php echo $terrible_book_amount ?>)</span>
-        <span class="condition"><?php echo '\$$terrible_book_price' ?></span>
-        <a class="buy_button">(buy)</a>
-        <span class="description">Excepteur sint occaecat, sunt in culpa...</span>
+        <span class="condition span-3">Terrible (<?php echo $terrible_book_amount ?>)</span>
+        <span class="price span-2">$<?php echo $terrible_book_price ?></span>
+        <a class="buy_button span-1">(buy)</a>
+        <span class="description span-12 last">Excepteur sint occaecat, sunt in culpa...</span>
     </li>
 </ul>
 
