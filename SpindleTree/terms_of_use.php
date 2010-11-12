@@ -1,5 +1,5 @@
 <?php 
-$page_title ='Spindle Tree | Terms of Use';
+$page_title ='SpindleTree | Terms and Conditions';
 include('include/header.php');
 ?>
         <!-- Generated from http://www.bennadel.com/coldfusion/privacy-policy-generator.htm -->

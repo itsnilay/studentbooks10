@@ -1,5 +1,5 @@
 <?php 
-$page_title ='Spindle Tree | ';
+$page_title ='SpindleTree | Checkout';
 include('include/header.php');
 ?>
         <h2>Check Out</h2>

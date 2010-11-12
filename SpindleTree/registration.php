@@ -1,8 +1,8 @@
 <?php 
-$page_title ='Spindle Tree | ';
+$page_title ='SpindleTree | Registration';
 include('include/header.php');
 ?>
-	 <h1>Registration</h1>
+	 <h2>Registration</h2>
 <?php 
 include('include/footer.php');
 ?>	

@@ -48,9 +48,9 @@ require_once('mysql_connect.php');//connect to database
         <div class="span-23 solidblockmenu prepend-top last">
                     <div class="span-16">
                         <ul>
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="books_listing.php" class="current">Books</a></li>
-                            <li><a href="buy_back.php">BuyBack</a></li>
+                            <li><a href="index.php" <?php if ($page_special=="HOME") echo "class=\"current\"";?>>Home</a></li>
+                            <li><a href="books_listing.php" <?php if ($page_special=="BOOKS") echo "class=\"current\"";?>>Books</a></li>
+                            <li><a href="buy_back.php" <?php if ($page_special=="BUYBACK") echo "class=\"current\"";?>>BuyBack</a></li>
                         </ul>
                     </div>
                     <div class="span-3">
@@ -61,10 +61,10 @@ require_once('mysql_connect.php');//connect to database
                     </div>
         </div>
 
-        <?php if ($page_title=="XXX"){
+        <?php if ($page_special=="BOOKS"){
 	  echo "
                 <div class='span-5'>
-                    <div class='arrowlistmenu fade_bootom'>
+                    <div class='arrowlistmenu fade_bottom'>
                         <h3 class='headerbar'>Categories</h3>
                         <ul>
                             <li>

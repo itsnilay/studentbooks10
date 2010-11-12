@@ -1,8 +1,10 @@
 <?php 
-$page_title ='Spindle Tree | ';
+$page_title ='SpindleTree | BuyBack';
+$page_special = "BUYBACK";
 include('include/header.php');
+$page_special = "";
 ?>
-	 <h1>Buy Back</h1>
+	 <h2>BuyBack</h2>
 <?php 
 include('include/footer.php');
 ?>	

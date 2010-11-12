@@ -1,8 +1,8 @@
 <?php 
-$page_title ='Spindle Tree | User Account';
+$page_title ='SpindleTree | User Account';
 include('include/header.php');
 ?>
-    <!NOTE: h1 has been hijacked>
+    <!NOTE: h1 has been hijacked - just saying>
     <h2>User Account</h2><br/>
     <h3>Change Password</h3>
     <!FIXME: reused form id from Sign In page>
