@@ -16,23 +16,34 @@ require_once('../mysql_connect.php');//connect to database
 <body>
     <div class="container" >
 
-        <div class="span-24">
-                <div class="span-7">
-                    <a href="index.php"><img src="img/spindletreelogo250X89.png" alt="" /></a>
-                </div>
-                <div id="search_bar" class="span-15 prepend-top prepend-1">
-                    <input id="searchbox" class="text" type="text" />
-                    <select name="" >
-                        <option value="">Lorem ipsum dolor</option>
-                        <option value="">Lorem ipsum dolor</option>
-                        <option value="">Lorem ipsum dolor</option>
-                        <option value="">Lorem ipsum dolor</option>
-                        <option value="">Lorem ipsum dolor</option>
-                    </select>
-                    <input type="submit" value="Search" />
-                </div>
+        <div class="span-24 last">
+            <div class="span-12">
+                <a href="index.php"><img src="img/spindletreelogo250X89.png" alt="" /></a>
+            </div>
+            <div id="secondary_menu" class="span-12 last">
+                <span>
+                    <a href="user_account.php">My Account</a> |
+                    <a href="sign_in.php">Sign In</a> |
+                    <a href="contact.php">Contact</a>
+                </span>
+            </div>
         </div>
-        <div class="span-23 solidblockmenu last">
+        <div class="span-24 last">
+            <div id="search_bar" class="span-22">
+                <input id="searchbox" class="text span-10" type="text" />
+                <select name="" class="span-4">
+                    <option value="">Lorem ipsum dolor</option>
+                    <option value="">Lorem ipsum dolor</option>
+                    <option value="">Lorem ipsum dolor</option>
+                    <option value="">Lorem ipsum dolor</option>
+                    <option value="">Lorem ipsum dolor</option>
+                </select>
+                <div class="span-8 last">
+                    <input id="search_button" type="submit" value="Search"/>
+                </div>
+            </div>
+        </div>
+        <div class="span-23 solidblockmenu prepend-top last">
                     <div class="span-16">
                         <ul>
                             <li><a href="index.php">Home</a></li>
