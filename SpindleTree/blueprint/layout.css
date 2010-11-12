@@ -312,7 +312,47 @@ form button {
 ul#books_list li {
     list-style-image: none;
     list-style-type: none;
+    margin-top: 1.5em;
 }
+
 ul#books_list li.even {
+    background-color: #eef;
+}
+
+ul#books_list h2.title {
+    font-size: 18px;
+}
+
+ul#books_list h2.title a.link{
+    font-size: 18px;
+}
+
+ul#books_list h2.title a.visited{
+    font-size: 18px;
+}
+
+ul#books_list h2.title hover{
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+ul#books_list h2.title a.active{
+    font-size: 18px;
+}
+
+/*SHOPPING CART*/
+ul#cart_contents input {
+    margin: 0;
+    width: 30px;
+    height: 1em;
+}
+
+ul#cart_contents li {
+    list-style-image: none;
+    list-style-type: none;
+    border: 1px solid #eef;
+}
+
+ul#cart_contents li .even {
     background-color: #eef;
 }

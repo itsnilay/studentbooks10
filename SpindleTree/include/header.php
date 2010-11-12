@@ -30,7 +30,7 @@ require_once('../mysql_connect.php');//connect to database
         </div>
         <div class="span-24 last">
             <div id="search_bar" class="span-22">
-                <form post="book_listing.php">
+                <form action="books_listing.php">
                     <input id="searchbox" class="text span-10" type="text" />
                     <select name="" class="span-4">
                         <option value="">Lorem ipsum dolor</option>
@@ -57,7 +57,7 @@ require_once('../mysql_connect.php');//connect to database
                          <p>23 item(s): <span>$23,673.64</span>  </p>
                     </div>
                     <div class="span-2 last">
-                       <p><a href="checkout.php"><img src="img/checkout_button.gif" alt="" /></a></p>
+                       <p><a href="shopping_cart.php"><img src="img/checkout_button.gif" alt="" /></a></p>
                     </div>
         </div>
 
