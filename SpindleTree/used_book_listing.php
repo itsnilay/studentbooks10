@@ -9,7 +9,7 @@ $book_author_first = "Joe";
 $book_author_last = "Schmoe";
 $book_synopsis = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 $book_expert_rating = 3.5;
-$ew_book_price = 45.90;
+$new_book_price = 45.90;
 $book_cover_small = "img/51Zy0q83ipL._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_AA300_SH20_OU01_.jpg";
 $like_new_book_price = 38.26;
 $like_new_book_amount = 7;
@@ -36,7 +36,7 @@ $terrible_book_amount = 3;
         <img id="cover" class="span-5 last" src="<?php echo $book_cover_small ?>"/>
         <p id="new_price_container" class="span-5 last">
             <span class="subtitle">New: </span>
-            <span id="price"><?php echo $new_book_price ?></span>
+            <span id="price">$<?php echo $new_book_price ?></span>
         </p>
         <a href="shopping_cart.php" class="span-5 last">(+ Buy New Button)</a>
     </div>
@@ -50,37 +50,37 @@ $terrible_book_amount = 3;
     </div>
 </div>
 
-<ul id="subnav">
+<ul id="subnav" class="span-18 last">
     <li id="used_books" class="tab current"><a href="used_book_listing.php">Used Books</a></li>
     <li id="expert_reviews" class="tab"><a href="expert_reviews.php">Expert Reviews</a></li>
     <li id="used_books" class="tab"><a href="reviews.php">Reviews</a></li>
     <li id="used_books" class="tab"><a href="book_details">Details</a></li>
 </ul>
 
-<ul id="used_books">
+<ul id="used_books" class="span-18 last">
     <li id="like_new" class="odd">
-        <span class="condition"><?php echo 'Like New ($like_new_book_amount)' ?></span>
+        <span class="condition">Like New (<?php echo $like_new_book_amount ?>)</span>
         <span class="price"><?php echo '\$$like_new_book_price' ?></span>
         <a class="buy_button">(buy)</a>
-        <span class="description">Excepteur sint occaecat, sunt in culpa qui officia des...</span>
+        <span class="description">Excepteur sint occaecat, sunt in...</span>
     </li>
     <li id="very_good" class="even"
-        <span class="condition"><?php echo 'Very Good ($very_good_book_amount)' ?></span>
+        <span class="condition">Very Good (<?php echo $very_good_book_amount ?>)</span>
         <span class="condition"><?php echo '\$$very_good_book_price' ?></span>
         <a class="buy_button">(buy)</a>
-        <span class="description">Excepteur sint occaecat, sunt in culpa qui officia des...</span>
+        <span class="description">Excepteur sint occaecat, sunt in...</span>
     </li>
     <li id="good" class="odd">
-        <span class="condition"><?php echo 'Good ($good_book_amount)' ?></span>
+        <span class="condition">Good (<?php echo $good_book_amount ?>)</span>
         <span class="condition"><?php echo '\$$good_book_price' ?></span>
         <a class="buy_button">(buy)</a>
-        <span class="description">Excepteur sint occaecat, sunt in culpa qui officia des...</span>
+        <span class="description">Excepteur sint occaecat, sunt in culpa...</span>
     </li>
     <li id="terrible" class="even">
-        <span class="condition"><?php echo 'Terrible ($terrible_book_amount)' ?></span>
+        <span class="condition">Terrible (<?php echo $terrible_book_amount ?>)</span>
         <span class="condition"><?php echo '\$$terrible_book_price' ?></span>
         <a class="buy_button">(buy)</a>
-        <span class="description">Excepteur sint occaecat, sunt in culpa qui officia des...</span>
+        <span class="description">Excepteur sint occaecat, sunt in culpa...</span>
     </li>
 </ul>
 
