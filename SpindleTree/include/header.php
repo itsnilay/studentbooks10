@@ -30,17 +30,19 @@ require_once('../mysql_connect.php');//connect to database
         </div>
         <div class="span-24 last">
             <div id="search_bar" class="span-22">
-                <input id="searchbox" class="text span-10" type="text" />
-                <select name="" class="span-4">
-                    <option value="">Lorem ipsum dolor</option>
-                    <option value="">Lorem ipsum dolor</option>
-                    <option value="">Lorem ipsum dolor</option>
-                    <option value="">Lorem ipsum dolor</option>
-                    <option value="">Lorem ipsum dolor</option>
-                </select>
-                <div class="span-8 last">
-                    <input id="search_button" type="submit" value="Search"/>
-                </div>
+                <form post="book_listing.php">
+                    <input id="searchbox" class="text span-10" type="text" />
+                    <select name="" class="span-4">
+                        <option value="">Lorem ipsum dolor</option>
+                        <option value="">Lorem ipsum dolor</option>
+                        <option value="">Lorem ipsum dolor</option>
+                        <option value="">Lorem ipsum dolor</option>
+                        <option value="">Lorem ipsum dolor</option>
+                    </select>
+                    <div class="span-8 last">
+                        <input id="search_button" type="submit" value="Search"/>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="span-23 solidblockmenu prepend-top last">

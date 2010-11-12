@@ -140,7 +140,7 @@ p{
     margin-top: 2px;
 }
 
-/*RIGHT COLUMN NAV*/
+/*LEFT COLUMN NAV*/
 .arrowlistmenu{
     min-height:550px;
     width: 200px;
@@ -204,8 +204,10 @@ border-bottom: none;
 .content_wrapper{
     min-height: 240px;
     border-top: 1px solid #dadada;
-    float: left;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
     padding: 10px;
+    margin: 0 auto;
     background: #ffffff url('../img/bottom_fade.png') repeat-x bottom left;
 }
  
@@ -225,7 +227,6 @@ border-bottom: none;
 }
 .lft_border_column{
     background: #ffffff;
-    border-right: 1px solid #dadada;
     margin: 5px;
     float: left;
     padding: 3px;
@@ -305,4 +306,13 @@ form#sign_in {
 
 form button {
     float: right;
+}
+
+/*BOOKS LISTING PAGE*/
+ul#books_list li {
+    list-style-image: none;
+    list-style-type: none;
+}
+ul#books_list li.even {
+    background-color: #eef;
 }

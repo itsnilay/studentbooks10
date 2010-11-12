@@ -30,7 +30,7 @@ $terrible_book_amount = 3;
      */
 ?>
 <h1 id="title"><?php echo $book_title ?></h1>
-<p id="author"><?php echo $book_author_last . ', ' . $book_author_first; ?></p>
+<span id="author"><?php echo $book_author_last . ', ' . $book_author_first; ?></span>
 <div id="main" class="span-18 last">
     <div id="main_left" class="span-5">
         <img id="cover" class="span-5 last" src="<?php echo $book_cover_small ?>"/>
@@ -61,6 +61,33 @@ $terrible_book_amount = 3;
     <li id="expert_reviews" class="tab"><a href="expert_reviews.php">Expert Reviews</a></li>
     <li id="used_books" class="tab"><a href="reviews.php">Reviews</a></li>
     <li id="used_books" class="tab"><a href="book_details">Details</a></li>
+</ul>
+
+<ul id="used_books" class="span-18 last">
+    <li id="like_new" class="odd">
+        <span class="condition span-3">Like New (<?php echo $like_new_book_amount ?>)</span>
+        <span class="price span-2">$<?php echo $like_new_book_price ?></span>
+        <a class="buy_button span-1">(buy)</a>
+        <span class="description span-12 last">Excepteur sint occaecat, sunt in...</span>
+    </li>
+    <li id="very_good" class="even">
+        <span class="condition span-3">Very Good (<?php echo $very_good_book_amount ?>)</span>
+        <span class="price span-2">$<?php echo $very_good_book_price ?></span>
+        <a class="buy_button span-1">(buy)</a>
+        <span class="description span-12 last">Excepteur sint occaecat, sunt in...</span>
+    </li>
+    <li id="good" class="odd">
+        <span class="condition span-3">Good (<?php echo $good_book_amount ?>)</span>
+        <span class="price span-2">$<?php echo $good_book_price ?></span>
+        <a class="buy_button span-1">(buy)</a>
+        <span class="description span-12 last">Excepteur sint occaecat, sunt in culpa...</span>
+    </li>
+    <li id="terrible" class="even">
+        <span class="condition span-3">Terrible (<?php echo $terrible_book_amount ?>)</span>
+        <span class="price span-2">$<?php echo $terrible_book_price ?></span>
+        <a class="buy_button span-1">(buy)</a>
+        <span class="description span-12 last">Excepteur sint occaecat, sunt in culpa...</span>
+    </li>
 </ul>
 
 <?php 
