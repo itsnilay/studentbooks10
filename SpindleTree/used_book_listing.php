@@ -30,20 +30,20 @@ $terrible_book_amount = 3;
      */
 ?>
 <h1 id="title"><?php echo $book_title ?></h1>
-<p id="author"><?php echo $book_author_last +', ' + $book_author_first; ?></p>
-<div id="main">
-    <div id="main_left">
-        <img id="cover" src="<?php echo $book_cover_small ?>"/>
-        <p id="new_price_container">
+<p id="author"><?php echo $book_author_last . ', ' . $book_author_first; ?></p>
+<div id="main" class="span-18 last">
+    <div id="main_left" class="span-5">
+        <img id="cover" class="span-5 last" src="<?php echo $book_cover_small ?>"/>
+        <p id="new_price_container" class="span-5 last">
             <span class="subtitle">New: </span>
             <span id="price"><?php echo $new_book_price ?></span>
         </p>
-        <a href="shopping_cart.php">(+ Buy New Button)</a>
+        <a href="shopping_cart.php" class="span-5 last">(+ Buy New Button)</a>
     </div>
-    <div id="main_right">
-        <span class="subtitle">Synopsis:</span>
-        <p id="synopsis"><?php echo $book_synopsis ?></p>
-        <div>
+    <div id="main_right" class="span-13 last">
+        <span class="subtitle" class="span-13 last">Synopsis:</span>
+        <p id="synopsis" class="span-13 last"><?php echo $book_synopsis ?></p>
+        <div class="span-13 last">
             <span class="subtitle">Expert Rating</span>
             <span id="expert_rating_stars">(placeholder for stars)</span>
         </div>
@@ -52,10 +52,10 @@ $terrible_book_amount = 3;
 
 <ul id="subnav">
     <li id="used_books" class="tab current"><a href="used_book_listing.php">Used Books</a></li>
-    <li id="expert_reviews" class="tab"><a href="expert_reviews.php"></a>Expert Reviews</li>
-    <li id="used_books" class="tab"><a href="reviews.php"></a>Reviews</li>
-    <li id="used_books" class="tab"><a href="book_details"></a>Details</li>
-</ul>;
+    <li id="expert_reviews" class="tab"><a href="expert_reviews.php">Expert Reviews</a></li>
+    <li id="used_books" class="tab"><a href="reviews.php">Reviews</a></li>
+    <li id="used_books" class="tab"><a href="book_details">Details</a></li>
+</ul>
 
 <ul id="used_books">
     <li id="like_new" class="odd">
