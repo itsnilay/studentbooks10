@@ -1,10 +1,83 @@
 <?php 
 $page_title ='XXX';
 include('include/header.php');
+include('include/book_details.php');
+
+//Set up some initial variables to be replaced
+$book_title = "Principles of Software Engineering (Edition 8)";
+$book_author_first = "Joe";
+$book_author_last = "Schmoe";
+$book_synopsis = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+$book_expert_rating = 3.5;
+$ew_book_price = 45.90;
+$book_cover_small = "img/51Zy0q83ipL._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_AA300_SH20_OU01_.jpg";
+$like_new_book_price = 38.26;
+$like_new_book_amount = 7;
+$very_good_book_price = 57.60;
+$very_good_book_amount = 12;
+$good_book_price = 27.50;
+$good_book_amount = 15;
+$terrible_book_price = 13.60;
+$terrible_book_amount = 3;
 ?>
 
-<h1>Used Book Listing</h1>
+<?php
+    /*
+     *  TODO: Replace this section with a php function, since it is the same
+     * for each Book Details page, save for some minor changes.  In the future, queries should
+     * be used to retrieve book title, author, rating, etc, so we'll only need to pass the
+     * book's unique ID to the function.  -Andrew
+     */
+?>
+<h1 id="title"><?php echo $book_title ?></h1>
+<p id="author"><?php echo '$book_author_last, $book_author_first'; ?></p>
+<div id="main">
+    <div id="main_left">
+        <img id="cover" src="<?php echo $book_cover_small ?>"/>
+        <p id="new_price_container">
+            <span class="subtitle">New: </span>
+            <span id="price"><?php echo $new_book_price ?></span>
+        </p>
+        <a href="shopping_cart.php">(+ Buy New Button)</a>
+    </div>
+    <div id="main_right">
+        <span class="subtitle">Synopsis:</span>
+        <p id="synopsis"><?php echo $book_synopsis ?></p>
+        <div>
+            <span class="subtitle">Expert Rating</span>
+            <span id="expert_rating_stars">(placeholder for stars)</span>
+        </div>
+    </div>
+</div>
 
+<?php draw_book_details_subnav($page_title);?>
+
+<ul id="used_books">
+    <li id="like_new" class="odd">
+        <span class="condition"><?php echo 'Like New ($like_new_book_amount)' ?></span>
+        <span class="price"><?php echo '\$$like_new_book_price' ?></span>
+        <a class="buy_button">(buy)</a>
+        <span class="description">Excepteur sint occaecat, sunt in culpa qui officia des...</span>
+    </li>
+    <li id="very_good" class="even"
+        <span class="condition"><?php echo 'Very Good ($very_good_book_amount)' ?></span>
+        <span class="condition"><?php echo '\$$very_good_book_price' ?></span>
+        <a class="buy_button">(buy)</a>
+        <span class="description">Excepteur sint occaecat, sunt in culpa qui officia des...</span>
+    </li>
+    <li id="good" class="odd">
+        <span class="condition"><?php echo 'Good ($good_book_amount)' ?></span>
+        <span class="condition"><?php echo '\$$good_book_price' ?></span>
+        <a class="buy_button">(buy)</a>
+        <span class="description">Excepteur sint occaecat, sunt in culpa qui officia des...</span>
+    </li>
+    <li id="terrible" class="even">
+        <span class="condition"><?php echo 'Terrible ($terrible_book_amount)' ?></span>
+        <span class="condition"><?php echo '\$$terrible_book_price' ?></span>
+        <a class="buy_button">(buy)</a>
+        <span class="description">Excepteur sint occaecat, sunt in culpa qui officia des...</span>
+    </li>
+</ul>
 
 <?php 
 include('include/footer.php');
