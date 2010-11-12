@@ -11,7 +11,7 @@
     <![endif]-->
 </head>
 <?php
-require_once('../mysql_connect.php');//connect to database
+require_once('mysql_connect.php');//connect to database
 ?>
 <body>
     <div class="container" >
