@@ -30,7 +30,7 @@ $terrible_book_amount = 3;
      */
 ?>
 <h1 id="title"><?php echo $book_title ?></h1>
-<p id="author"><?php echo '$book_author_last, $book_author_first'; ?></p>
+<p id="author"><?php echo $book_author_last +', ' + $book_author_first; ?></p>
 <div id="main">
     <div id="main_left">
         <img id="cover" src="<?php echo $book_cover_small ?>"/>
@@ -50,7 +50,12 @@ $terrible_book_amount = 3;
     </div>
 </div>
 
-<?php draw_book_details_subnav($page_title);?>
+<ul id="subnav">
+    <li id="used_books" class="tab current"><a href="used_book_listing.php">Used Books</a></li>
+    <li id="expert_reviews" class="tab"><a href="expert_reviews.php"></a>Expert Reviews</li>
+    <li id="used_books" class="tab"><a href="reviews.php"></a>Reviews</li>
+    <li id="used_books" class="tab"><a href="book_details"></a>Details</li>
+</ul>;
 
 <ul id="used_books">
     <li id="like_new" class="odd">
