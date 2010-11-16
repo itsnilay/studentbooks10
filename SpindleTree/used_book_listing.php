@@ -1,4 +1,4 @@
-<?php 
+<?php
 $page_title ='SpindleTree | Principles of Software Engineering (Edition 8) - Schmoe, Joe';
 $page_special = "BOOKS";
 include('include/header.php');
@@ -40,7 +40,8 @@ $terrible_book_amount = 3;
             <span class="subtitle">New: </span>
             <span id="price">$<?php printf("%0.2f",$new_book_price); ?></span>
         </p>
-        <a href="shopping_cart.php" class="span-5 last">(+ Buy New Button)</a>
+		<a href="shopping_cart.php"><img src="img/BuyNewButton.JPG"></a>
+		<!--a href="shopping_cart.php" class="span-5 last">(+ Buy New Button)</a-->
     </div>
     <div id="main_right" class="span-13 last">
         <span class="subtitle" class="span-13 last">Synopsis:</span>
@@ -92,7 +93,7 @@ $terrible_book_amount = 3;
     </li>
 </ul>
 
-<?php 
+<?php
 include('include/footer.php');
-?>	
+?>
 		

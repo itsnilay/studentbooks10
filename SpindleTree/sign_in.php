@@ -1,4 +1,4 @@
-<?php 
+<?php
 $page_title ='SpindleTree | Sign In';
 include('include/header.php');
 ?>
@@ -12,9 +12,10 @@ include('include/header.php');
              <label class="span-3">Password</label>
              <input id="password" class="span-6 last" />
          </div>
+		 <a href="registration.php" align ="center">New User? Sign Up!</a>
          <button type="submit">Sign in</button>
      </form>
-<?php 
+<?php
 include('include/footer.php');
-?>	
+?>
 		

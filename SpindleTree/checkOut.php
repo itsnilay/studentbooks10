@@ -1,4 +1,4 @@
-<?php 
+<?php
 $page_title ='SpindleTree | Checkout';
 include('include/header.php');
 ?>
@@ -12,9 +12,10 @@ include('include/header.php');
              <h3>Shipping Address</h3>
              <!FIXME: input id's are not unique (again, really needs a function)>
              <?php include('include/addressform.php'); ?>
-            <button type="submit">Submit</button>
+			 <a href="confirmOrder.php"><img src="img/submit.JPG" align = "right"></a>
+            <!--button type="submit" onclick="index.php">Submit</button-->
         </form>
-<?php 
+<?php
 include('include/footer.php');
-?>	
+?>
 		
