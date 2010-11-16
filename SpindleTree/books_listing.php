@@ -40,15 +40,15 @@ $ccsavings = array(13.05, 18.86, 5.07, 3.86, 21.70, 18.60, 24.37, 12.34, 24.35, 
         <ul id="books_list" class="span-18 last">
             <!-- ITEM NUMBER 0 //-->
             <li class="book odd span-18 last">
-			<?php
+            <?php
             $result = SpindleTreeDB::getInstance()->get_all_books();
             while($row = mysql_fetch_array($result)) {
                 $bookid = $row["bookid"];
                 $book_title = $row["title"];
                 $book_author = $row["author"];
-                 $book_synopsis = $row["description"];
+                $book_synopsis = $row["description"];
                 $book_expert_rating = 3.5;
-                $new_book_price = $row["price"];;
+                $new_book_price = $row["price"];
                 $used_book_price = 28.86;
                 $book_cover_tiny = $row["bookimage"];
                 $ccsavings = "13.05";

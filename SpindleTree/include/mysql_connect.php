@@ -59,7 +59,7 @@
     }
 
     public function get_all_books () {
-        $result = mysql_query("SELECT * FROM `book`");
+        $result = mysql_query("SELECT * FROM 'book'");
         if (mysql_num_rows($result) > 0)
         return $result;
         else
@@ -67,7 +67,7 @@
     }
 
      public function get_book_image ($bookid) {
-        $result = mysql_query("SELECT bookimage FROM `book` where bookid=".$bookid);
+        $result = mysql_query("SELECT bookimage FROM 'book' where bookid=".$bookid);
         if (mysql_num_rows($result) > 0)
         return $result;
         else
