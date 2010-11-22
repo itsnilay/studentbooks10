@@ -29,6 +29,7 @@ $page_special="";
 
     <div class="span-18">
         <ul id="books_list" class="span-18 last">
+            <li>
             <?php
                 $isOdd = false;
                 $isFirst = true;
