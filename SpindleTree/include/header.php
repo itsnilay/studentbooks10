@@ -21,11 +21,21 @@ require_once('mysql_connect.php');//connect to database
                 <a href="index.php"><img src="img/spindletreelogo250X89.png" alt="" /></a>
             </div>
             <div id="secondary_menu" class="span-12 last">
-                <span>
+               <span>
+                <?php
+                if (isset($_SESSION['user_id'])AND (substr($_SERVER['PHP_SELF'], -10) != 'logout.php')){
+                          echo '  <a href ="home.php">Home </a> | <a href= "logout.php">Logout</a> | <a href="help.php">help</a> ';
+                }else{//not logged in
+                          echo '<a href="registration.php"> Register </a> | <a href="login.php"> Login </a> | <a href="forgot_password.php"> Forgot Password </a>';
+                }
+                ?>
+                </span>
+                    <!--
                     <a href="user_account.php">My Account</a> |
                     <a href="sign_in.php">Sign In</a> |
-                    <a href="contact.php">Contact</a>
-                </span>
+                    <a href="contact.php">Contact</a> |
+                    -->
+                
             </div>
         </div>
         <div class="span-24 last">

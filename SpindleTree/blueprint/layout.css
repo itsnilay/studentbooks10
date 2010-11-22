@@ -3,7 +3,7 @@ body,h1, h2, h3,h4,h5,h6,p,ol,ul,form,blockquote{
 	padding:0;
 }
 body{
-	font: "Gill Sans","Trebuchet MS",Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font: 15px "Gill Sans","Trebuchet MS",Tahoma, Verdana, Arial, Helvetica, sans-serif;
 	background-repeat: no-repeat;
 }
 
@@ -426,4 +426,28 @@ ul#cart_contents li {
 
 ul#cart_contents li .even {
     background-color: #eef;
+}
+
+/*FORM ELEMENTS*/
+input#first_name, input#last_name, input#email, input#password2, input#password1, input#title, input#upload, input#isbn, input#course_id, textarea#description, input#new_password{
+	width: 250px;
+	border: 1px solid #d6d7de;
+	padding: 3px 0;
+	}
+
+.form_box{
+         border: 1px solid #dadada;
+         background: #fcfcfc;
+         width: 600px;
+         margin: 10px auto;
+         padding: 10px;
+}
+
+.form_box .label {
+	float: left;
+	clear: left;
+	width: 150px;
+	margin-right: 10px;
+	text-align: right;
+	font-weight: bold;
 }
