@@ -93,14 +93,10 @@ p a:hover, li a:hover{
     margin-right: 17px;
 }
 
-/*
-* Span color removed by Andrew.  Please define class or id, since I'm using spans
-* in other places.  Thanks :)
-*/
-span{
-    /* color:#537086; */
+span#cart_price{
     font-size: 15px;
 }
+
 p{
     text-align: left;
 }
@@ -152,53 +148,53 @@ p{
 }
 
 .arrowlistmenu .headerbar{
-font: bold 14px Arial;
-color: #444444;
-background: #dadada url('../img/blockdefault.gif') bottom left repeat-x;
-margin-bottom: 10px; /*bottom spacing between header and rest of content*/
-padding: 4px 0 4px 10px; /*header text is indented 10px*/
-height:25px;
+    font: bold 14px Arial;
+    color: #444444;
+    background: #dadada url('../img/blockdefault.gif') bottom left repeat-x;
+    margin-bottom: 10px; /*bottom spacing between header and rest of content*/
+    padding: 4px 0 4px 10px; /*header text is indented 10px*/
+    height:25px;
 }
 
 .arrowlistmenu ul{
-list-style-type: none;
-margin: 0;
-padding: 0;
-margin-bottom: 8px; /*bottom spacing between each UL and rest of content*/
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px; /*bottom spacing between each UL and rest of content*/
 }
 
 .arrowlistmenu ul li{
-padding-bottom: 2px; /*bottom spacing between menu items*/
+    padding-bottom: 2px; /*bottom spacing between menu items*/
 }
 
 .arrowlistmenu ul li a{
-background: url(media/arrowbullet.png) no-repeat center left; /*custom bullet list image*/
-display: block;
-padding: 2px 0;
-padding-left: 19px; /*link text is indented 19px*/
-text-decoration: none;
-font-weight: bold;
+    background: url(media/arrowbullet.png) no-repeat center left; /*custom bullet list image*/
+    display: block;
+    padding: 2px 0;
+    padding-left: 19px; /*link text is indented 19px*/
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .arrowlistmenu ul li a:visited{
-color: #444444;
+    color: #444444;
 }
 
 .arrowlistmenu ul li a:hover{ /*hover state CSS*/
-color: #444444;
-background-color: #F3F3F3;
-text-decoration: none;
-border-bottom: none;
+    color: #444444;
+    background-color: #F3F3F3;
+    text-decoration: none;
+    border-bottom: none;
 }
 
 /*MAIN CONTENT*/
 #main_content{
-	width: 535px;
-	min-height: 450px;
-	background: #172435;
-	float: left;
-	padding: 10px;
-	margin: 0px;
+    width: 535px;
+    min-height: 450px;
+    background: #172435;
+    float: left;
+    padding: 10px;
+    margin: 0px;
 }
 
 .content_wrapper{
@@ -249,15 +245,39 @@ border-bottom: none;
 }
 
 /*BOOK DETAILS PAGES*/
+h1#title {
+    font-size:2em;
+    margin-bottom:0.25em;
+}
+
+img#cover {
+    float: left;
+    margin: 0 0.5em 0.5em 0;
+}
+
+span.subtitle {
+    font-size: 18px;
+}
+
+p#new_price_container span.new_price {
+    font-weight: bold;
+    color: #3c3;
+    font-size: 20px;
+}
+
 p#new_price_container {
-    margin-top: 1em;
+    font-size: 18px;
+}
+
+div.buttons button {
+    float: right;
+    clear: right;
 }
 
 ul#subnav {
     display: block;
     list-style-image: none;
     list-style-type: none;
-    height: 2em;
     padding-left: 1em;
     border-bottom: 1px solid #ccc;
     margin-top: 1em;
@@ -272,7 +292,7 @@ ul#subnav li {
 }
 
 ul#used_books {
-
+    border: 1px solid #EEEEFF;
 }
 
 ul#used_books li {
@@ -308,19 +328,35 @@ form button {
 }
 
 /*BOOKS LISTING PAGE*/
+ul#books_list {
+    border:1px solid #EEEEFF;
+}
+
 ul#books_list li {
     list-style-image: none;
     list-style-type: none;
     margin-top: 1.5em;
+    padding:5px;
+    width:700px;
+}
+
+ul#books_list li.top {
+    margin-top: 0;
 }
 
 ul#books_list li.even {
     background-color: #eef;
 }
 
+ul#books_list div.title_space {
+    margin-bottom: 0.5em;
+}
+
 ul#books_list h2.title {
     font-size: 18px;
+    margin: 0 auto 0.25em auto;
 }
+
 
 ul#books_list h2.title a.link{
     font-size: 18px;
@@ -338,6 +374,42 @@ ul#books_list h2.title hover{
 ul#books_list h2.title a.active{
     font-size: 18px;
 }
+
+ul#books_list li.book table {
+    margin-bottom: 0;
+}
+
+ul#books_list li.book td {
+    vertical-align: bottom;
+}
+
+ul#books_list li.book p {
+    margin-bottom: 0;
+}
+
+ul#books_list li.book p.price {
+    font-size: 18px;
+}
+
+ul#books_list li.book p.price span.used_price, ul#books_list li.book p.price span.new_price {
+    color: #3c3;
+    font-weight: bold;
+}
+
+ul#books_list li.book td.buttons {
+    text-align: right;
+}
+
+ul#books_list li.book p.cc_savings {
+    border: 1px solid #00f;
+    background-color: #c2c4fb;
+}
+
+ul#books_list li.book p.cc_savings span {
+    color: #00f;
+    font-weight: bold;
+}
+
 
 /*SHOPPING CART*/
 ul#cart_contents input {

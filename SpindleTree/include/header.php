@@ -53,7 +53,7 @@ require_once('mysql_connect.php');//connect to database
                             <li><a href="buy_back.php" <?php if ($page_special=="BUYBACK") echo "class=\"current\"";?>>BuyBack</a></li>
                         </ul>
                     </div>
-                    <div class="span-3">
+                    <div id="cart_price" class="span-3">
                          <p>23 item(s): <span>$23,673.64</span>  </p>
                     </div>
                     <div class="span-2 last">
