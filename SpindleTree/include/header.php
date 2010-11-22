@@ -58,9 +58,9 @@ require_once('mysql_connect.php');//connect to database
         <div class="span-23 solidblockmenu prepend-top last">
                     <div class="span-16">
                         <ul>
-                            <li><a href="index.php" <?php if ($page_special=="HOME") echo "class=\"current\"";?>>Home</a></li>
-                            <li><a href="books_listing.php" <?php if ($page_special=="BOOKS") echo "class=\"current\"";?>>Books</a></li>
-                            <li><a href="buy_back.php" <?php if ($page_special=="BUYBACK") echo "class=\"current\"";?>>BuyBack</a></li>
+                            <li><a href="index.php" <?php if ($page_special=="HOME") echo "class=\"current\"";?>>SpindleTree Home</a></li>
+                            <li><a href="books_listing.php" <?php if ($page_special=="BOOKS") echo "class=\"current\"";?>>Browse Books</a></li>
+                            <!--<li><a href="buy_back.php" <?php if ($page_special=="BUYBACK") echo "class=\"current\"";?>>BuyBack</a></li>-->
                         </ul>
                     </div>
                     <div id="cart_price" class="span-3">
