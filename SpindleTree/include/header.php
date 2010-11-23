@@ -64,7 +64,15 @@ require_once('mysql_connect.php');//connect to database
                         </ul>
                     </div>
                     <div id="cart_price" class="span-3">
-                         <p>23 item(s): <span>$23,673.64</span>  </p>
+                         <p>
+                            <?php
+                            $result = SpindleTreeDB::getInstance()->get_all_books();
+                            $num_rows = mysql_num_rows($result);
+
+                            echo "$num_rows item(s):\n";
+                            ?>
+                             <span>$23,673.64</span>
+                         </p>
                     </div>
                     <div class="span-2 last">
                        <p><a href="shopping_cart.php"><img src="img/checkout_button.gif" alt="" /></a></p>

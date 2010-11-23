@@ -3,7 +3,7 @@
 
 require_once ('include/config.inc.php');
 
-$page_title ='Simplytraders | Forgot Password';
+$page_special ='SpindleTree | Forgot Password';
 include('include/header.php');
 
 
@@ -19,7 +19,7 @@ $uid = FALSE;
 if(!empty($_POST['email'])){//validate email address
 
 			//check for the existance of that email address...
-			$query = 'SELECT user_id FROM users WHERE email ="'.mysqli_real_escape_string($dbc, $_POST['email']).'"';
+			$query = 'SELECT uid FROM user WHERE email ="'.mysqli_real_escape_string($dbc, $_POST['email']).'"';
 			$result = mysqli_query($dbc, $query) or trigger_error("Query: $query\n<br/>MySQL Error: " .mysqli_error($dbc));
 
 			if (mysqli_num_rows($result)==1){//retrieve the user ID
@@ -36,13 +36,13 @@ if($uid){// everything is okay
 				 $p = substr(md5(uniqid (rand(), true)), 3, 10);
 				 
 				 //make the query
-				 $query = "UPDATE users SET password=SHA1('$p') WHERE user_id=$uid LIMIT 1";
+				 $query = "UPDATE user SET password=SHA1('$p') WHERE uid=$uid LIMIT 1";
 				 $result = mysqli_query($dbc, $query) or trigger_error("Query: $query\n<br/>MySQL Error: " .mysqli_error($dbc));
 
 				 if (mysqli_affected_rows($dbc)==1){// if it ran okay
 				       //send an email
-				       $body="Your password to log into Simplytraders has been temporarily changed to '$p'. Please log in using this password and your username. At that time you may change your password to something more familiar.";
-				       mail($_POST['email'], 'Your temporary password.', $body, 'From: noreply@simplytraders.com');
+				       $body="Your password to log into SpindleTree has been temporarily changed to '$p'. Please log in using this password and your username. At that time you may change your password to something more familiar.";
+				       mail($_POST['email'], 'Your temporary password.', $body, 'From: noreply@spindletree.com');
 				       echo'<h3>Your password has been changed. You will recieve the new, temporary password at the email address with which you registered. Once you have logged in with this password, you may change it by clicking on the "Change Password" link.</h3>';
 				       
 				       mysqli_close($dbc);//close the database connection
@@ -67,7 +67,6 @@ mysqli_close($dbc);//close the database connection
 			 <p><input type="submit"  name="submit" value="Reset my Password" /></p>
 			 <p><input type="hidden"  name="submitted" value="TRUE" /></p>
 		</div>
- 
  </form>
 
 <?php

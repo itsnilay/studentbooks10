@@ -49,7 +49,7 @@ if (isset($_POST['submitted'])){
 
 	 if($fn && $ln && $e && $p){//if everything is ok....
 		  //make sure the email address avaliable
-		  $q ="SELECT user_id FROM users WHERE email='$e'";
+		  $q ="SELECT uid FROM user WHERE email='$e'";
 		  $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br/>MySQL Error: ".mysqli_error($dbc));
 
 		  if(mysqli_num_rows($r)==0){//available
@@ -58,7 +58,7 @@ if (isset($_POST['submitted'])){
 
 			   //add the user to the database:
 
-			   $q = "INSERT INTO users (email, password, fname, lname, active, registrationDate) VALUES ('$e', SHA1('$p'), '$fn', '$ln', '$a', NOW())";
+			   $q = "INSERT INTO user (email, password, fname, lname, active, registrationDate) VALUES ('$e', SHA1('$p'), '$fn', '$ln', '$a', NOW())";
 			   $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br/>MySQL Error: ".mysqli_error($dbc));
 
 			   if(mysqli_affected_rows($dbc)==1){//if it ran ok
@@ -77,7 +77,7 @@ if (isset($_POST['submitted'])){
 			   }
 
 		  }else{//email address is not avaliable
-			   echo'<p class="error">That email address has already been registered. If you have forgotten your password, please <a href="#">click here</a></p>';
+			   echo'<p class="error">That email address has already been registered. If you have forgotten your password, please <a href="forgot_password.php">click here</a></p>';
 		  }
 	 }else{//one of the data test failed
 		  echo'<p class="error">Please re-enter your passwords and try again.</p>';
@@ -102,4 +102,4 @@ if (isset($_POST['submitted'])){
 </div>
 <?php
 include('include/footer.php');
- ?>      `
+ ?>

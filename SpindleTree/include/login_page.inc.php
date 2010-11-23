@@ -4,7 +4,7 @@
 
 //and it creates the entire login page including the form.
 //include the header
-$page_title='Simplytraders | Login';
+$page_title='SpindleTree | Login';
 
 include('include/header.php');
 
@@ -24,7 +24,7 @@ if(!empty($errors)){
 
 <p>Please make sure your browser allows cookies in order to login.</p>
 <form action ="login.php" method="post">
-    <div class = "edit_box">
+    <div class = "form_box">
         <p><label for="email" class="label">Email:</label><input id="email" type="text" name="email" size ="20" maxlenght="40" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
         <p><label for="password1" class="label">Password:</label><input id="password1" type="password" name="pass" size ="20" maxlenght="20"  /></p>
 

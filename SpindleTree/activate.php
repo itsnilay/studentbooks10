@@ -3,7 +3,7 @@
 require_once ('include/config.inc.php');
 
 
-$page_title ='SpindleTree | Activate';
+$page_special ='SpindleTree | Activate';
 
 
 include('include/header.php');
@@ -36,8 +36,8 @@ if($x && $y){
 			//start defining the URL.
 			$url = BASE_URL.'index.php';//define the URL:
 							
-			ob_end_clean();//delete the buffer
-			header("Location: $url");
+			//ob_end_clean();//delete the buffer
+			//header("Location: $url");
 			exit();//quit the script
 }//end the main IF-ELSE								
 

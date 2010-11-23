@@ -18,7 +18,7 @@ define('LIVE', FALSE);
 define('EMAIL', 'noreply@spindletree.com');
 
 //site URL (base for all redirections):
-define('BASE_URL', 'http://www.spindletree.com/');
+define('BASE_URL', 'http://hci.cs.sfsu.edu/~fall2010.10/');
 
 //location of the MySQL connection script:
 define('MYSQL', './../mysql_connect.php');

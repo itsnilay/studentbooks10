@@ -1,7 +1,7 @@
 <?php  #login.php version 1.1
 
 if (isset($_POST['submitted'])){//check to see if form has been submitted
-	
+	require_once('../mysql_connect.php');
 /*********************************/
  function absolute_url($page = 'index.php'){
     //start defining URL...
@@ -38,7 +38,7 @@ function check_login($dbc, $email='', $pass=''){
     
     if(empty($errors)){//if everything's ok
         //retrieve the user id and first name for that email/password combination:
-	 $query = "SELECT uid, fname FROM users WHERE email='$e' AND password=SHA1('$p')";
+	 $query = "SELECT uid, fname FROM user WHERE email='$e' AND password=SHA1('$p')";
 	 $result = mysqli_query($dbc, $query) or trigger_error("Query: $query\n<br/>MySQL Error: " .mysqli_error($dbc));
 
 	 if (mysqli_num_rows($result)==1){
@@ -76,7 +76,7 @@ function check_login($dbc, $email='', $pass=''){
 	 }else{//unsuccessful
 		  $errors = $data;
 	 }	 
-	 mysqli_close($dbc); 
+	 mysqli_close($dbc);
 	 
 }//end of SUBMIT conditional
 
