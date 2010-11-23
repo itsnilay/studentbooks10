@@ -3,7 +3,6 @@
 
 require_once ('include/config.inc.php');
 
-
 $page_title ='Simplytraders | Forgot Password';
 include('include/header.php');
 

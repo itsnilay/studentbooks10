@@ -1,19 +1,7 @@
 <?php  #login.php version 1.1
-/*
-//include configuration file
-require_once('include/config.inc.php');
-
-
-//sett title page & include the html header
-$page_title= 'Simplytraders | Login';
-include ('include/header.php');
-
-echo '<div id ="header_title1"><h1>Login</h1></div>';
-*/
 
 if (isset($_POST['submitted'])){//check to see if form has been submitted
-	 //require('include/login_functions.php');
-	 require_once('../mysql_connect.php');
+	
 /*********************************/
  function absolute_url($page = 'index.php'){
     //start defining URL...
@@ -50,7 +38,7 @@ function check_login($dbc, $email='', $pass=''){
     
     if(empty($errors)){//if everything's ok
         //retrieve the user id and first name for that email/password combination:
-	 $query = "SELECT user_id, first_name FROM users WHERE email='$e' AND password=SHA1('$p')";
+	 $query = "SELECT uid, fname FROM users WHERE email='$e' AND password=SHA1('$p')";
 	 $result = mysqli_query($dbc, $query) or trigger_error("Query: $query\n<br/>MySQL Error: " .mysqli_error($dbc));
 
 	 if (mysqli_num_rows($result)==1){
@@ -75,8 +63,8 @@ function check_login($dbc, $email='', $pass=''){
 	 if($check){//ok
 		  // set the session data:
 		  session_start();
-		  $_SESSION['user_id'] = $data['user_id'];
-		  $_SESSION['first_name'] = $data['first_name'];
+		  $_SESSION['uid'] = $data['uid'];
+		  $_SESSION['fname'] = $data['fname'];
 		  
 		  //store the HTTP_USER_AGENT:
 		  $_SESSION['agent'] = md5($_SERVER['HTTP_USER_AGENT']);
