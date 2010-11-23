@@ -13,7 +13,7 @@ if(!isset($_SESSION['user_id'])){
     exit();
 }
 
-$page_title ='Simplytraders | My Account Settings';
+$page_title ='SpindleTree | My Account Settings';
 include('include/header.php');
 ?>
 
@@ -26,7 +26,6 @@ include('include/header.php');
        </ul>
  </div>
 
-<div class="info_bar">Your personal information.</div>
 
 <?php 
 include('include/footer.php');

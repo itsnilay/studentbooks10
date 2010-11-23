@@ -88,7 +88,7 @@ if (isset($_POST['submitted'])){
 
 ?>
 
-<div class = "edit_box">
+<div class = "form_box">
 <form action="registration.php" method="post">
 	<p><label for="first_name" class="label">First Name: </label><input id="first_name" type="text" name="first_name" size="15" maxlength="15" value="<?php if (isset($trimmed['first_name'])) echo $trimmed['first_name']; ?>" /></p>
 	<p><label for="last_name" class="label">Last Name: </label><input id="last_name" type="text" name="last_name" size="15" maxlength="30" value="<?php if (isset($trimmed['last_name'])) echo $trimmed['last_name']; ?>" /></p>

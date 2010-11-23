@@ -63,7 +63,7 @@ mysqli_close($dbc);//close the database connection
  
  <p>Enter your email address below and your password will be reset.</p>
  <form action ="forgot_password.php" method="post">
- 		<div class = "edit_box">
+ 		<div class = "form_box">
  			 <p><label for="email" class="label">Email:</label><input id="email" type="text" name="email" size="20" maxlength="40" value= "<?php  if(isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
 			 <p><input type="submit"  name="submit" value="Reset my Password" /></p>
 			 <p><input type="hidden"  name="submitted" value="TRUE" /></p>
