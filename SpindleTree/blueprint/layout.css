@@ -3,7 +3,7 @@ body,h1, h2, h3,h4,h5,h6,p,ol,ul,form,blockquote{
 	padding:0;
 }
 body{
-	font: 15px "Gill Sans","Trebuchet MS",Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font: "Gill Sans","Trebuchet MS",Tahoma, Verdana, Arial, Helvetica, sans-serif;
 	background-repeat: no-repeat;
 }
 
