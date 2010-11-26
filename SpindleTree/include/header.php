@@ -42,16 +42,79 @@ require_once('mysql_connect.php');//connect to database
             <div id="search_bar" class="span-22">
                 <form action="books_listing.php">
                     <input id="searchbox" class="text span-10" type="text" />
-                    <select name="" class="span-4">
-                        <option value="">Lorem ipsum dolor</option>
-                        <option value="">Lorem ipsum dolor</option>
-                        <option value="">Lorem ipsum dolor</option>
-                        <option value="">Lorem ipsum dolor</option>
-                        <option value="">Lorem ipsum dolor</option>
-                    </select>
-                    <div class="span-8 last">
+                    <select name="category" class="span-4" id="category">
+                         <option class="first" value=""> Choose a Category...</option>
+
+                         <?php
+                         //This PHP Block will check the URL and if school is selected corresponding values will be displayed on comboBox
+                         if (isset($_GET[action])){
+                            // Retrieve the GET parameters and executes the function
+                              $funcName	 = $_GET[action];
+                              $vars	  = $_GET[vars];
+                              $funcName($vars);
+                         } 
+                         else if (isset($_POST[action])){
+                            // Retrieve the POST parameters and executes the function
+                            $funcName	 = $_POST[action];
+                            $vars	  = $_POST[vars];
+                            $funcName($vars);
+                         }
+                         else
+                             catCombo(0);
+
+                          function catCombo($schid){
+                          $result = SpindleTreeDB::getInstance()->getCategory($schid);
+                            while($row = mysql_fetch_array($result)) {
+                                if ($schid != 0)
+                                    echo "<option>".$row['courseid']." - ". $row['coursename']."</option>";
+                                else
+                                    echo "<option>". $row['coursename']."</option>";
+                            }
+                         }
+                         ?>
+                     </select>
+                    
                         <input id="search_button" type="submit" value="Search"/>
-                    </div>
+                    
+
+                        <!--Below java script block will be executed when School is selected and it will generate URL and pass arguments to call above PHP function of ComboBox catCombo(schId) -->
+                        <script language="javascript">
+                            function changeCat(schList){
+                                var catCombo = document.getElementById("category");
+                                while(catCombo.hasChildNodes())
+                                   catCombo.removeChild(catCombo.lastChild);
+
+                                var schoolid = schList.selectedIndex-1;
+                                // the url which you have to reload is this page, but you add an action to the GET- or POST-variable
+                                var url="<?php echo $_SERVER[PHP_SELF];?>?action=catCombo&vars="+schoolid;
+
+                                // Opens the url in the same window
+                                   window.open(url, "_self");
+
+                               }
+                        </script>
+                        
+                        
+
+                         <select class="span-4" onChange=changeCat(this)>
+                            <option class="first" value=""> Choose a School...</option>
+                            <?php
+                          $result = SpindleTreeDB::getInstance()->getSchool();
+                          $i=0;
+                            while($row = mysql_fetch_array($result)) {
+                                if($vars)
+                                {
+                                    if($vars==$i)
+                                        echo "<option selected>". $row['schoolname']."</option>";
+                                    else
+                                        echo "<option>". $row['schoolname']."</option>";
+                                }
+                                else
+                                    echo "<option>". $row['schoolname']."</option>";
+                                $i++;
+                            } ?>
+                        </select>
+                    <!--/div-->
                 </form>
             </div>
         </div>
@@ -85,13 +148,37 @@ require_once('mysql_connect.php');//connect to database
                     <div class='arrowlistmenu fade_bottom'>
                         <h3 class='headerbar'>Categories</h3>
                         <ul>
-                            <li>
-                                <a href=''>(17) Lorem ipsum dolor</a>
-                                <a href=''>(3) Lorem ipsum dolor</a>
-                                <a href=''>(12) Lorem ipsum dolor</a>
-                                <a href=''>(24) Lorem ipsum dolor</a>
-                                <a href=''>(8) Lorem ipsum dolor</a>
-                            </li>
+
+                            <li>";
+                         //This PHP Block will check the URL and if school is selected corresponding values will be displayed on comboBox
+                        function catLeftPanel($schid){
+                          $result = SpindleTreeDB::getInstance()->getCategory($schid);
+                            while($row = mysql_fetch_array($result)) {
+                                if($schid != 0)
+                                    echo "<a href=''>".$row['courseid']." - ". $row['coursename']."</a>";
+                                else
+                                    echo "<a href=''>". $row['coursename']."</a>";
+                            }
+                         }
+                         
+                        if (isset($_GET[action])){
+                            // Retrieve the GET parameters and executes the function
+                              $funcName	 = "catLeftPanel";
+                              $vars	  = $_GET[vars];
+                              $funcName($vars);
+                         }
+                         else if (isset($_POST[action])){
+                            // Retrieve the POST parameters and executes the function
+                            $funcName	 = "catLeftPanel";
+                            $vars	  = $_POST[vars];
+                            $funcName($vars);
+                         }
+                         else
+                             catLeftPanel(0);
+
+                          
+
+                  echo" </li>
                         </ul>
                     </div>
                 </div>

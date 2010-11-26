@@ -1,23 +1,10 @@
-<?php  #version 1.1 mysql_connect.php
+<?php
+#version 1.1 mysql_connect.php
 #mysql_connect.php
 // This file contains the database access information
 // This file also establshes a connection to mySQL and selects the database
 //This file also defines the escape_data() function
 
-
-// Set the database access information as constants
-//DEFINE ('DB_USER', 'SpindleTree');
-//DEFINE ('DB_PASSWORD', 'sfsufauf10');
-//DEFINE ('DB_HOST', 'localhost');
-//DEFINE ('DB_NAME', 'SpindleTree');
-
-
-// Make the connection
-//$dbc= @mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
-
-//if (!$dbc){// make the connection
-//	 trigger_error('Could not connect to MySQL: '. mysqli_connect_error($dbc));
-//}//end of !$dbc IF
   class SpindleTreeDB {
   // single instance of self shared among all instances
     private static $instance = null;
@@ -29,6 +16,7 @@
     private $dbHost = "hci.cs.sfsu.edu";
 
     private $con = null;
+    public $book = array();
 
     //This method must be static, and must return an instance of the object if the object
     //does not already exist.
@@ -58,16 +46,40 @@
         or die ("Could not select db: " . mysql_error());
     }
 
+    public function getBook($i){
+        return $this->book[$i];
+    }
+
     public function get_all_books () {
         $result = mysql_query("SELECT * FROM `book`");
+        require_once("include/book.php");
+        while($row = mysql_fetch_array($result)) {
+           $this->book[]=new Book($row);
+         }
+       if (mysql_num_rows($result) > 0)
+        return $result;
+        else
+       return null;
+    }
+
+     public function get_book_image ($bookid) {
+        $result = mysql_query("SELECT bookimage FROM `book` where bookid=".$bookid);
         if (mysql_num_rows($result) > 0)
         return $result;
         else
         return null;
     }
 
-     public function get_book_image ($bookid) {
-        $result = mysql_query("SELECT bookimage FROM `book` where bookid=".$bookid);
+    public function getCategory ($schid) {
+        $result = mysql_query("SELECT courseid,coursename FROM `course` where schoolid=".$schid);
+        if (mysql_num_rows($result) > 0)
+        return $result;
+        else
+        return null;
+    }
+
+    public function getSchool () {
+        $result = mysql_query("SELECT distinct schoolname FROM `course`");
         if (mysql_num_rows($result) > 0)
         return $result;
         else

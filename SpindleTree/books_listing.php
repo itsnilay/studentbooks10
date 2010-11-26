@@ -10,42 +10,57 @@ $page_special="";
 //results based on search query.
 ?>
     <h2>Search Results</h2>
+    <script language="javascript">
+        function nextPage(){
+            var bookList = document.getElementById('books_list');
+            var item = bookList.childNodes.item(0);
+              
+              
+
+            alert(item); }
+    </script>
+    <button type="submit" onclick=nextPage()>Next Page>></button>
     <div class="prepend-8 span-18 last">
-        <select class="span-5">
+        <!--select class="span-5">
             <option class="first" value="">Choose a School...</option>
             <option value="">SFSU</option>
             <option value="">FAU</option>
             <option value="">CCSF</option>
             <option value="">MIT</option>
             <option value="">Harvey Mudd</option>
-        </select>
+        </select-->
         <select class="span-5">
             <option class="first" value="">Sort by...</option>
             <option value="">Price</option>
             <option value="">Rating</option>
             <option value="">Relevance</option>
         </select>
-    </div>
+     </div>
 
     <div class="span-18">
         <ul id="books_list" class="span-18 last">
-            <li>
+           
             <?php
                 $isOdd = false;
                 $isFirst = true;
-                $result = SpindleTreeDB::getInstance()->get_all_books();
-                while($row = mysql_fetch_array($result)) {
-                    $bookid = $row["bookid"];
-                    $book_title = $row["title"];
-                    $book_author = $row["author"];
-                    $book_synopsis = $row["description"];
+                $limit = 5;
+               $dbInst = SpindleTreeDB::getInstance();
+                $i=-1;
+                
+                while($i < $limit) {
+                    $i++;
+                    $bookInst = $dbInst->getBook($i);
+                    $bookid = $bookInst->getBookId();
+                    $book_title = $bookInst->getTitle();
+                    $book_author = $bookInst->getAuthor();
+                    $book_synopsis = $bookInst->getDesc();
                     $book_expert_rating = 3.5;
-                    $new_book_price = $row["price"];
+                    $new_book_price = $bookInst->getPrice();
                     $used_book_price = 28.86;
-                    $book_cover_tiny = $row["bookimage"];
+                    $book_cover_tiny = $bookInst->getBookid();
                     $cc_savings = 13.05;
-            ?>
-            <?php   if($isFirst) {
+
+                    if($isFirst) {
                         echo '<li class="book even span-18 top last">';
                         $isFirst = false;
                     } else if($isOdd) echo '<li class="book odd span-18 last">';
@@ -71,14 +86,14 @@ $page_special="";
                             function addToCart(){ alert("Selected book is added to Cart"); }
                         </script>
                         <button type="submit" value="book-<?php $bookid ?>" onclick=addToCart()>+ Add to Cart</button>
-                        <!--
+                        
                         <form action="shopping_cart.php">
                             <button type="submit" value="book-<?php $bookid ?>" onclick=checkout()>+ Buy New & Checkout</button>
                         </form>
-                        <a href="shopping_cart.php"><img src="img/BuyButton.JPG"></a>//-->
+                        <!--a href="shopping_cart.php"><img src="img/BuyButton.JPG"></a-->
                     </td>
                 </tr></table>
-            </li>
+           
             <?
                     $isOdd = !$isOdd;
                 } //end while
