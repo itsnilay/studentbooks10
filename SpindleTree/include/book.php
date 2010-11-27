@@ -22,6 +22,19 @@
     private  $stockvgood;
     private  $stockgood;
     private  $bookimage;
+    private  $height;
+    private  $width;
+    private  $length;
+    private  $weight;
+    private  $pagecount;
+    private  $isbn13;
+    private  $format;
+    private  $publisher;
+    private  $yearpublished;
+    private  $monthpublished;
+    private  $daypublished;
+    private  $language;
+    private  $edition;
     public  $row;
 
 
@@ -80,6 +93,22 @@
         $this->stockgood = $row["stockgood"];
         $this->bookimage = $row['bookimage'];
         $this->row = $row;
+
+        //Create dummy values until we implement DB entries for the following
+        $height = 1.3;
+        $width = 7.4;
+        $length = 9.1;
+        $weight = 3;
+        $pagecount = 792;
+        $isbn13 = "978-0137035151";
+        $format = "Hardcover";
+        $publisher = "Addison Wesley";
+        $yearpublished = 2010;
+        $monthpublished = 3;
+        $daypublished = 13;
+        $language = "English";
+        $edition = 8;
+
         self::$numOfBooks++;
         self::$bookids[] = $row["bookid"];
     }
@@ -122,6 +151,54 @@
     
     public function getBookImage(){
         return $this->bookimage;
+    }
+
+    public function getLength(){
+        return $this->length;
+    }
+
+    public function getWidth(){
+        return $this->width;
+    }
+
+    public function getHeight(){
+        return $this->height;
+    }
+
+    public function getWeight(){
+        return $this->weight;
+    }
+
+    public function getPageCount(){
+        return $this->pagecount;
+    }
+
+    public function getIsbn13(){
+        return $this->isbn13;
+    }
+
+    public function getFormat(){
+        return $this->format;
+    }
+
+    public function getPublisher(){
+        return $this->publisher;
+    }
+
+    public function getLanguage(){
+        return $this->language;
+    }
+
+    public function getYearPublished(){
+        return $this->yearpublished;
+    }
+
+    public function getMonthPublished(){
+        return $this->monthpublished;
+    }
+
+    public function getDayPublished(){
+        return $this->daypublished;
     }
 
  }
