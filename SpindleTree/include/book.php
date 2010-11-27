@@ -94,19 +94,19 @@
         $this->row = $row;
 
         //Create dummy values until we implement DB entries for the following
-        $height = 1.3;
-        $width = 7.4;
-        $length = 9.1;
-        $weight = 3;
-        $pagecount = 792;
-        $isbn13 = "978-0137035151";
-        $format = "Hardcover";
-        $publisher = "Addison Wesley";
-        $yearpublished = 2010;
-        $monthpublished = 3;
-        $daypublished = 13;
-        $language = "English";
-        $edition = 8;
+        $this->height = 1.3;
+        $this->width = 7.4;
+        $this->length = 9.1;
+        $this->weight = 3;
+        $this->pagecount = 792;
+        $this->isbn13 = "978-0137035151";
+        $this->format = "Hardcover";
+        $this->publisher = "Addison Wesley";
+        $this->yearpublished = 2010;
+        $this->monthpublished = 3;
+        $this->daypublished = 13;
+        $this->language = "English";
+        $this->edition = 8;
 
         self::$numOfBooks++;
         self::$bookids[] = $row["bookid"];
@@ -193,6 +193,10 @@
     }
 
     public function getDayPublished(){
+        return $this->daypublished;
+    }
+
+    public function getEdition(){
         return $this->daypublished;
     }
 

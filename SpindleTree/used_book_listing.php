@@ -3,7 +3,13 @@ $page_title ='SpindleTree | Principles of Software Engineering (Edition 8) - Sch
 $page_special = "BOOKS";
 include('include/header.php');
 $page_special = "";
-include('include/book_details.php');
+include('include/book_details_api.php');
+require_once("include/mysql_connect.php");
+include_once('include/book.php');
+
+$dbInst = SpindleTreeDB::getInstance();
+$book = $dbInst->getBook(10001);
+//$book = $dbInst->getBook($_GET[id]);
 
 //Set up some initial variables to be replaced
 $like_new_book_price = 38.26;
@@ -16,7 +22,7 @@ $terrible_book_price = 13.60;
 $terrible_book_amount = 3;
 ?>
 
-<?php draw_book_details_main(); ?>
+<?php draw_book_details_main($book); ?>
 
 <?php draw_book_details_subnav($page_title); ?>
 

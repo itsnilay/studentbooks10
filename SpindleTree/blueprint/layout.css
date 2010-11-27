@@ -177,10 +177,6 @@ p{
     font-weight: bold;
 }
 
-.arrowlistmenu ul li a:visited{
-    color: #444444;
-}
-
 .arrowlistmenu ul li a:hover{ /*hover state CSS*/
     color: #444444;
     background-color: #F3F3F3;
