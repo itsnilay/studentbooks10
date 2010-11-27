@@ -29,7 +29,6 @@
     private  $pagecount;
     private  $isbn13;
     private  $format;
-    private  $publisher;
     private  $yearpublished;
     private  $monthpublished;
     private  $daypublished;
@@ -179,10 +178,6 @@
 
     public function getFormat(){
         return $this->format;
-    }
-
-    public function getPublisher(){
-        return $this->publisher;
     }
 
     public function getLanguage(){
