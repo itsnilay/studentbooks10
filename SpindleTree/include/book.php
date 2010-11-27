@@ -34,8 +34,15 @@
     private  $daypublished;
     private  $language;
     private  $edition;
+    private  $likenewprice;
+    private  $likenewquantity;
+    private  $vgoodprice;
+    private  $vgoodquantity;
+    private  $goodprice;
+    private  $goodquantity;
+    private  $terribleprice;
+    private  $terriblequantity;
     public  $row;
-
 
      //This method must be static, and must return an instance of the object if the object
     //does not already exist.
@@ -50,7 +57,7 @@
         return self::$numOfBooks;
     }
 
-    public static function getBooksByCat($catid){
+    public static function getBookIdsByCat($catid){
         if($catid != "default")
         {
             $result = SpindleTreeDB::getInstance()->getBookIdsByCat($catid);
@@ -107,6 +114,14 @@
         $this->daypublished = 13;
         $this->language = "English";
         $this->edition = 8;
+        $this->likenewprice = 60.75;
+        $this->likenewquantity = 7;
+        $this->vgoodprice = 40.50;
+        $this->vgoodquantity = 22;
+        $this->goodprice = 20.25;
+        $this->goodquantity = 13;
+        $this->terribleprice = 10.00;
+        $this->terriblequantity = 5;
 
         self::$numOfBooks++;
         self::$bookids[] = $row["bookid"];
@@ -198,6 +213,38 @@
 
     public function getEdition(){
         return $this->daypublished;
+    }
+
+    public function getLikeNewPrice(){
+        return $this->likenewprice;
+    }
+
+    public function getLikeNewQuantity(){
+        return $this->likenewquantity;
+    }
+
+    public function getVGoodPrice(){
+        return $this->vgoodprice;
+    }
+
+    public function getVGoodQuantity(){
+        return $this->vgoodquantity;
+    }
+
+    public function getGoodPrice(){
+        return $this->goodprice;
+    }
+
+    public function getGoodQuantity(){
+        return $this->goodquantity;
+    }
+
+    public function getTerriblePrice(){
+        return $this->terribleprice;
+    }
+
+    public function getTerribleQuantity(){
+        return $this->terriblequantity;
     }
 
  }

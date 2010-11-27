@@ -325,6 +325,25 @@ form button {
 }
 
 /*BOOKS LISTING PAGE*/
+div.results-info {
+    padding: 3px;
+}
+
+div.results-info select{
+    margin: 0.25em 0 0 0;
+}
+
+div.pagn ul {
+    margin: 0.25em 0 0 0;
+}
+
+div.pagn ul li{
+    list-style-image: none;
+    list-style-type: none;
+    display: inline;
+    font-size: 14px;
+}
+
 ul#books_list {
     border:1px solid #EEEEFF;
 }
