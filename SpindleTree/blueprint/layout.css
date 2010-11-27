@@ -100,8 +100,9 @@ span#cart_price{
 p{
     text-align: left;
 }
-.solidblockmenu li a:visited{
-  
+
+.solidblockmenu li a{
+  color: #324350;
 }
 
 .solidblockmenu li a:hover, .solidblockmenu li .current{

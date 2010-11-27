@@ -42,7 +42,7 @@ require_once('mysql_connect.php');//connect to database
             <div id="search_bar" class="span-22">
                 <form action="books_listing.php">
                     <input id="searchbox" class="text span-10" type="text" />
-                    <select name="category" class="span-4" id="category">
+                    <select name="category" class="span-5" id="category">
                          <option class="first" value=""> Choose a Category...</option>
 
                          <?php
@@ -123,7 +123,7 @@ require_once('mysql_connect.php');//connect to database
                         <ul>
                             <li><a href="index.php" <?php if ($page_special=="HOME") echo "class=\"current\"";?>>SpindleTree Home</a></li>
                             <li><a href="books_listing.php" <?php if ($page_special=="BOOKS") echo "class=\"current\"";?>>Browse Books</a></li>
-                            <li><a href="buy_back.php" <?php if ($page_special=="BUYBACK") echo "class=\"current\"";?>>BuyBack</a></li>
+                            <!--<li><a href="buy_back.php" <?php if ($page_special=="BUYBACK") echo "class=\"current\"";?>>BuyBack</a></li>//-->
                         </ul>
                     </div>
                     <div id="cart_price" class="span-3">

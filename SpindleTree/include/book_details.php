@@ -51,7 +51,7 @@ function draw_book_details_main(){
                 <div class="span-9">
                     <p id="new_price_container">
                         <span class="subtitle">New: </span>
-                        <span class="new_price">$'. $new_book_price . '</span>
+                        <span class="new_price">$'; printf("%01.2f", $new_book_price); echo '</span>
                     </p>
                 </div>
                 <div class="buttons span-9 last">
