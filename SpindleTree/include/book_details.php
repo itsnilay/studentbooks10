@@ -16,7 +16,7 @@ function draw_book_details_subnav($page_title){
     '<ul id="subnav" class="span-18 last">' .
     '<li id="used_books" class="tab current"><a href="used_book_listing.php">Used Books</a></li>' .
     //'<li id="expert_reviews" class="tab"><a href="expert_reviews.php">Expert Reviews</a></li>' .
-    '<li id="used_books" class="tab"><a href="reviews.php">Reviews</a></li>' .
+    //'<li id="used_books" class="tab"><a href="reviews.php">Reviews</a></li>' .
     '<li id="book_details" class="tab"><a href="book_details.php">Details</a></li>' .
     '</ul>';
 }
@@ -29,7 +29,7 @@ function draw_book_details_subnav($page_title){
  * TODO: Add highlighting based on $page_title
  * TODO: Add link replacement based on $page_title
  */
-function draw_book_details_main(){
+function draw_book_details_main($book){
     //Set up some initial variables to be replaced
     $book_title = "Principles of Software Engineering (Edition 8)";
     $book_author_first = "Joe";
