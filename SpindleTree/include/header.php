@@ -73,9 +73,6 @@ require_once('mysql_connect.php');//connect to database
                          }
                          ?>
                      </select>
-                    
-                        <input id="search_button" type="submit" value="Search"/>
-                    
 
                         <!--Below java script block will be executed when School is selected and it will generate URL and pass arguments to call above PHP function of ComboBox catCombo(schId) -->
                         <script language="javascript">
@@ -94,8 +91,6 @@ require_once('mysql_connect.php');//connect to database
                                }
                         </script>
                         
-                        
-
                          <select class="span-4" onChange=changeCat(this)>
                             <option class="first" value=""> Choose a School...</option>
                             <?php
@@ -114,6 +109,8 @@ require_once('mysql_connect.php');//connect to database
                                 $i++;
                             } ?>
                         </select>
+                    
+                        <button id="search_button" class="span-2 last" type="submit">Search</button>
                     <!--/div-->
                 </form>
             </div>
