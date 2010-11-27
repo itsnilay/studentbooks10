@@ -7,6 +7,7 @@
      // single instance of self shared among all instances
     private static $instance = null;
     public static $numOfBooks = 0;
+    public static $bookids = array();
     private  $bookid;
     private  $author;
     private  $title;
@@ -23,6 +24,7 @@
     private  $bookimage;
     public  $row;
 
+
      //This method must be static, and must return an instance of the object if the object
     //does not already exist.
     public static function getInstance() {
@@ -35,6 +37,23 @@
     public static function getNumOfBooks(){
         return self::$numOfBooks;
     }
+
+    public static function getBooksByCat($catid){
+        if($catid != "default")
+        {
+            $result = SpindleTreeDB::getInstance()->getBookIdsByCat($catid);
+            $bkids = array();
+            while($row = mysql_fetch_array($result)) {
+                $bkids[] = $row['bookid'];
+            }
+            return $bkids;
+        }
+        else
+            return self::$bookids;
+            
+    }
+
+    
     // The clone and wakeup methods prevents external instantiation of copies of the Singleton class,
     // thus eliminating the possibility of duplicate objects.
     public function __clone() {
@@ -62,6 +81,7 @@
         $this->bookimage = $row['bookimage'];
         $this->row = $row;
         self::$numOfBooks++;
+        self::$bookids[] = $row["bookid"];
     }
 
     public function getBookId(){

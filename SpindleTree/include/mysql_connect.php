@@ -50,11 +50,13 @@
         return $this->book[$i];
     }
 
-    public function get_all_books () {
+    public function getAllBooks () {
         $result = mysql_query("SELECT * FROM `book`");
         require_once("include/book.php");
+        $i = 10000;
         while($row = mysql_fetch_array($result)) {
-           $this->book[]=new Book($row);
+           $this->book[$i]=new Book($row);
+           $i++;
          }
        if (mysql_num_rows($result) > 0)
         return $result;
@@ -62,7 +64,7 @@
        return null;
     }
 
-     public function get_book_image ($bookid) {
+     public function getBookImage ($bookid) {
         $result = mysql_query("SELECT bookimage FROM `book` where bookid=".$bookid);
         if (mysql_num_rows($result) > 0)
         return $result;
@@ -80,6 +82,14 @@
 
     public function getSchool () {
         $result = mysql_query("SELECT distinct schoolname FROM `course`");
+        if (mysql_num_rows($result) > 0)
+        return $result;
+        else
+        return null;
+    }
+
+    public function getBookIdsByCat ($catid) {
+        $result = mysql_query("SELECT bookid FROM `course_book` where courseid='".$catid."'");
         if (mysql_num_rows($result) > 0)
         return $result;
         else

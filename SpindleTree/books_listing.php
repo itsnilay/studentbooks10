@@ -9,7 +9,7 @@ $page_special="";
 //default/null/empty, use some default splash page.  Otherwise, generate/refine
 //results based on search query.
 ?>
-    <h2>Search Results</h2>
+    <h2>Browse Books</h2>
     <script language="javascript">
         function nextPage(){
             var bookList = document.getElementById('books_list');
@@ -21,14 +21,6 @@ $page_special="";
     </script>
     <button type="submit" onclick=nextPage()>Next Page>></button>
     <div class="prepend-8 span-18 last">
-        <!--select class="span-5">
-            <option class="first" value="">Choose a School...</option>
-            <option value="">SFSU</option>
-            <option value="">FAU</option>
-            <option value="">CCSF</option>
-            <option value="">MIT</option>
-            <option value="">Harvey Mudd</option>
-        </select-->
         <select class="span-5">
             <option class="first" value="">Sort by...</option>
             <option value="">Price</option>
@@ -41,15 +33,18 @@ $page_special="";
         <ul id="books_list" class="span-18 last">
            
             <?php
+            //Function to Display Books on Main Panel
+            function dispBooks($catid)
+            {
                 $isOdd = false;
                 $isFirst = true;
-                $limit = 5;
-               $dbInst = SpindleTreeDB::getInstance();
-                $i=-1;
-                
-                while($i < $limit) {
-                    $i++;
-                    $bookInst = $dbInst->getBook($i);
+                $bookids = Book::getBooksByCat($catid);
+                $dbInst = SpindleTreeDB::getInstance();
+               
+                foreach ($bookids as $bkid)
+                {
+                    
+                    $bookInst = $dbInst->getBook($bkid);
                     $bookid = $bookInst->getBookId();
                     $book_title = $bookInst->getTitle();
                     $book_author = $bookInst->getAuthor();
@@ -97,6 +92,26 @@ $page_special="";
             <?
                     $isOdd = !$isOdd;
                 } //end while
+             }//end of function
+
+                if (isset($_GET[action1])){
+
+                                // Retrieve the GET parameters and executes the function
+                                  $funcName	 = $_GET[action1];
+                                  $cat	  = $_GET[cat];
+                                  $funcName($cat);
+
+                         }
+                         else if (isset($_POST[action1])){
+
+                                // Retrieve the POST parameters and executes the function
+                                $funcName	 = $_POST[action1];
+                                $cat	  = $_POST[cat];
+                                $funcName($cat);
+
+                         }
+                         else
+                             dispBooks("default");
             ?>
         </ul>
     </div>

@@ -129,7 +129,7 @@ require_once('mysql_connect.php');//connect to database
                     <div id="cart_price" class="span-3">
                          <p>
                             <?php
-                            $result = SpindleTreeDB::getInstance()->get_all_books();
+                            $result = SpindleTreeDB::getInstance()->getAllBooks();
                             $num_rows = mysql_num_rows($result);
 
                             echo "$num_rows item(s):\n";
@@ -155,23 +155,27 @@ require_once('mysql_connect.php');//connect to database
                           $result = SpindleTreeDB::getInstance()->getCategory($schid);
                             while($row = mysql_fetch_array($result)) {
                                 if($schid != 0)
-                                    echo "<a href=''>".$row['courseid']." - ". $row['coursename']."</a>";
+                                    echo "<a href='./books_listing.php?action=catCombo&vars=".$schid."&action1=dispBooks&cat=".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</a>";
                                 else
-                                    echo "<a href=''>". $row['coursename']."</a>";
+                                    echo "<a href='./books_listing.php?action=catCombo&vars=".$schid."&action1=dispBooks&cat=".$row['courseid']."'>". $row['coursename']."</a>";
                             }
                          }
                          
                         if (isset($_GET[action])){
-                            // Retrieve the GET parameters and executes the function
-                              $funcName	 = "catLeftPanel";
-                              $vars	  = $_GET[vars];
-                              $funcName($vars);
+                            if($_GET[action] == "catCombo"){
+                                // Retrieve the GET parameters and executes the function
+                                  $funcName	 = "catLeftPanel";
+                                  $vars	  = $_GET[vars];
+                                  $funcName($vars);
+                            }
                          }
                          else if (isset($_POST[action])){
-                            // Retrieve the POST parameters and executes the function
-                            $funcName	 = "catLeftPanel";
-                            $vars	  = $_POST[vars];
-                            $funcName($vars);
+                             if($_POST[action] == "catCombo"){
+                                // Retrieve the POST parameters and executes the function
+                                $funcName	 = "catLeftPanel";
+                                $vars	  = $_POST[vars];
+                                $funcName($vars);
+                             }
                          }
                          else
                              catLeftPanel(0);

@@ -9,7 +9,7 @@ if(!isset($id) || empty($id)){
 die("Please select your image!");
 }else{
 
-$query = SpindleTreeDB::getInstance()->get_book_image($id);
+$query = SpindleTreeDB::getInstance()->getBookImage($id);
 $row = mysql_fetch_array($query);
 $content = $row['bookimage'];
 //$content = SpindleTreeDB::getInstance()->book[$id]->bookimage;
