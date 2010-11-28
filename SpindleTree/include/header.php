@@ -1,8 +1,26 @@
+<?php  #script header.php
+
+
+/*start output buffering:
+ * instead of immediately sending HTML to the web browser, store output temporary memory
+ * (this is to eradicate those pesky headers already sent error messages, when using HTTP headers, redirect the user, or send cookies :) )
+ */
+ob_start();
+
+//initialize a session:
+session_start();
+
+//check for a page title value:
+if(!isset($page_special)){
+    $page_special = 'Welcome to SpindleTree';
+}
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <title><?php echo $page_title; ?></title>
+    <title><?php echo $page_special; ?></title>
     <link rel="stylesheet" type="text/css" href="blueprint/screen.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" href="blueprint/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="blueprint/layout.css" media="all" />
@@ -23,8 +41,8 @@ require_once('mysql_connect.php');//connect to database
             <div id="secondary_menu" class="span-12 last">
                <span>
                 <?php
-                if (isset($_SESSION['user_id'])AND (substr($_SERVER['PHP_SELF'], -10) != 'logout.php')){
-                          echo '  <a href ="home.php">Home </a> | <a href= "logout.php">Logout</a> | <a href="help.php">help</a> ';
+                if (isset($_SESSION['uid'])AND (substr($_SERVER['PHP_SELF'], -10) != 'logout.php')){
+                          echo '  <a href ="index.php">Home </a> | <a href= "logout.php">Logout</a> | <a href="contact.php">Contact</a> ';
                 }else{//not logged in
                           echo '<a href="registration.php"> Register </a> | <a href="login.php"> Login </a> | <a href="forgot_password.php"> Forgot Password </a>';
                 }

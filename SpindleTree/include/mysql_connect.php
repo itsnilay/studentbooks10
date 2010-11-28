@@ -96,4 +96,17 @@
         return null;
     }
   }
+    // Set the database access information as constants
+    DEFINE ('DB_USER', 'SpindleTree');
+    DEFINE ('DB_PASSWORD', 'sfsufauf10');
+    DEFINE ('DB_HOST', 'hci.cs.sfsu.edu');
+    DEFINE ('DB_NAME', 'SpindleTree');
+
+
+    // Make the connection
+    $dbc= @mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+
+    if (!$dbc){// make the connection
+         trigger_error('Could not connect to MySQL: '. mysqli_connect_error());
+    }//end of !$dbc IF
 ?>

@@ -12,16 +12,16 @@ created by: Jerry Mathurin date: November 8, 2010
 // **************** SETTINGS **************** //
 
 // Flag variable for site status
-define('LIVE', FALSE);
+define('GLOBAL_LIVE', FALSE);
 
 //Admin contact address:
-define('EMAIL', 'noreply@spindletree.com');
+define('GLOBAL_EMAIL', 'noreply@spindletree.com');
 
 //site URL (base for all redirections):
-define('BASE_URL', 'http://hci.cs.sfsu.edu/~fall2010.10/');
+define('GLOBAL_BASE_URL', 'http://hci.cs.sfsu.edu/~jmathur5/SpindleTree/');//fall2010.10
 
 //location of the MySQL connection script:
-define('MYSQL', './../mysql_connect.php');
+define('GLOBAL_MYSQL', 'include/mysql_connect.php');
 
 //Adjust the time zone for PHP 5.1 and greater
 
@@ -44,11 +44,11 @@ function my_error_handler($e_number, $e_message, $e_file, $e_line, $e_vars){
      //Append $e_vars to the message:
      $message .="<pre>".print_r($e_vars,1)."</pre>\n</p>";
      
-     if(!LIVE){//DEVELOPMENT (print the error)
+     if(!GLOBAL_LIVE){//DEVELOPMENT (print the error)
          echo'<div>'.$message.'</div><br/>';
      }else{//don't show the error
           //send an email to admin
-	  mail(EMAIL, 'Site Error!', $message,'From: email@example.com');
+	  mail(GLOBAL_EMAIL, 'Site Error!', $message,'From: admin@spindletree.com');
 	  
 	  //Only print an error message if the error isn't a notice
 	  if($e_number != E_NOTICE){

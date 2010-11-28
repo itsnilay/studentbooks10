@@ -1,84 +1,68 @@
-<?php  #login.php version 1.1
+<?php #login page inc version 1.0
 
-if (isset($_POST['submitted'])){//check to see if form has been submitted
-	require_once('../mysql_connect.php');
-/*********************************/
- function absolute_url($page = 'index.php'){
-    //start defining URL...
-    //URL is http:// plus the host name plus the current directory:
-    $url='http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-    
-    //Remove any trailing slashes:
-    $url = rtrim($url, '/\\');
-    
-    //add the page:
-    $url .= '/' . $page;
-    
-    //return the url
-    return $url; 
-    
- }// end of absolute_url
+//This page prints any errors accociated with logging in
+//and it creates the entire login page including the form.
+//include the header
+require_once('include/config.php');
+$page_special='SpindleTree | Login';
+include('include/header.php');
 
-function check_login($dbc, $email='', $pass=''){
-    $errors = array(); // initialize error array
-    
-    //validate the email address
-    if(empty($email)){
-        $errors[] = 'You forgot to enter your email address';
-    }else{
-        $e = mysqli_real_escape_string($dbc, trim($email));
-    }
-    
-    //validate the password:
-    if(empty($pass)){
-         $errors[] = 'You forgot to enter your password'; 
-    }else{
-        $p = mysqli_real_escape_string($dbc, trim($pass));
-    }
-    
-    if(empty($errors)){//if everything's ok
-        //retrieve the user id and first name for that email/password combination:
-	 $query = "SELECT uid, fname FROM user WHERE email='$e' AND password=SHA1('$p')";
-	 $result = mysqli_query($dbc, $query) or trigger_error("Query: $query\n<br/>MySQL Error: " .mysqli_error($dbc));
-
-	 if (mysqli_num_rows($result)==1){
-            //fetch the record:
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            
-            //return true and the record:
-            return array(TRUE, $row);
-        }else{//not a match!
-            $errors[]='The email address and password entered do not match those on file.';
+if(isset($_POST['submitted'])){
+    require_once(GLOBAL_MYSQL);//connect to database
+    echo '<div class="error">';
+        //validate email address:
+        if(!empty ($_POST['email'])){
+            $e = mysqli_real_escape_string($dbc, $_POST['email']);
+        }else{
+            $e = FALSE;
+            echo '<p>You forgot to enter your email address.</p>';
         }
-        
-    }//end of empty($errors) IF
-    
-    //Return false and the errors:
-    return array(FALSE, $errors);
-    
-}//end of check login
-/*********************************/
 
-	 list($check, $data) = check_login($dbc, $_POST['email'], $_POST['pass']);	 
-	 if($check){//ok
-		  // set the session data:
-		  session_start();
-		  $_SESSION['uid'] = $data['uid'];
-		  $_SESSION['fname'] = $data['fname'];
-		  
-		  //store the HTTP_USER_AGENT:
-		  $_SESSION['agent'] = md5($_SERVER['HTTP_USER_AGENT']);
-		  
-		  //Redirect:
-		  $url = absolute_url('my_account.php');
-		  header("Location: $url");
-		  exit();
-	 }else{//unsuccessful
-		  $errors = $data;
-	 }	 
-	 mysqli_close($dbc);
-	 
-}//end of SUBMIT conditional
+        //validate password
+        if (!empty($_POST['password1'])){            
+            $p = mysqli_real_escape_string($dbc, $_POST['password1']);
+        }else{
+             $p = FALSE;
+            echo '<p>You forgot to enter your password.</p>';
+        }
 
-require_once('include/login_page.inc.php');
+        if($e && $p){//if everything is ok
+            //query the database
+            $q = "SELECT uid, email, uname FROM user WHERE email='$e'";// AND password=SHA1('$p')
+            $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br/>MySQL Error:" . mysqli_error($dbc));
+
+            if (@mysqli_num_rows($r)==1){//a match was made
+                
+                //register the values and redirect
+                $_SESSION = mysqli_fetch_array($r, MYSQLI_ASSOC);//will return array of three elements, resulting in $_SESSION['uid'], $_SESSION['uname'], $_SESSION['email']
+                mysqli_free_result($r);
+                mysqli_close($dbc);
+
+                $url = GLOBAL_BASE_URL . 'my_account.php'; //define the URL:
+                ob_end_clean();// delete the existing buffer from header.php
+
+                header("Location: $url");
+                exit();
+            }else{//no match was made
+                echo '<p>Either the email address and password entered do not match those on file or you have not yet activated your account.</p>';
+            }
+        }else{//if everything wasn't ok
+            echo '<p>Please try again.</p>';
+        }
+    echo '</div>';
+    mysqli_close($dbc);
+}//end of submit conditional
+?>
+<h1>Login</h1>
+<form action ="login.php" method="post">
+    <div class = "form_box">
+        <p><label for="email" class="label">Email:</label><input id="email" type="text" name="email" size ="20" maxlenght="40" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
+        <p><label for="password1" class="label">Password:</label><input id="password1" type="password" name="password1" size ="20" maxlenght="20"  /></p>
+        <input type="submit" name="submit" value="login"/>
+        <input type="hidden" name="submitted" value="TRUE"/>
+    </div>
+</form>
+
+<?php
+ include('include/footer.php');
 ?>

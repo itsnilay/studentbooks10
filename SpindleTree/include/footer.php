@@ -12,3 +12,6 @@
     </div>
 </body>
 </html>
+<?php   //flush the buffered output
+        ob_end_flush();
+?>

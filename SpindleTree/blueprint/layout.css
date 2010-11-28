@@ -445,7 +445,7 @@ ul#cart_contents li .even {
 }
 
 /*FORM ELEMENTS*/
-input#first_name, input#last_name, input#email, input#password2, input#password1, input#title, input#upload, input#isbn, input#course_id, textarea#description, input#new_password{
+input#user_name, input#email, input#password2, input#password1, input#address1, input#address2, input#state, input#city, input#zip, textarea#description, input#new_password{
 	width: 250px;
 	border: 1px solid #d6d7de;
 	padding: 3px 0;
