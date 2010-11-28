@@ -18,7 +18,7 @@ define('GLOBAL_LIVE', FALSE);
 define('GLOBAL_EMAIL', 'noreply@spindletree.com');
 
 //site URL (base for all redirections):
-define('GLOBAL_BASE_URL', 'http://hci.cs.sfsu.edu/~jmathur5/SpindleTree/');//fall2010.10
+define('GLOBAL_BASE_URL', 'http://hci.cs.sfsu.edu/~fall2010.10/');
 
 //location of the MySQL connection script:
 define('GLOBAL_MYSQL', 'include/mysql_connect.php');

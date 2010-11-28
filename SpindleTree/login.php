@@ -38,7 +38,7 @@ if(isset($_POST['submitted'])){
                 mysqli_free_result($r);
                 mysqli_close($dbc);
 
-                $url = GLOBAL_BASE_URL . 'my_account.php'; //define the URL:
+                $url = GLOBAL_BASE_URL . 'index.php'; //define the URL:
                 ob_end_clean();// delete the existing buffer from header.php
 
                 header("Location: $url");

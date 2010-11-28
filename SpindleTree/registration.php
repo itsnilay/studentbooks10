@@ -101,13 +101,12 @@ if (isset($_POST['submitted'])){
                                //add the user to the database:
 
                                $q = "INSERT INTO user (email, password, uname, address1, address2, city, state, zip, registrationDate) VALUES ('$e', SHA1('$p'), '$un', '$a1', '$a2', '$c', '$s', '$z', NOW())";
-                               $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br/>MySQL Error: ".mysqli_error($dbc));
-                               
-                                //set activation code to null (setting to NULL activates the user):
-                               $q2 = "UPDATE user SET  active = NULL LIMIT 1 ";
-                               $r = mysqli_query($dbc, $q2) or trigger_error("Query: $q\n<br/>MySQL Error: ".mysqli_error($dbc));
+                               $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br/>MySQL Error: ".mysqli_error($dbc));   
 
                                if(mysqli_affected_rows($dbc)==1){//if it ran ok
+                                        //set activation code to null (setting to NULL activates the user):
+                                       $q = "UPDATE user SET  active = NULL LIMIT 1 ";
+                                       $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br/>MySQL Error: ".mysqli_error($dbc));
 
                                         //finish the page:
                                         echo'<h3>Thank You for registering! You may now log into SpindleTree. Please <a href="login.php">Click Here</a> to log into your account.</h3>';
