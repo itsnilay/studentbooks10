@@ -6,8 +6,28 @@
  * @param <array<Book>> $books Books to be displayed.
  * @author Nilay/Andrew
  */
+if (isset($_GET[action1])){
+        // Retrieve the GET parameters and executes the function
+          $funcName	 = $_GET[action1];
+          $vars	  = $_GET[cat];
+          $funcName($vars);
+     }
+     else if (isset($_POST[action1])){
+        // Retrieve the POST parameters and executes the function
+        $funcName	 = $_POST[action1];
+        $vars	  = $_POST[cat];
+        $funcName($vars);
+     }
+
+function dispBooks($catid)
+{
+    $books = Book::getBookIdsByCat($catid);
+    draw_books_listing_list($books);
+}
+
 function draw_books_listing_list($books)
 {
+
 ?>
 <div class="span-18">
     <ul id="books_list" class="span-18 last">

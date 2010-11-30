@@ -89,7 +89,7 @@
     }
 
     public function getBookIdsByCat ($catid) {
-        $result = mysql_query("SELECT bookid FROM `course_book` where courseid='".$catid."'");
+        $result = mysql_query("SELECT bookid,bookstoreprice FROM `course_book` where courseid='".$catid."'");
         if (mysql_num_rows($result) > 0)
         return $result;
         else

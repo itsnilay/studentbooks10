@@ -62,14 +62,13 @@
         {
             $result = SpindleTreeDB::getInstance()->getBookIdsByCat($catid);
             $bkids = array();
-            while($row = mysql_fetch_array($result)) {
-                $bkids[] = $row['bookid'];
-            }
+            while($row = mysql_fetch_array($result))
+                $bkids[] = SpindleTreeDB::getInstance()->getBook($row['bookid']);
             return $bkids;
         }
         else
             return self::$bookids;
-            
+        
     }
 
     
