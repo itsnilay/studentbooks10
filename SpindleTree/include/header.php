@@ -7,8 +7,15 @@
  */
 ob_start();
 
-//initialize a session:
+// INCLUDE JCART BEFORE SESSION START
+include "./jcart/jcart.php";
+
+// START SESSION
 session_start();
+
+// INITIALIZE JCART AFTER SESSION START
+$cart =& $_SESSION["jcart"]; if(!is_object($cart)) $cart = new jcart();
+
 
 //check for a page title value:
 if(!isset($page_special)){
@@ -78,10 +85,8 @@ require_once('mysql_connect.php');//connect to database
                             $funcName($vars);
                          }
                          else
-                         {
                              catCombo(0);
-                          
-                         }
+
                           function catCombo($schid){
                           $result = SpindleTreeDB::getInstance()->getCategory($schid);
                             while($row = mysql_fetch_array($result)) {
@@ -138,19 +143,9 @@ require_once('mysql_connect.php');//connect to database
         <div class="span-23 solidblockmenu prepend-top last">
                     <div class="span-16">
                         <ul>
-                            <?php
-                           if (isset($_GET[action])){
-                                echo '<li><a href="./index.php?action=catCombo&vars='.$_GET[vars].'" class=\"current\">SpindleTree Home</a></li>';
-                                echo '<li><a href="./books_listing.php?action=catCombo&vars='.$_GET[vars].'" class=\"current\">Browse Books</a></li>';
-                           }
-                           else{
-                                echo '<li><a href="index.php" class=\"current\">SpindleTree Home</a></li>';
-                                echo '<li><a href="books_listing.php" class=\"current\">Browse Books</a></li>';
-                           }
-                            ?>
-
-
-                           
+                            <li><a href="index.php" <?php if ($page_special=="HOME") echo "class=\"current\"";?>>SpindleTree Home</a></li>
+                            <li><a href="books_listing.php" <?php if ($page_special=="BOOKS") echo "class=\"current\"";?>>Browse Books</a></li>
+                            <!--<li><a href="buy_back.php" <?php if ($page_special=="BUYBACK") echo "class=\"current\"";?>>BuyBack</a></li>//-->
                         </ul>
                     </div>
                     <div id="cart_price" class="span-3">
