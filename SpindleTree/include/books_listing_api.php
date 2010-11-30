@@ -38,7 +38,7 @@ function draw_books_listing_list($books)
 
     foreach ($books as $book)
     {
-        $cc_savings = 13.05;
+        $cc_savings = abs($book->getPrice()-$book->getBookstorePrice());
 
 
         if($isFirst) {

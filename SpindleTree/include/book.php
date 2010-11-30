@@ -42,6 +42,7 @@
     private  $goodquantity;
     private  $terribleprice;
     private  $terriblequantity;
+    private $bookstoreprice;
     public  $row;
 
      //This method must be static, and must return an instance of the object if the object
@@ -62,8 +63,12 @@
         {
             $result = SpindleTreeDB::getInstance()->getBookIdsByCat($catid);
             $bkids = array();
-            while($row = mysql_fetch_array($result))
-                $bkids[] = SpindleTreeDB::getInstance()->getBook($row['bookid']);
+            $i=0;
+            while($row = mysql_fetch_array($result)){
+                $bkids[$i] = SpindleTreeDB::getInstance()->getBook($row['bookid']);
+                $bkids[$i]->setBookstorePrice($row['bookstoreprice']);
+                $i++;
+            }
             return $bkids;
         }
         else
@@ -121,6 +126,7 @@
         $this->goodquantity = 13;
         $this->terribleprice = 10.00;
         $this->terriblequantity = 5;
+        $this->bookstoreprice = 10;
 
         self::$numOfBooks++;
         self::$bookids[] = $row["bookid"];
@@ -245,6 +251,13 @@
     public function getTerribleQuantity(){
         return $this->terriblequantity;
     }
+    
+    public function getBookstorePrice(){
+        return $this->bookstoreprice;
+    }
 
+    public function setBookstorePrice($bkstreprice){
+        $this->bookstoreprice=$bkstreprice;
+    }
  }
 ?>
