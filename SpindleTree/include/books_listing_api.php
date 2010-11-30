@@ -48,19 +48,26 @@ function draw_books_listing_list($books)
         else echo '<li class="book even span-18 last">';
 ?>
     <div class="title_space span-18 last">
-        <h2 class="title"><a href=used_book_listing.php><?php echo $book->getTitle(); ?></a></h2>
+        <h2 class="title">
+        <?php
+        if(isset($_GET[vars]))
+            $vars=$_GET[vars];
+        else
+            $vars=0;
+            echo "<a href='./used_book_listing.php?action=catCombo&vars=".$vars."&action2=dispBookLstg&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
         <span class="author"><?php echo $book->getAuthor(); ?></span>
     </div>
     <table width="100%" cellspacing="0" cellpadding="4" border="0"><tr valign="bottom">
         <td width="1%">
-            <a href="used_book_listing.php"><img class="span-3" src="include/getBLOB.php?id=<?php echo $book->getBookId(); ?>"></a>
+            <?php echo "<a href='./used_book_listing.php?action=catCombo&vars=".$vars."&action2=dispBookLstg&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
+
         </td>
         <td>
             <p class="price">Used: <span class="used_price">$<?php printf("%0.2f",$book->getTerriblePrice()); ?></span></p>
             <p class="price">New: <span class="new_price">$<?php printf("%0.2f",$book->getPrice()); ?></span></p>
         </td>
         <td>
-            <p class="cc_savings">Save <span>$<?php echo $cc_savings?></span> on the price at your bookstore!</p>
+            <p class="cc_savings">Save <span>$<?php echo printf("%0.1f",$cc_savings)?></span> on the price at your bookstore!</p>
         </td>
         <td class="buttons">
             <script language="javascript">

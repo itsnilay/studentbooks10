@@ -165,7 +165,7 @@
     }
 
     public function getDesc(){
-        return $this->desc;
+        return $this->description;
     }
     
     public function getBookImage(){

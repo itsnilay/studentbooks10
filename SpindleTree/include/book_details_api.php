@@ -31,19 +31,19 @@ function draw_book_details_subnav($page_title){
  */
 function draw_book_details_main($book){
     //Set up some initial variables to be replaced
-    $book_title = "Principles of Software Engineering (Edition 8)";
-    $book_author_first = "Joe";
-    $book_author_last = "Schmoe";
-    $book_synopsis = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    $book_title = $book->getTitle();
+    $book_author = $book->getAuthor();
+    $book_synopsis = $book->getDesc(); //"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     $book_expert_rating = 3.5;
-    $new_book_price = 45.90;
-    $book_cover_small = "img/51Zy0q83ipL._AA200_.jpg";
+    $new_book_price = $book->getPrice();
+    $bkid = $book->getBookId();
+    
     
     echo '
         <h1 id="title">'. $book_title . '</h1>
-        <h4 id="author">'. $book_author_last . ', ' . $book_author_first . '</h4>
+        <h4 id="author">'. $book_author. '</h4>
         <div id="main" class="span-18 last">
-            <img id="cover" src="'. $book_cover_small .'"/>
+            <img id="cover" class="span-3"src="include/getBLOB.php?id='.$bkid.'"/>
             <span class="subtitle">Synopsis:</span>
             <p id="synopsis">' . $book_synopsis . '</p>
 
@@ -58,10 +58,10 @@ function draw_book_details_main($book){
                     <script language="javascript">
                         function addToCart(){ alert("Selected book is added to Cart"); }
                     </script>
-                    <button type="submit" value="book-'. $bookid . '" onclick=addToCart()>+ Add to Cart</button>
+                    <button type="submit" value="book-'. $bkid . '" onclick=addToCart()>+ Add to Cart</button>
                     <!--
                     <form action="shopping_cart.php">
-                        <button type="submit" value="book-'. $bookid . '" onclick=checkout()>+ Buy New & Checkout</button>
+                        <button type="submit" value="book-'. $bkid . '" onclick=checkout()>+ Buy New & Checkout</button>
                     </form>//-->
                 </div>
             </div>
