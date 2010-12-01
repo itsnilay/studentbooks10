@@ -14,6 +14,34 @@ session_start();
 if(!isset($page_special)){
     $page_special = 'Welcome to SpindleTree';
 }
+
+//This PHP Block will check the URL and if school is selected corresponding values will be displayed on comboBox
+if (isset($_GET[action])){
+    // Retrieve the GET parameters and executes the function
+    $funcName = $_GET[action];
+    $vars = $_GET[vars];
+    $funcName($vars);
+}
+else if (isset($_POST[action])){
+    // Retrieve the POST parameters and executes the function
+    $funcName = $_POST[action];
+    $vars = $_POST[vars];
+    $funcName($vars);
+}
+else
+{
+ catCombo(0);
+
+}
+function catCombo($schid){
+$result = SpindleTreeDB::getInstance()->getCategory($schid);
+while($row = mysql_fetch_array($result)) {
+    if ($schid != 0)
+        echo "<option>".$row['courseid']." - ". $row['coursename']."</option>";
+    else
+        echo "<option>". $row['coursename']."</option>";
+}
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -63,35 +91,6 @@ require_once('mysql_connect.php');//connect to database
                     <select name="category" class="span-5" id="category">
                          <option class="first" value=""> Choose a Category...</option>
 
-                         <?php
-                         //This PHP Block will check the URL and if school is selected corresponding values will be displayed on comboBox
-                         if (isset($_GET[action])){
-                            // Retrieve the GET parameters and executes the function
-                              $funcName	 = $_GET[action];
-                              $vars	  = $_GET[vars];
-                              $funcName($vars);
-                         } 
-                         else if (isset($_POST[action])){
-                            // Retrieve the POST parameters and executes the function
-                            $funcName	 = $_POST[action];
-                            $vars	  = $_POST[vars];
-                            $funcName($vars);
-                         }
-                         else
-                         {
-                             catCombo(0);
-                          
-                         }
-                          function catCombo($schid){
-                          $result = SpindleTreeDB::getInstance()->getCategory($schid);
-                            while($row = mysql_fetch_array($result)) {
-                                if ($schid != 0)
-                                    echo "<option>".$row['courseid']." - ". $row['coursename']."</option>";
-                                else
-                                    echo "<option>". $row['coursename']."</option>";
-                            }
-                         }
-                         ?>
                      </select>
 
                         <!--Below java script block will be executed when School is selected and it will generate URL and pass arguments to call above PHP function of ComboBox catCombo(schId) -->

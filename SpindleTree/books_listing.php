@@ -13,6 +13,26 @@ $dbInst = SpindleTreeDB::getInstance();
 $booksPerPage = 5;
 $page = $_GET[p];
 if(!$page || $page <1) $page = 1; //default page value
+
+if (isset($_GET[action1]))
+{
+    // Retrieve the GET parameters and executes the function
+      $funcName	 = $_GET[action1];
+      $vars	  = $_GET[cat];
+      $funcName($vars);
+ }
+ else if (isset($_POST[action1])){
+    // Retrieve the POST parameters and executes the function
+    $funcName	 = $_POST[action1];
+    $vars	  = $_POST[cat];
+    $funcName($vars);
+ }
+
+if(isset($_GET[vars]))
+    $vars=$_GET[vars];
+else
+    $vars=0;
+
 //$cat_id = $_GET[category];
 //if(!$cat_id) $cat_id = "default";
 $cat_id = "default";

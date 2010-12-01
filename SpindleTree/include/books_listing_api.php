@@ -6,24 +6,6 @@
  * @param <array<Book>> $books Books to be displayed.
  * @author Nilay/Andrew
  */
-if (isset($_GET[action1])){
-        // Retrieve the GET parameters and executes the function
-          $funcName	 = $_GET[action1];
-          $vars	  = $_GET[cat];
-          $funcName($vars);
-     }
-     else if (isset($_POST[action1])){
-        // Retrieve the POST parameters and executes the function
-        $funcName	 = $_POST[action1];
-        $vars	  = $_POST[cat];
-        $funcName($vars);
-     }
-
-function dispBooks($catid)
-{
-    $books = Book::getBookIdsByCat($catid);
-    draw_books_listing_list($books);
-}
 
 function draw_books_listing_list($books)
 {
@@ -40,7 +22,6 @@ function draw_books_listing_list($books)
     {
         $cc_savings = abs($book->getPrice()-$book->getBookstorePrice());
 
-
         if($isFirst) {
             echo '<li class="book even span-18 top last">';
             $isFirst = false;
@@ -50,10 +31,6 @@ function draw_books_listing_list($books)
     <div class="title_space span-18 last">
         <h2 class="title">
         <?php
-        if(isset($_GET[vars]))
-            $vars=$_GET[vars];
-        else
-            $vars=0;
             echo "<a href='./used_book_listing.php?action=catCombo&vars=".$vars."&action2=dispBookLstg&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
         <span class="author"><?php echo $book->getAuthor(); ?></span>
     </div>
