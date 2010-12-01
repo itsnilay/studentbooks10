@@ -115,6 +115,8 @@ require_once('mysql_connect.php');//connect to database
                             <option class="first" value=""> Choose a School...</option>
                             <?php
                           $result = SpindleTreeDB::getInstance()->getSchool();
+                          //call once to get rid of "General" option in school
+                          mysql_fetch_array($result);
                           $i=1;
                             while($row = mysql_fetch_array($result)) {
                                 if($vars)
