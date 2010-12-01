@@ -65,7 +65,7 @@
     }
 
      public function getBookImage ($bookid) {
-        $result = mysql_query("SELECT bookimage FROM `book` where bookid=".$bookid);
+        $result = mysql_query("SELECT bookimage FROM `book` where bookid='".$bookid."'");
         if (mysql_num_rows($result) > 0)
         return $result;
         else
@@ -73,7 +73,7 @@
     }
 
     public function getCategory ($schid) {
-        $result = mysql_query("SELECT courseid,coursename FROM `course` where schoolid=".$schid);
+        $result = mysql_query("SELECT courseid,coursename FROM `course` where schoolid='".$schid."'");
         if (mysql_num_rows($result) > 0)
         return $result;
         else
