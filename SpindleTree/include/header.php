@@ -7,20 +7,12 @@
  */
 ob_start();
 
-// INCLUDE JCART BEFORE SESSION START
-include "./jcart/jcart.php";
-
-// START SESSION
+//initialize a session:
 session_start();
-
-// INITIALIZE JCART AFTER SESSION START
-$cart =& $_SESSION["jcart"]; if(!is_object($cart)) $cart = new jcart();
-
 
 //check for a page title value:
 if(!isset($page_special)){
     $page_special = 'Welcome to SpindleTree';
-
 }
 ?>
 
@@ -61,7 +53,7 @@ require_once('mysql_connect.php');//connect to database
                     <a href="sign_in.php">Sign In</a> |
                     <a href="contact.php">Contact</a> |
                     -->
-
+                
             </div>
         </div>
         <div class="span-24 last">
@@ -75,20 +67,20 @@ require_once('mysql_connect.php');//connect to database
                          //This PHP Block will check the URL and if school is selected corresponding values will be displayed on comboBox
                          if (isset($_GET[action])){
                             // Retrieve the GET parameters and executes the function
-                              $funcName  = $_GET[action];
-                              $vars       = $_GET[vars];
+                              $funcName	 = $_GET[action];
+                              $vars	  = $_GET[vars];
                               $funcName($vars);
-                         }
+                         } 
                          else if (isset($_POST[action])){
                             // Retrieve the POST parameters and executes the function
-                            $funcName    = $_POST[action];
-                            $vars         = $_POST[vars];
+                            $funcName	 = $_POST[action];
+                            $vars	  = $_POST[vars];
                             $funcName($vars);
                          }
                          else
                          {
                              catCombo(0);
-
+                          
                          }
                           function catCombo($schid){
                           $result = SpindleTreeDB::getInstance()->getCategory($schid);
@@ -118,7 +110,7 @@ require_once('mysql_connect.php');//connect to database
 
                                }
                         </script>
-
+                        
                          <select class="span-4" onChange=changeCat(this)>
                             <option class="first" value=""> Choose a School...</option>
                             <?php
@@ -137,7 +129,7 @@ require_once('mysql_connect.php');//connect to database
                                 $i++;
                             } ?>
                         </select>
-
+                    
                         <button id="search_button" class="span-2 last" type="submit">Search</button>
                     <!--/div-->
                 </form>
@@ -158,7 +150,7 @@ require_once('mysql_connect.php');//connect to database
                             ?>
 
 
-
+                           
                         </ul>
                     </div>
                     <div id="cart_price" class="span-3">
@@ -178,7 +170,7 @@ require_once('mysql_connect.php');//connect to database
         </div>
 
         <?php if ($page_special=="BOOKS"){
-          echo "
+	  echo "
                 <div class='span-5'>
                     <div class='arrowlistmenu fade_bottom'>
                         <h3 class='headerbar'>Categories</h3>
@@ -195,27 +187,27 @@ require_once('mysql_connect.php');//connect to database
                                     echo "<a href='./books_listing.php?action=catCombo&vars=".$schid."&action1=dispBooks&cat=".$row['courseid']."'>". $row['coursename']."</a>";
                             }
                          }
-
+                         
                         if (isset($_GET[action])){
                             if($_GET[action] == "catCombo"){
                                 // Retrieve the GET parameters and executes the function
-                                  $funcName      = "catLeftPanel";
-                                  $vars   = $_GET[vars];
+                                  $funcName	 = "catLeftPanel";
+                                  $vars	  = $_GET[vars];
                                   $funcName($vars);
                             }
                          }
                          else if (isset($_POST[action])){
                              if($_POST[action] == "catCombo"){
                                 // Retrieve the POST parameters and executes the function
-                                $funcName        = "catLeftPanel";
-                                $vars     = $_POST[vars];
+                                $funcName	 = "catLeftPanel";
+                                $vars	  = $_POST[vars];
                                 $funcName($vars);
                              }
                          }
                          else
                              catLeftPanel(0);
 
-
+                          
 
                   echo" </li>
                         </ul>
@@ -233,3 +225,9 @@ require_once('mysql_connect.php');//connect to database
           ";
         }
         ?>
+
+        
+			  
+			 
+
+	

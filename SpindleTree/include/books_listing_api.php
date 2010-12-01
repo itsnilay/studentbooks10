@@ -6,18 +6,16 @@
  * @param <array<Book>> $books Books to be displayed.
  * @author Nilay/Andrew
  */
-$cart->display_cart($jcart);
-
 if (isset($_GET[action1])){
         // Retrieve the GET parameters and executes the function
-          $funcName     = $_GET[action1];
-          $vars          = $_GET[cat];
+          $funcName	 = $_GET[action1];
+          $vars	  = $_GET[cat];
           $funcName($vars);
      }
      else if (isset($_POST[action1])){
         // Retrieve the POST parameters and executes the function
-        $funcName       = $_POST[action1];
-        $vars    = $_POST[cat];
+        $funcName	 = $_POST[action1];
+        $vars	  = $_POST[cat];
         $funcName($vars);
      }
 
@@ -27,9 +25,9 @@ function dispBooks($catid)
     draw_books_listing_list($books);
 }
 
-
 function draw_books_listing_list($books)
 {
+
 ?>
 <div class="span-18">
     <ul id="books_list" class="span-18 last">
@@ -40,7 +38,7 @@ function draw_books_listing_list($books)
 
     foreach ($books as $book)
     {
-        $cc_savings = abs($book->getPrice()-$book->getBookstorePrice());;
+        $cc_savings = abs($book->getPrice()-$book->getBookstorePrice());
 
 
         if($isFirst) {
@@ -51,7 +49,7 @@ function draw_books_listing_list($books)
 ?>
     <div class="title_space span-18 last">
         <h2 class="title">
-     <?php
+        <?php
         if(isset($_GET[vars]))
             $vars=$_GET[vars];
         else
@@ -59,33 +57,29 @@ function draw_books_listing_list($books)
             echo "<a href='./used_book_listing.php?action=catCombo&vars=".$vars."&action2=dispBookLstg&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
         <span class="author"><?php echo $book->getAuthor(); ?></span>
     </div>
-<table width="100%" cellspacing="0" cellpadding="4" border="0">
-    <form method="post" action="">
-        <tr valign="bottom">
-            <td width="1%">
-                <?php echo "<a href='./used_book_listing.php?action=catCombo&vars=".$vars."&action2=dispBookLstg&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
-            </td>
-            <td>
-                <p class="price">Used: <span class="used_price">$<?php printf("%0.2f",$book->getTerriblePrice()); ?></span></p>
-                <p class="price">New: <span class="new_price">$<?php printf("%0.2f",$book->getPrice()); ?></span></p>
-            </td>
-            <td>
-                <p class="cc_savings">Save <span>$<?php echo printf("%0.1f",$cc_savings)?></span> on the price at your bookstore!</p>
-            </td>
-            <td class="buttons">
-                <!--<script language="javascript">
-                    function addToCart(){ alert("Selected book is added to Cart"); }
-                </script>-->
-                    <input type="hidden" name="my-item-id" value="<?php echo $book->getBookId(); ?>" />
-                    <input type="hidden" name="my-item-name" value="<?php echo $book->getTitle(); ?>" />
-                    <input type="hidden" name="my-item-price" value="<?php printf("%0.2f",$book->getPrice()); ?>" />
-                    <input type="hidden" name="my-item-qty" value="1" />
-                <input type="submit" name="my-add-button" value="Add to Cart" class="button"/>
-               <!-- <button type="submit" value="book-<?php // $book->getBookId(); ?>" onclick=checkout()>+ Buy New & Checkout</button>                -->
-            </td>
-        </tr>
-    </form>
-</table>
+    <table width="100%" cellspacing="0" cellpadding="4" border="0"><tr valign="bottom">
+        <td width="1%">
+            <?php echo "<a href='./used_book_listing.php?action=catCombo&vars=".$vars."&action2=dispBookLstg&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
+
+        </td>
+        <td>
+            <p class="price">Used: <span class="used_price">$<?php printf("%0.2f",$book->getTerriblePrice()); ?></span></p>
+            <p class="price">New: <span class="new_price">$<?php printf("%0.2f",$book->getPrice()); ?></span></p>
+        </td>
+        <td>
+            <p class="cc_savings">Save <span>$<?php echo printf("%0.1f",$cc_savings)?></span> on the price at your bookstore!</p>
+        </td>
+        <td class="buttons">
+            <script language="javascript">
+                function addToCart(){ alert("Selected book is added to Cart"); }
+            </script>
+            <button type="submit" value="book-<?php $book->getBookId(); ?>" onclick=addToCart()>+ Add to Cart</button>
+
+            <form action="shopping_cart.php">
+                <button type="submit" value="book-<?php $book->getBookId(); ?>" onclick=checkout()>+ Buy New & Checkout</button>
+            </form>
+        </td>
+    </tr></table>
 
 <?php
         $isOdd = !$isOdd;
