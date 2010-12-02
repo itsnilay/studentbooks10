@@ -35,12 +35,12 @@ function draw_books_listing_list($page, $books, $booksPerPage)
     <div class="title_space span-18 last">
         <h2 class="title">
         <?php
-            echo "<a href='./used_book_listing.php?vars=".$vars."&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
+            echo "<a href='./used_book_listing.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
         <span class="author"><?php echo $book->getAuthor(); ?></span>
     </div>
     <table width="100%" cellspacing="0" cellpadding="4" border="0"><tr valign="bottom">
         <td width="1%">
-            <?php echo "<a href='./used_book_listing.php?vars=".$vars."&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
+            <?php echo "<a href='./used_book_listing.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
 
         </td>
         <td>
@@ -87,12 +87,8 @@ function draw_books_listing_list($page, $books, $booksPerPage)
     function draw_pagination($page, $numBooks, $booksPerPage){
             $MAX_PAGINATION_PAGES = 9; //# of pages to display without abbreviating pages.
 
-            echo "page before = " . $page . "; numBooks = ".$numBooks." <br>";
-            //build_pagination($page, $booksPerPage, sizeof($tmp_book_ids));
             $numPages = ceil($numBooks/$booksPerPage);
-            echo "numPages = ". $numPages."<br>";
             if ($page > $numPages) $page = $numPages;
-            echo "page after = " . $page . "<br>";
             $isAbbrLeft = false;
             $isAbbrRight = false;
             $begin = 2;
@@ -114,7 +110,7 @@ function draw_books_listing_list($page, $books, $booksPerPage)
             }else if ($isAbbrRight){
                 $end = 8;
             }
-        echo '<div>$page = '.$page.'; $begin = '.$begin.'; $end = '.$end.'; $numPages = '.$numPages.'; $isAbbrLeft = '.$isAbbrLeft.'; $isAbbrRight = '.$issAbbrRight.'; $MAX = '.$MAX_PAGINATION_PAGES.'; $numBooks = '.$numBooks.';<br>$booksPerPage = '.$booksPerPage.';</div>';
+        //echo '<div>$page = '.$page.'; $begin = '.$begin.'; $end = '.$end.'; $numPages = '.$numPages.'; $isAbbrLeft = '.$isAbbrLeft.'; $isAbbrRight = '.$issAbbrRight.'; $MAX = '.$MAX_PAGINATION_PAGES.'; $numBooks = '.$numBooks.';<br>$booksPerPage = '.$booksPerPage.';</div>';
         ?>
         <div class="pagn span-8">
             <ul>
@@ -138,8 +134,10 @@ function draw_books_listing_list($page, $books, $booksPerPage)
                     if ($isAbbrRight) echo '... ';
 
                     //Print pagination end
-                    if($page != $numPages) echo '<li><a href="?p='.$numPages.'">'.$numPages.' </a></li>';
-                    else echo '<li>'.$numPages.' </li>';
+                    if($numPages > 1){
+                        if($page != $numPages) echo '<li><a href="?p='.$numPages.'">'.$numPages.' </a></li>';
+                        else echo '<li>'.$numPages.' </li>';
+                    }
                     if ($page < $end) echo '<li>|<a href="?p='.($page + 1).'"> Next</a></li>';
                     else echo '<li>| Next</li>';
                 ?>

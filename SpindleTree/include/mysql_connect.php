@@ -51,10 +51,16 @@
     }
 
     public function getBookById($id){
+        return $this->book[$id-10000];
+    }
+
+    /*
+    public function getBookById($id){
         $result = mysql_query("SELECT * FROM `book` where bookid='".$id."'");
-        if (mysql_num_rows($result) > 0) return $result;
+        if (mysql_num_rows($result) > 0) return new Book($result);
         else return null;
     }
+    */
 
     public function getAllBooks () {
         if($this->book){
@@ -106,9 +112,16 @@
     }
 
     public function getBooksByCourseId ($cid) {
-        $result = mysql_query("SELECT * FROM `course_book` where courseid='".$cid."'");
-        if (mysql_num_rows($result) > 0) return $result;
-        else return null;
+        $cids = $this->getBookIdsByCourseId($cid);
+        $numRows = mysql_num_rows($cids);
+        if ($numRows > 0) {
+            $books = array();
+            while($bkid = mysql_fetch_array($cids)){
+                $books[] = $this->getBookById($bkid['bookid']);
+            }
+            return $books;
+        }
+        return null;
     }
 
     public function getBooksByCategory ($category) {

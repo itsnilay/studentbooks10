@@ -22,26 +22,31 @@ if(!isset($page_title)){
     $page_title = 'Welcome to SpindleTree';
 }
 
-function catCombo($schid){
+function draw_category_dropdown($schid, $cid, $cat){
     $result = SpindleTreeDB::getInstance()->getCategory($schid);
     while($row = mysql_fetch_array($result)) {
         if ($schid != 0)
-            echo "<option>".$row['courseid']." - ". $row['coursename']."</option>";
-        else
-            echo "<option>". $row['coursename']."</option>";
+            if ($cid == $row['courseid']){
+                echo "<option selected value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
+            }else echo "<option value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
+        else {
+            if ($cat == $row['coursename'])
+                echo "<option selected value='".$row['coursename']."'>". $row['coursename']."</option>";
+            else echo "<option value='".$row['coursename']."'>". $row['coursename']."</option>";
+        }
     }
 }
 
 //This PHP Block will check the URL and if school is selected corresponding values will be displayed on comboBox
-function catLeftPanel($sid){
-    $result = SpindleTreeDB::getInstance()->getCategory($vars);
-    if($vars){
+function draw_left_panel($sid){
+    $result = SpindleTreeDB::getInstance()->getCategory($sid);
+    if($sid){
         while($row = mysql_fetch_array($result)) {
-                echo "<li><a href='./books_listing.php?vars=".$sid."&cid=".urlencode($row['courseid'])."'>".$row['courseid']." - ". $row['coursename']."</a></li>";
+                echo "<li><a href='./books_listing.php?sid=".$sid."&cid=".urlencode($row['courseid'])."'>".$row['courseid']." - ". $row['coursename']."</a></li>";
         }
     }else {
         while($row = mysql_fetch_array($result)) {
-                echo "<li><a href='./books_listing.php?vars=".$sid."&cat=".urlencode($row['coursename'])."'>".$row['coursename']."</a></li>";
+                echo "<li><a href='./books_listing.php?sid=".$sid."&cat=".urlencode($row['coursename'])."'>".$row['coursename']."</a></li>";
         }
     }
 }
@@ -91,12 +96,11 @@ require_once('mysql_connect.php');//connect to database
             <div id="search_bar" class="span-22">
                 <form action="books_listing.php">
                     <input id="searchbox" class="text span-10" type="text" />
-                    <select name="cid" class="span-5" id="category">
-                         <option class="first" value=""> Choose a Category...</option>
-
-                         <?php 
-                         
-                         catCombo($vars); ?>
+                    <?php
+                    if($sid) echo '<select name="cid" class="span-5" id="category">';
+                    else echo '<select name="cat" class="span-5" id="category">';?>
+                         <option class="first" value="0"> Choose a Category...</option>
+                         <?php draw_category_dropdown($sid, $cid, $cat); ?>
                      </select>
 
                         <!--Below java script block will be executed when School is selected and it will generate URL and pass arguments to call above PHP function of ComboBox catCombo(schId) -->
@@ -108,29 +112,26 @@ require_once('mysql_connect.php');//connect to database
 
                                 var schoolid = schList.selectedIndex;
                                 // the url which you have to reload is this page, but you add an action to the GET- or POST-variable
-                                var url="<?php echo $_SERVER[PHP_SELF];?>?action=catCombo&vars="+schoolid;
+                                var url="<?php echo $_SERVER[PHP_SELF]; ?>?sid="+schoolid;
 
                                 // Opens the url in the same window
                                    window.open(url, "_self");
 
-                               }
+                             }
                         </script>
-                        
-                         <select class="span-4" onChange=changeCat(this)>
-                            <!--option class="first" value=""> Choose a School...</option-->
+                         <select name="sid" class="span-4" onChange=changeCat(this)>
+                            <option class="first" value="0"> Choose a School...</option>
                             <?php
                           $result = SpindleTreeDB::getInstance()->getSchool();
-                          $i=0;
+                          
+                          //call once to skip "general" option.
+                          mysql_fetch_array($result);
+                          $i=1;
                             while($row = mysql_fetch_array($result)) {
-                                if($vars)
-                                {
-                                    if($vars==$i)
-                                        echo "<option selected>". $row['schoolname']."</option>";
-                                    else
-                                        echo "<option>". $row['schoolname']."</option>";
-                                }
+                                if($sid==$i)
+                                    echo '<option selected value="'.$i.'">'. $row['schoolname'].'</option>';
                                 else
-                                    echo "<option>". $row['schoolname']."</option>";
+                                    echo '<option value="'.$i.'">'. $row['schoolname'].'</option>';
                                 $i++;
                             } ?>
                         </select>
@@ -143,16 +144,8 @@ require_once('mysql_connect.php');//connect to database
         <div class="span-23 solidblockmenu prepend-top last">
                     <div class="span-16">
                         <ul>
-                            <?php
-                           if (isset($_GET[action])){
-                                echo '<li><a href="./index.php?action=catCombo&vars='.$_GET[vars].'" class=\"current\">SpindleTree Home</a></li>';
-                                echo '<li><a href="./books_listing.php?action=catCombo&vars='.$_GET[vars].'" class=\"current\">Browse Books</a></li>';
-                           }
-                           else{
-                                echo '<li><a href="index.php" class=\"current\">SpindleTree Home</a></li>';
-                                echo '<li><a href="books_listing.php" class=\"current\">Browse Books</a></li>';
-                           }
-                            ?>
+                            <li><a href="index.php">SpindleTree Home</a></li>
+                            <li><a href="books_listing.php">Browse Books</a></li>
                         </ul>
                     </div>
                     <div id="cart_price" class="span-3">
@@ -177,7 +170,7 @@ require_once('mysql_connect.php');//connect to database
                     <div class='arrowlistmenu fade_bottom'>
                         <h3 class='headerbar'>Categories</h3>
                         <ul>";
-                             catLeftPanel($vars);
+                  draw_left_panel($sid);
                   echo" </ul>
                     </div>
                 </div>

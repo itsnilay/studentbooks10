@@ -9,14 +9,18 @@ $page_special="";
 
 //Get id's for all books that match category
 if($cid){
-    $books = Book::getBooksByCourseId($cid);
+    $books = SpindleTreeDB::getInstance()->getBooksByCourseId($cid);
 }else if ($category){
-    $books = Book::getBooksByCategory($category);
+    if ($sid){
+        $books = SpindleTreeDB::getInstance()->getBooksByCourseId($cid);
+    }else {
+        $books = Book::getBooksByCategory($category);
+    }
 }else $books = $dbInst->getAllBooks();
 
 $numBooks = sizeof($books);
 
-$booksPerPage = 10; //# of books to be displayed per page
+$booksPerPage = 5; //# of books to be displayed per page
 
 //Refine by searchQuery
 //TODO: Impelement Search

@@ -75,7 +75,7 @@
             $books = array();
             $i=0;
             while($row = mysql_fetch_array($result)){
-                $bkids[$i] = new Book($row['bookid']);
+                $bkids[$i] = new Book($row);
                 $books[$i]->setBookstorePrice($row['bookstoreprice']);
                 $i++;
             }
