@@ -35,15 +35,18 @@
     private  $language;
     private  $edition;
     private  $likenewprice;
-    private  $likenewquantity;
     private  $vgoodprice;
-    private  $vgoodquantity;
     private  $goodprice;
-    private  $goodquantity;
     private  $terribleprice;
-    private  $terriblequantity;
     private $bookstoreprice;
     public  $row;
+    
+    //Define some constants to avoid messy string usage.
+    const CONDITION_NEW = 0;
+    const CONDITION_LIKE_NEW = 1;
+    const CONDITION_VERY_GOOD = 2;
+    const CONDITION_GOOD = 3;
+    const CONDITION_TERRIBLE = 4;
 
      //This method must be static, and must return an instance of the object if the object
     //does not already exist.
@@ -131,13 +134,9 @@
         $this->language = "English";
         $this->edition = 8;
         $this->likenewprice = 60.75;
-        $this->likenewquantity = 7;
         $this->vgoodprice = 40.50;
-        $this->vgoodquantity = 22;
         $this->goodprice = 20.25;
-        $this->goodquantity = 13;
         $this->terribleprice = 10.00;
-        $this->terriblequantity = 5;
         $this->bookstoreprice = 10;
 
         self::$numOfBooks++;
@@ -229,39 +228,23 @@
     }
 
     public function getEdition(){
-        return $this->daypublished;
+        return $this->edition;
     }
 
     public function getLikeNewPrice(){
         return $this->likenewprice;
     }
-
-    public function getLikeNewQuantity(){
-        return $this->likenewquantity;
-    }
-
+    
     public function getVGoodPrice(){
         return $this->vgoodprice;
-    }
-
-    public function getVGoodQuantity(){
-        return $this->vgoodquantity;
     }
 
     public function getGoodPrice(){
         return $this->goodprice;
     }
 
-    public function getGoodQuantity(){
-        return $this->goodquantity;
-    }
-
     public function getTerriblePrice(){
         return $this->terribleprice;
-    }
-
-    public function getTerribleQuantity(){
-        return $this->terriblequantity;
     }
     
     public function getBookstorePrice(){
