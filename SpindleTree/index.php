@@ -13,13 +13,16 @@ $page_special="";
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in tortor egestas dolor dictum suscipit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer erat eros, malesuada at vulputate vitae, aliquam sit amet velit. Proin dictum sagittis mi vitae adipiscing. Suspendisse sit amet odio dui, non blandit lorem. Sed venenatis convallis turpis non lobortis. Nam sed nunc lacus. Vivamus felis lorem, condimentum eu molestie sit amet, ultricies a augue. Quisque vitae mi augue, vitae sollicitudin nulla. Sed leo enim, egestas eu suscipit sed, sodales quis metus.</p>
                 <div class="content_wrapper">
                         <div class="rgt_border_column">
-                            <a href="used_book_listing.php"><img src="img/51XAN83QT4L._AA200_.jpg" alt="" /></a>
+                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10001"><img src="img/SE2.jpg" alt="" /></a>
                         </div>
                         <div class="mid_column">
-                            <a href="used_book_listing.php"><img src="img/516mDaUzJ5L._AA200_.jpg" alt="" /></a>
+                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10000"><img src="img/SE.jpg" alt="" /></a>
                         </div>
-                        <div class="lft_border_column">
-                            <a href="used_book_listing.php"><img src="img/51Zy0q83ipL._AA200_.jpg" alt="" /></a>
+                         <div class="mid_column">
+                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10012"><img src="img/CO.JPG" alt="" /></a>
+                        </div>
+                         <div class="lft_border_column">
+                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10008"><img src="img/AI.JPG" alt="" /></a>
                         </div>
                 </div>
             ';
