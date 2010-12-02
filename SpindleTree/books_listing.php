@@ -7,74 +7,26 @@ require_once("include/mysql_connect.php");
 $page_special="";
 
 
-//set up some initial variables
-
-
-
-if (isset($_GET[action1]))
-{
-    // Retrieve the GET parameters and executes the function
-      $funcName	 = $_GET[action1];
-      $vars	  = $_GET[cat];
-      $funcName($vars);
- }
- else if (isset($_POST[action1])){
-    // Retrieve the POST parameters and executes the function
-    $funcName	 = $_POST[action1];
-    $vars	  = $_POST[cat];
-    $funcName($vars);
- }
- else
-     dispBooks("default");
-
-if(isset($_GET[vars]))
-    $vars=$_GET[vars];
-else
-    $vars=0;
-
-function dispBooks($cat_id)
-{
-//set up some initial variables
-$booksPerPage = 5;
-$page = $_GET[p];
-if(!$page || $page <1) $page = 1; //default page value
-//
-//
-//Get reference to DB
-$dbInst = SpindleTreeDB::getInstance();
-
-
-//$cat_id = $_GET[category];
-//if(!$cat_id) $cat_id = "default";
-
-
 //Get id's for all books that match category
-$tmp_book_ids = array();
-$tmp_book_ids = Book::getBookIdsByCat($cat_id);
-$numBooks = sizeof($tmp_book_ids);
+if($cid){
+    $books = Book::getBooksByCourseId($cid);
+}else if ($category){
+    $books = Book::getBooksByCategory($category);
+}else $books = $dbInst->getAllBooks();
+
+$numBooks = sizeof($books);
+
+$booksPerPage = 10; //# of books to be displayed per page
 
 //Refine by searchQuery
 //TODO: Impelement Search
 
-//Make sure we don't mix up any previous search results
-if($books) unset($books);
-$books = array();
-
-//Determine books to be displayed on this page.
-$end = ($booksPerPage*$page-1 < sizeof($tmp_book_ids))? $booksPerPage*$page-1 : sizeof($tmp_book_ids);
-for($i=($page-1)*$booksPerPage; $i<$end; $i++)
-    $books[] = $tmp_book_ids[$i];
-
-
-//cleanup
-unset($i);
-unset($end);
 ?>
     <h2>Browse Books</h2>
-    <?php draw_list_header_footer($page, $booksPerPage, $numBooks); ?>
-    <?php draw_books_listing_list($books); ?>
-    <?php draw_list_header_footer($page, $booksPerPage, $numBooks); ?>
+    <?php draw_list_header_footer($page, $numBooks, $booksPerPage); ?>
+    <?php draw_books_listing_list($page, $books, $booksPerPage); ?>
+    <?php draw_list_header_footer($page, $numBooks, $booksPerPage); ?>
 <?php
 include('include/footer.php');
-}?>
+?>
 		

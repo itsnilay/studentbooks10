@@ -7,7 +7,7 @@
  * @author Nilay/Andrew
  */
 
-function draw_books_listing_list($books)
+function draw_books_listing_list($page, $books, $booksPerPage)
 {
 
 ?>
@@ -17,10 +17,14 @@ function draw_books_listing_list($books)
 <?php
     $isOdd = false;
     $isFirst = true;
+    $numBooks = sizeof($books);
 
-    foreach ($books as $book)
+    $end = (($booksPerPage*$page)-1 < $numBooks)? ($booksPerPage*$page)-1 : $numBooks;
+    for ($i = ($page-1)*$booksPerPage; $i<$end; $i++)
     {
-        $cc_savings = abs($book->getPrice()-$book->getBookstorePrice());
+        $book = $books[$i];
+
+        $cc_savings = abs($book->getPrice() - $book->getBookstorePrice());
 
         if($isFirst) {
             echo '<li class="book even span-18 top last">';
@@ -31,12 +35,12 @@ function draw_books_listing_list($books)
     <div class="title_space span-18 last">
         <h2 class="title">
         <?php
-            echo "<a href='./used_book_listing.php?action=catCombo&vars=".$vars."&action2=dispBookLstg&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
+            echo "<a href='./used_book_listing.php?vars=".$vars."&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
         <span class="author"><?php echo $book->getAuthor(); ?></span>
     </div>
     <table width="100%" cellspacing="0" cellpadding="4" border="0"><tr valign="bottom">
         <td width="1%">
-            <?php echo "<a href='./used_book_listing.php?action=catCombo&vars=".$vars."&action2=dispBookLstg&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
+            <?php echo "<a href='./used_book_listing.php?vars=".$vars."&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
 
         </td>
         <td>
@@ -66,7 +70,6 @@ function draw_books_listing_list($books)
 </div>
 
 <?
-    unset($book);
  }//end of function
 ?>
 
@@ -81,15 +84,19 @@ function draw_books_listing_list($books)
      * @param <type> $booksPerPage the number of books to be displayed per page
      * @param <type> $size total number of paginated to be paginated.
      */
-    function draw_pagination($page, $booksPerPage, $numBooks){
-            $MAX_PAGINATION_PAGES = 9;
+    function draw_pagination($page, $numBooks, $booksPerPage){
+            $MAX_PAGINATION_PAGES = 9; //# of pages to display without abbreviating pages.
+
+            echo "page before = " . $page . "; numBooks = ".$numBooks." <br>";
             //build_pagination($page, $booksPerPage, sizeof($tmp_book_ids));
-            $numPages = ceil($numBooks/$booksPerPage); 
+            $numPages = ceil($numBooks/$booksPerPage);
+            echo "numPages = ". $numPages."<br>";
             if ($page > $numPages) $page = $numPages;
+            echo "page after = " . $page . "<br>";
             $isAbbrLeft = false;
             $isAbbrRight = false;
             $begin = 2;
-            $end = $MAX_PAGINATION_PAGES;
+            $end = $numPages;
 
             //figure out which page numbers we need to abbreviate
             if($numPages > $MAX_PAGINATION_PAGES){
@@ -107,7 +114,7 @@ function draw_books_listing_list($books)
             }else if ($isAbbrRight){
                 $end = 8;
             }
-        //echo '<div>$page = '.$page.'; $begin = '.$begin.'; $end = '.$end.'; $numPages = '.$numPages.'; $isAbbrLeft = '.$isAbbrLeft.'; $isAbbrRight = '.$issAbbrRight.'; $MAX = '.$MAX_PAGINATION_PAGES.'; $numBooks = '.$numBooks.';<br>$booksPerPage = '.$booksPerPage.';</div>';
+        echo '<div>$page = '.$page.'; $begin = '.$begin.'; $end = '.$end.'; $numPages = '.$numPages.'; $isAbbrLeft = '.$isAbbrLeft.'; $isAbbrRight = '.$issAbbrRight.'; $MAX = '.$MAX_PAGINATION_PAGES.'; $numBooks = '.$numBooks.';<br>$booksPerPage = '.$booksPerPage.';</div>';
         ?>
         <div class="pagn span-8">
             <ul>
@@ -122,7 +129,7 @@ function draw_books_listing_list($books)
                     if ($isAbbrLeft) echo '... ';
 
                     //Print pagination middle
-                    for($i=$begin; $i<=$end; $i++){
+                    for($i=$begin; $i<$end; $i++){
                         if($page != $i) echo '<li><a href="?p='.$i.'">'.$i.' </a></li>';
                         else echo '<li>'.$i.' </li>';
                     }
@@ -133,7 +140,7 @@ function draw_books_listing_list($books)
                     //Print pagination end
                     if($page != $numPages) echo '<li><a href="?p='.$numPages.'">'.$numPages.' </a></li>';
                     else echo '<li>'.$numPages.' </li>';
-                    if ($page < $end) echo '<li><a href="?p='.($page + 1).'">| Next</a></li>';
+                    if ($page < $end) echo '<li>|<a href="?p='.($page + 1).'"> Next</a></li>';
                     else echo '<li>| Next</li>';
                 ?>
             </ul>
@@ -143,10 +150,11 @@ function draw_books_listing_list($books)
 ?>
 
 <?php
-    function draw_list_header_footer($page, $booksPerPage, $numBooks){
+    function draw_list_header_footer($page, $numBooks, $booksPerPage){
 ?>
     <div class="results-info span-18 last">
-        <?php draw_pagination($page, $booksPerPage, $numBooks); ?>
+        <?php draw_pagination($page, $numBooks, $booksPerPage); ?>
+        <!--
         <form action="books_listing.php" method="get" class="prepend-4 span-6 last">
             <select class="span-3" name="sort">
                 <option class="first" value="">Sort by...</option>
@@ -157,6 +165,7 @@ function draw_books_listing_list($books)
             <div class="span-1">&nbsp;</div>
             <button class="span-2" type="submit">Sort</button>
         </form>
+        //-->
     </div>
 <?php
     }//end function draw_list_header_footer

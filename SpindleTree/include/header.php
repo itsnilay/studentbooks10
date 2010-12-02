@@ -10,23 +10,18 @@ ob_start();
 //initialize a session:
 session_start();
 
-include("mysql_connect.php");
+require_once("mysql_connect.php");
+include("getVars.php");
+
+//Get reference to DB
+$dbInst = SpindleTreeDB::getInstance();
+
 
 //check for a page title value:
-if(!isset($page_special)){
-    $page_special = 'Welcome to SpindleTree';
+if(!isset($page_title)){
+    $page_title = 'Welcome to SpindleTree';
 }
 
-if(isset($_GET[vars])){
-    if ($vars < 0 ) 
-           $vars = 0;
-    else
-        $vars = $_GET[vars];
-}else $vars = 0;
-
-
-
- 
 function catCombo($schid){
     $result = SpindleTreeDB::getInstance()->getCategory($schid);
     while($row = mysql_fetch_array($result)) {
@@ -38,13 +33,16 @@ function catCombo($schid){
 }
 
 //This PHP Block will check the URL and if school is selected corresponding values will be displayed on comboBox
-function catLeftPanel($schid){
-    $result = SpindleTreeDB::getInstance()->getCategory($schid);
-    while($row = mysql_fetch_array($result)) {
-        if($schid != 0)
-            echo "<a href='./books_listing.php?action=catCombo&vars=".$schid."&action1=dispBooks&cat=".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</a>";
-        else
-            echo "<a href='./books_listing.php?action=catCombo&vars=".$schid."&action1=dispBooks&cat=".$row['courseid']."'>". $row['coursename']."</a>";
+function catLeftPanel($sid){
+    $result = SpindleTreeDB::getInstance()->getCategory($vars);
+    if($vars){
+        while($row = mysql_fetch_array($result)) {
+                echo "<li><a href='./books_listing.php?vars=".$sid."&cid=".urlencode($row['courseid'])."'>".$row['courseid']." - ". $row['coursename']."</a></li>";
+        }
+    }else {
+        while($row = mysql_fetch_array($result)) {
+                echo "<li><a href='./books_listing.php?vars=".$sid."&cat=".urlencode($row['coursename'])."'>".$row['coursename']."</a></li>";
+        }
     }
 }
 ?>
@@ -53,7 +51,7 @@ function catLeftPanel($schid){
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <title><?php echo $page_special; ?></title>
+    <title><?php echo $page_title; ?></title>
     <link rel="stylesheet" type="text/css" href="blueprint/screen.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" href="blueprint/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="blueprint/layout.css" media="all" />
@@ -75,7 +73,7 @@ require_once('mysql_connect.php');//connect to database
                <span>
                 <?php
                 if (isset($_SESSION['uid'])AND (substr($_SERVER['PHP_SELF'], -10) != 'logout.php')){
-                          echo '  <a href ="index.php">Home </a> | <a href= "logout.php">Logout</a> | <a href="contact.php">Contact</a> ';
+                          echo '<a href ="index.php">Home </a> | <a href= "logout.php">Logout</a> | <a href="contact.php">Contact</a> ';
                 }else{//not logged in
                           echo '<a href="registration.php"> Register </a> | <a href="login.php"> Login </a> | <a href="forgot_password.php"> Forgot Password </a>';
                 }
@@ -93,7 +91,7 @@ require_once('mysql_connect.php');//connect to database
             <div id="search_bar" class="span-22">
                 <form action="books_listing.php">
                     <input id="searchbox" class="text span-10" type="text" />
-                    <select name="category" class="span-5" id="category">
+                    <select name="cid" class="span-5" id="category">
                          <option class="first" value=""> Choose a Category...</option>
 
                          <?php 
@@ -155,9 +153,6 @@ require_once('mysql_connect.php');//connect to database
                                 echo '<li><a href="books_listing.php" class=\"current\">Browse Books</a></li>';
                            }
                             ?>
-
-
-                           
                         </ul>
                     </div>
                     <div id="cart_price" class="span-3">
@@ -181,15 +176,9 @@ require_once('mysql_connect.php');//connect to database
                 <div class='span-5'>
                     <div class='arrowlistmenu fade_bottom'>
                         <h3 class='headerbar'>Categories</h3>
-                        <ul>
-
-                            <li>";
+                        <ul>";
                              catLeftPanel($vars);
-
-                          
-
-                  echo" </li>
-                        </ul>
+                  echo" </ul>
                     </div>
                 </div>
                 <div  class='span-19 last'>

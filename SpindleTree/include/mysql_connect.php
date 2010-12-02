@@ -39,29 +39,38 @@
     // private constructor
     private function __construct() {
         $this->con = mysql_connect($this->dbHost, $this->user, $this->pass)
-        or die ("Could not connect to db: " . mysql_error());
+            or die ("Could not connect to db: " . mysql_error());
         //SET NAMES sets client, results, and connection character sets
         mysql_query("SET NAMES 'utf8'");
         mysql_select_db($this->dbName, $this->con)
-        or die ("Could not select db: " . mysql_error());
+            or die ("Could not select db: " . mysql_error());
     }
 
     public function getBook($i){
         return $this->book[$i];
     }
 
+    public function getBookById($id){
+        $result = mysql_query("SELECT * FROM `book` where bookid='".$id."'");
+        if (mysql_num_rows($result) > 0) return $result;
+        else return null;
+    }
+
     public function getAllBooks () {
-        $result = mysql_query("SELECT * FROM `book`");
-        require_once("include/book.php");
-        $i = 10000;
-        while($row = mysql_fetch_array($result)) {
-           $this->book[$i]=new Book($row);
-           $i++;
-         }
-       if (mysql_num_rows($result) > 0)
-        return $result;
-        else
-       return null;
+        if($this->book){
+            return $this->book;
+        }else {
+            $result = mysql_query("SELECT * FROM `book`");
+            require_once("include/book.php");
+            //$i = 10000;
+            $i = 0;
+            while($row = mysql_fetch_array($result)) {
+                $this->book[$i]=new Book($row);
+                $i++;
+            }
+            if (mysql_num_rows($result) > 0) return $result;
+            else return null;
+        }
     }
 
      public function getBookImage ($bookid) {
@@ -74,26 +83,60 @@
 
     public function getCategory ($schid) {
         $result = mysql_query("SELECT courseid,coursename FROM `course` where schoolid='".$schid."'");
-        if (mysql_num_rows($result) > 0)
-        return $result;
-        else
-        return null;
+        if (mysql_num_rows($result) > 0) return $result;
+        else return null;
     }
 
     public function getSchool () {
         $result = mysql_query("SELECT distinct schoolname FROM `course`");
-        if (mysql_num_rows($result) > 0)
-        return $result;
-        else
-        return null;
+        if (mysql_num_rows($result) > 0) return $result;
+        else return null;
     }
 
-    public function getBookIdsByCat ($catid) {
-        $result = mysql_query("SELECT bookid,bookstoreprice FROM `course_book` where courseid='".$catid."'");
-        if (mysql_num_rows($result) > 0)
-        return $result;
-        else
-        return null;
+    public function getBookIdsByCourseId ($cid) {
+        $result = mysql_query("SELECT bookid FROM `course_book` where courseid='".$cid."'");
+        if (mysql_num_rows($result) > 0) return $result;
+        else return null;
+    }
+
+    public function getBookIdsByCategory ($category) {
+        $result = mysql_query("SELECT bookid FROM `book` where category='".$category."'");
+        if (mysql_num_rows($result) > 0) return $result;
+        else return null;
+    }
+
+    public function getBooksByCourseId ($cid) {
+        $result = mysql_query("SELECT * FROM `course_book` where courseid='".$cid."'");
+        if (mysql_num_rows($result) > 0) return $result;
+        else return null;
+    }
+
+    public function getBooksByCategory ($category) {
+        $result = mysql_query("SELECT * FROM `book` where category='".$category."'");
+        if (mysql_num_rows($result) > 0) return $result;
+        else return null;
+    }
+
+    public function getBookIdsBySchool ($sid) {
+        //do some input checking just in case...
+        if ($sid < 0 || $sid > 4)
+            return null;
+
+        //Get all the books that belong to a specific school.
+        $cids = mysql_query("SELECT courseid FROM `course` where schoolid='".$sid."'");
+        
+        //Get ID's of books that belong to that school
+        $rows = mysql_num_rows($cids);
+        if ($rows > 0) {
+            for ($i = 0; $i < $rows; $i++){
+                $result = mysql_query("SELECT bookid FROM `course_book` where courseid='".$cids[i]."'");
+            }
+
+            if(mysql_num_rows($result) > 0){
+                return $result;
+            }else return null;
+        }
+
     }
   }
     // Set the database access information as constants

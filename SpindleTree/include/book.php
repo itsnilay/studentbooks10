@@ -58,18 +58,28 @@
         return self::$numOfBooks;
     }
 
-    public static function getBookIdsByCat($catid){
+    public static function getBooksByCategory($category){
+        $result = SpindleTreeDB::getInstance()->getBooksByCategory($category);
+        $bkids = array();
+        for($i = 0; $row = mysql_fetch_array($result); $i++){
+            $bkids[$i] = new Book($row);
+            $bkids[$i]->setBookstorePrice($row['bookstoreprice']);
+        }
+        return $bkids;
+    }
+
+    public static function getBooksByCourseId($cid){
         if($catid != "default")
         {
-            $result = SpindleTreeDB::getInstance()->getBookIdsByCat($catid);
-            $bkids = array();
+            $result = SpindleTreeDB::getInstance()->getBooksByCourseId($cid);
+            $books = array();
             $i=0;
             while($row = mysql_fetch_array($result)){
-                $bkids[$i] = SpindleTreeDB::getInstance()->getBook($row['bookid']);
-                $bkids[$i]->setBookstorePrice($row['bookstoreprice']);
+                $bkids[$i] = new Book($row['bookid']);
+                $books[$i]->setBookstorePrice($row['bookstoreprice']);
                 $i++;
             }
-            return $bkids;
+            return $books;
         }
         else{
             foreach( self::$bookids as $bkid)
