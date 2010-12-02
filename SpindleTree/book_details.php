@@ -7,9 +7,9 @@ include('include/book_details_api.php');
 include_once('include/book.php');
 
 if(isset($_GET[bkid]))
-    $book = $dbInst->getBook($_GET[bkid]);
+    $book = $dbInst->getBookById($_GET[bkid]);
 else
-    $book = $dbInst->getBook(10001);
+    $book = $dbInst->getBookById(10001);
 ?>
 
 <?php draw_book_details_main($book); ?>

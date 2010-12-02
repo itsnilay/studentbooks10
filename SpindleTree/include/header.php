@@ -72,15 +72,15 @@ require_once('mysql_connect.php');//connect to database
 
         <div class="span-24 last">
             <div class="span-12">
-                <a href="index.php"><img src="img/spindletreelogo250X89.png" alt="" /></a>
+                <?php echo '<a href ="index.php?sid='.$sid.'"> <img src="img/spindletreelogo250X89.png" alt="" /></a>';?>
             </div>
             <div id="secondary_menu" class="span-12 last">
                <span>
                 <?php
                 if (isset($_SESSION['uid'])AND (substr($_SERVER['PHP_SELF'], -10) != 'logout.php')){
-                          echo '<a href ="index.php">Home </a> | <a href= "logout.php">Logout</a> | <a href="contact.php">Contact</a> ';
+                          echo '<a href ="index.php?sid='.$sid.'">Home </a> | <a href= "logout.php?sid='.$sid.'">Logout</a> | <a href="contact.php?sid='.$sid.'">Contact</a> ';
                 }else{//not logged in
-                          echo '<a href="registration.php"> Register </a> | <a href="login.php"> Login </a> | <a href="forgot_password.php"> Forgot Password </a>';
+                          echo '<a href="registration.php?sid='.$sid.'"> Register </a> | <a href="login.php?sid='.$sid.'"> Login </a>';//Disabled for now | <a href="forgot_password.php"> Forgot Password </a>';
                 }
                 ?>
                 </span>
@@ -144,8 +144,11 @@ require_once('mysql_connect.php');//connect to database
         <div class="span-23 solidblockmenu prepend-top last">
                     <div class="span-16">
                         <ul>
-                            <li><a href="index.php">SpindleTree Home</a></li>
-                            <li><a href="books_listing.php">Browse Books</a></li>
+                           <?php
+                                echo '<li><a href="./index.php?sid='.$sid.'" class=\"current\">SpindleTree Home</a></li>';
+                                echo '<li><a href="./books_listing.php?sid='.$sid.'" class=\"current\">Browse Books</a></li>';
+                            ?>
+
                         </ul>
                     </div>
                     <div id="cart_price" class="span-3">

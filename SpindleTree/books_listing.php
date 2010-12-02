@@ -28,7 +28,7 @@ $booksPerPage = 5; //# of books to be displayed per page
 ?>
     <h2>Browse Books</h2>
     <?php draw_list_header_footer($page, $numBooks, $booksPerPage); ?>
-    <?php draw_books_listing_list($page, $books, $booksPerPage); ?>
+    <?php draw_books_listing_list($page, $books, $booksPerPage, $sid); ?>
     <?php draw_list_header_footer($page, $numBooks, $booksPerPage); ?>
 <?php
 include('include/footer.php');

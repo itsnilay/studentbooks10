@@ -7,7 +7,7 @@
  * @author Nilay/Andrew
  */
 
-function draw_books_listing_list($page, $books, $booksPerPage)
+function draw_books_listing_list($page, $books, $booksPerPage, $sid)
 {
 
 ?>
@@ -35,7 +35,7 @@ function draw_books_listing_list($page, $books, $booksPerPage)
     <div class="title_space span-18 last">
         <h2 class="title">
         <?php
-            echo "<a href='./used_book_listing.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
+            echo "<a href='./book_details.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
         <span class="author"><?php echo $book->getAuthor(); ?></span>
     </div>
     <table width="100%" cellspacing="0" cellpadding="4" border="0"><tr valign="bottom">
