@@ -6,13 +6,10 @@ include('include/books_listing_api.php');
 require_once("include/mysql_connect.php");
 $page_special="";
 
-//Get reference to DB
-$dbInst = SpindleTreeDB::getInstance();
 
 //set up some initial variables
-$booksPerPage = 5;
-$page = $_GET[p];
-if(!$page || $page <1) $page = 1; //default page value
+
+
 
 if (isset($_GET[action1]))
 {
@@ -27,17 +24,32 @@ if (isset($_GET[action1]))
     $vars	  = $_POST[cat];
     $funcName($vars);
  }
+ else
+     dispBooks("default");
 
 if(isset($_GET[vars]))
     $vars=$_GET[vars];
 else
     $vars=0;
 
+function dispBooks($cat_id)
+{
+//set up some initial variables
+$booksPerPage = 5;
+$page = $_GET[p];
+if(!$page || $page <1) $page = 1; //default page value
+//
+//
+//Get reference to DB
+$dbInst = SpindleTreeDB::getInstance();
+
+
 //$cat_id = $_GET[category];
 //if(!$cat_id) $cat_id = "default";
-$cat_id = "default";
+
 
 //Get id's for all books that match category
+$tmp_book_ids = array();
 $tmp_book_ids = Book::getBookIdsByCat($cat_id);
 $numBooks = sizeof($tmp_book_ids);
 
@@ -50,9 +62,9 @@ $books = array();
 
 //Determine books to be displayed on this page.
 $end = ($booksPerPage*$page-1 < sizeof($tmp_book_ids))? $booksPerPage*$page-1 : sizeof($tmp_book_ids);
-for($i=($page-1)*$booksPerPage; $i<$end; $i++){
-    $books[] = $dbInst->getBook($tmp_book_ids[$i]);
-}
+for($i=($page-1)*$booksPerPage; $i<$end; $i++)
+    $books[] = $tmp_book_ids[$i];
+
 
 //cleanup
 unset($i);
@@ -64,5 +76,5 @@ unset($end);
     <?php draw_list_header_footer($page, $booksPerPage, $numBooks); ?>
 <?php
 include('include/footer.php');
-?>
+}?>
 		

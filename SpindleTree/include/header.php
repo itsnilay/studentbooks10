@@ -18,8 +18,13 @@ if(!isset($page_special)){
 }
 
 if(isset($_GET[vars])){
-    if ($vars < 0 || $vars > 2) $vars = 0;
+    if ($vars < 0 ) 
+           $vars = 0;
+    else
+        $vars = $_GET[vars];
 }else $vars = 0;
+
+
 
  
 function catCombo($schid){
@@ -43,7 +48,7 @@ function catLeftPanel($schid){
     }
 }
 ?>
-
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -91,7 +96,9 @@ require_once('mysql_connect.php');//connect to database
                     <select name="category" class="span-5" id="category">
                          <option class="first" value=""> Choose a Category...</option>
 
-                         <?php catCombo("0"); ?>
+                         <?php 
+                         
+                         catCombo($vars); ?>
                      </select>
 
                         <!--Below java script block will be executed when School is selected and it will generate URL and pass arguments to call above PHP function of ComboBox catCombo(schId) -->
@@ -101,7 +108,7 @@ require_once('mysql_connect.php');//connect to database
                                 while(catCombo.hasChildNodes())
                                    catCombo.removeChild(catCombo.lastChild);
 
-                                var schoolid = schList.selectedIndex-1;
+                                var schoolid = schList.selectedIndex;
                                 // the url which you have to reload is this page, but you add an action to the GET- or POST-variable
                                 var url="<?php echo $_SERVER[PHP_SELF];?>?action=catCombo&vars="+schoolid;
 
@@ -112,12 +119,10 @@ require_once('mysql_connect.php');//connect to database
                         </script>
                         
                          <select class="span-4" onChange=changeCat(this)>
-                            <option class="first" value=""> Choose a School...</option>
+                            <!--option class="first" value=""> Choose a School...</option-->
                             <?php
                           $result = SpindleTreeDB::getInstance()->getSchool();
-                          //call once to get rid of "General" option in school
-                          mysql_fetch_array($result);
-                          $i=1;
+                          $i=0;
                             while($row = mysql_fetch_array($result)) {
                                 if($vars)
                                 {

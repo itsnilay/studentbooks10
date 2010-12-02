@@ -71,9 +71,11 @@
             }
             return $bkids;
         }
-        else
-            return self::$bookids;
-        
+        else{
+            foreach( self::$bookids as $bkid)
+                 $bkids[] = SpindleTreeDB::getInstance()->getBook($bkid);
+                return $bkids;
+        }
     }
 
     
