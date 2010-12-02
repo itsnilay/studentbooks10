@@ -1,5 +1,5 @@
 <?php
-$page_title ='SpindleTree | Search Results';
+$page_title ='SpindleTree | Browse Books';
 $page_special="BOOKS";
 include('include/header.php');
 include('include/books_listing_api.php');

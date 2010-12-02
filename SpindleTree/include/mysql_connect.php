@@ -93,6 +93,12 @@
         else return null;
     }
 
+    public function getCourseIds () {
+        $result = mysql_query("SELECT courseid,coursename FROM `course`");
+        if (mysql_num_rows($result) > 0) return $result;
+        else return null;
+    }
+
     public function getSchool () {
         $result = mysql_query("SELECT distinct schoolname FROM `course`");
         if (mysql_num_rows($result) > 0) return $result;

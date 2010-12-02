@@ -94,8 +94,14 @@ require_once('mysql_connect.php');//connect to database
         </div>
         <div class="span-24 last">
             <div id="search_bar" class="span-22">
-                <form action="books_listing.php">
-                    <input id="searchbox" class="text span-10" type="text" />
+                <form name="searchForm" action="books_listing.php">
+                    <script type="text/javascript">
+                        function make_blank()
+                        {
+                        document.searchForm.searchbox.value ="";
+                        }
+                        </script>
+                    <input id="searchbox" name="searchbox" class="text span-10" type="text" value="Enter Title, Author, Course Id, ISBN ..." onclick="make_blank();"/>
                     <?php
                     if($sid) echo '<select name="cid" class="span-5" id="category">';
                     else echo '<select name="cat" class="span-5" id="category">';?>
@@ -135,8 +141,19 @@ require_once('mysql_connect.php');//connect to database
                                 $i++;
                             } ?>
                         </select>
-                    
-                        <button id="search_button" class="span-2 last" type="submit">Search</button>
+                        <script language="javascript">
+                            function searchNow(){
+                                var search = document.getElementById("searchbox").value;
+                                
+                                // the url which you have to reload is this page, but you add an action to the GET- or POST-variable
+                                var url="./search.php?search="+search;
+
+                                // Opens the url in the same window
+                                   window.open(url, "_self");
+
+                             }
+                        </script>
+                        <button id="search_button" class="span-2 last" type="submit" onclick="searchNow();">Search</button>
                     <!--/div-->
                 </form>
             </div>
