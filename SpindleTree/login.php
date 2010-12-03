@@ -4,7 +4,7 @@
 //and it creates the entire login page including the form.
 //include the header
 require_once('include/config.php');
-$page_special='SpindleTree | Login';
+$page_title='SpindleTree | Login';
 include('include/header.php');
 
 if(isset($_POST['submitted'])){

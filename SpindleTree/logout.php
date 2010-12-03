@@ -3,8 +3,7 @@
  *logout.php
  */
 require_once('include/config.php');
-$page_title = 'Logout';
-
+$page_title = 'SpindleTree | Logout';
 include('include/header.php');
 
 //if no email session variable exist, redirect the user

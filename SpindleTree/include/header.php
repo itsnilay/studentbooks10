@@ -184,7 +184,7 @@ require_once('mysql_connect.php');//connect to database
                     </div>
         </div>
 
-        <?php if ($page_special=="BOOKS"){
+        <?php if (isset($page_special) && $page_special=="BOOKS"){
 	  echo "
                 <div class='span-5'>
                     <div class='arrowlistmenu fade_bottom'>
