@@ -101,7 +101,7 @@ require_once('mysql_connect.php');//connect to database
                         document.searchForm.searchbox.value ="";
                         }
                         </script>
-                    <input id="searchbox" name="searchbox" class="text span-10" type="text" value="Enter Title, Author, Course Id, ISBN ..." onclick="make_blank();"/>
+                    <input id="searchbox" name="searchbox" class="text span-10" type="text" value="Enter Title, Author, Course ID, ISBN ..." onclick="make_blank();"/>
                     <?php
                     if($sid) echo '<select name="cid" class="span-5" id="category">';
                     else echo '<select name="cat" class="span-5" id="category">';?>

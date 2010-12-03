@@ -40,7 +40,7 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
     </div>
     <table width="100%" cellspacing="0" cellpadding="4" border="0"><tr valign="bottom">
         <td width="1%">
-            <?php echo "<a href='./used_book_listing.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
+            <?php echo "<a href='./book_details.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
 
         </td>
         <td>
