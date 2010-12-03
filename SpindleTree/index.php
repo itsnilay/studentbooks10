@@ -7,10 +7,12 @@ $page_special="";
 
     <?php
         if (isset($_SESSION['email'])){
-            echo "You are now logged in :) Just click on the 'Broswe Books' tab above & start shoppping.";
+            /* TODO: Make this a one-time message. Currently it shows up every time a logged-in user visits the homepage. */
+            echo "You are now logged in :) Just click on the 'Browse Books' tab above & start shoppping.";
         }else{
             echo'
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in tortor egestas dolor dictum suscipit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer erat eros, malesuada at vulputate vitae, aliquam sit amet velit. Proin dictum sagittis mi vitae adipiscing. Suspendisse sit amet odio dui, non blandit lorem. Sed venenatis convallis turpis non lobortis. Nam sed nunc lacus. Vivamus felis lorem, condimentum eu molestie sit amet, ultricies a augue. Quisque vitae mi augue, vitae sollicitudin nulla. Sed leo enim, egestas eu suscipit sed, sodales quis metus.</p>
+                <p>If you\'re looking for hot deals on Computer Science textbooks, you\'ve come to the right place. SpindleTree is dedicated to providing top-notch information at competitive prices. With our expertise, we aim to become your ultimate destination for CS textbooks, both new and used. We hope you enjoy every bit of your experience with us and that you return to SpindleTree for all your textbook needs.</p><p>Thanks for shopping SpindleTree!</p>
+                <br/>
                 <div class="content_wrapper">
                         <div class="rgt_border_column">
                             <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10001"><img src="img/SE2.jpg" alt="" /></a>
@@ -19,12 +21,24 @@ $page_special="";
                             <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10000"><img src="img/SE.jpg" alt="" /></a>
                         </div>
                          <div class="mid_column">
-                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10012"><img src="img/CO.JPG" alt="" /></a>
+                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10012"><img src="img/CO.jpg" alt="" /></a>
                         </div>
                          <div class="lft_border_column">
-                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10008"><img src="img/AI.JPG" alt="" /></a>
+                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10008"><img src="img/AI.jpg" alt="" /></a>
                         </div>
                 </div>
+                <br/><h2>About Us</h2>
+                <p>SpindleTree is the result of a collaborative effort in software engineering between students from <a href="http://www.sfsu.edu/">San Francisco State University</a> and <a href="http://www.fau.edu/">Florida Atlantic University</a> in the Fall semester of 2010, developed under the guidance of <a href="http://cs.sfsu.edu/dragutin/index.html">Dr. Dragutin Petrovic</a> at SFSU and <a href="http://www.cse.fau.edu/~shihong/">Dr. Shihong Huang</a> at FAU.</p>
+                <br/>
+                <p><b>Team SpindleTree</b></p>
+                <p><u>San Francisco State University</u><br/>
+                Nilaykumar Patel <i>(Team Lead)</i><br/>
+                Andrew McCandless<br/>
+                <br/>
+                <u>Florida Atlantic University</u><br/>
+                Blake Lassman <i>(Team Lead)</i><br/>
+                Jerry Mathurin<br/>
+                Cory Wardrop<br/></p>
             ';
         }
     ?>
