@@ -1,7 +1,7 @@
 <?php  #register.php
 
 require_once ('include/config.php');
-$page_special= 'SpindleTree | Register';
+$page_title= 'SpindleTree | Register';
 include ('include/header.php');
 
 include ('include/addressform.php');

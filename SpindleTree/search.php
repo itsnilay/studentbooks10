@@ -5,7 +5,6 @@ $page_special="BOOKS";
 include('include/header.php');
 include('include/books_listing_api.php');
 require_once("include/mysql_connect.php");
-$page_special="";
 
 
 //Search Result books will be stored in this array

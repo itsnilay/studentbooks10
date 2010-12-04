@@ -62,7 +62,7 @@ if(isset($_POST['submitted'])){
         <input type="hidden" name="submitted" value="TRUE"/>
     </div>
     <br/>
-    <?php echo '<p>Forgot your password? <a href="'.GLOBAL_BASE_URL.'forgot_password.php">Click Here!</a></p>'; ?>
+    <?php echo '<p>Forgot your password? <a href="./forgot_password.php">Click Here!</a></p>'; ?>
 </form>
 
 <?php

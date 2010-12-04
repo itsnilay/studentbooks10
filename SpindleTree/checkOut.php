@@ -1,7 +1,7 @@
 <?php
 
 require_once ('include/config.php');
-$page_special='SpindleTree | Checkout';
+$page_title='SpindleTree | Checkout';
 include('include/header.php');
 
 include ('include/addressform.php');
@@ -14,7 +14,7 @@ if (isset($_POST['submitted'])){
             //trim all the incoming data:
             $trimmed = array_map('trim', $_POST);
 
-            /* TODO: Verify checkout and post order */
+            // TODO: Verify checkout and post order
 
             mysqli_close($dbc); //close the database
 
@@ -57,12 +57,13 @@ if (isset($_POST['submitted'])){
                  *  CC_vcode   : CCV2 number (max length 4, all digits [0-9])
                  *  CC_expdate : card expiration date (month [1-12], year [00-99] <last 2 digits>)
                  */
-            /* TODO: Make CC info form pretty */
+            // TODO: Make CC info form pretty
             ?>
             <p><label for="CC_name" class="label">Name on Card: </label><input id="CC_name" type="text" name="CC_name" size="15" maxlength="80" value="<?php if (isset($trimmed['CC_name'])) echo $trimmed['CC_name']; ?>" /></p>
 	    <p><label for="CC_number" class="label">Card Number: </label><input id="CC_number" type="text" name="CC_number" size="19" maxlength="80" value="<?php if (isset($trimmed['CC_number'])) echo $trimmed['CC_number']; ?>" /></p>
             <p><label for="CCV2" class="label">CCV2: </label><input id="CC_vcode" type="text" name="CC_vcode" size="5" maxlength="4" value="" /> </p>
-            <?php /* TODO: implement CC expiration date as value instead of text */ ?>
+            <?php // TODO: implement CC expiration date as value instead of text
+            ?>
             <p><label for="CC_expdate" class="label">Expiration Date: </label><input id="CC_expdate" type="text" name="CC_expdate" size="10" maxlength="20" value="" /></p>
 
         <p><input type="submit" name="submit" value="Submit" /></p>

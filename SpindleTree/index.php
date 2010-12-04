@@ -1,13 +1,11 @@
 <?php
-$page_special="HOME";
 require_once('include/header.php');//open header
-$page_special="";
 ?>
 <h2>Welcome to SpindleTree!</h2>
 
     <?php
         if (isset($_SESSION['email'])){
-            /* TODO: Make this a one-time message. Currently it shows up every time a logged-in user visits the homepage. */
+            // TODO: Make logged-in message a one-time thing. Currently, it shows over the homepage all the time.
             echo "You are now logged in :) Just click on the 'Browse Books' tab above & start shoppping.";
         }else{
             echo'

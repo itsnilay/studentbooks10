@@ -2,10 +2,7 @@
 // include the configuration file for error management
 require_once ('include/config.inc.php');
 
-
-$page_special ='SpindleTree | Activate';
-
-
+$page_title ='SpindleTree | Activate';
 include('include/header.php');
 
 //validate $_GET['x'] and $_GET['y']

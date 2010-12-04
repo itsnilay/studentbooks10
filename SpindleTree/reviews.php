@@ -2,7 +2,6 @@
 $page_title ='SpindleTree | Principles of Software Engineering (Edition 8) - Schmoe, Joe';
 $page_special = "BOOKS";
 include('include/header.php');
-$page_special = "";
 include('include/book_details_api.php');
 require_once("include/mysql_connect.php");
 include_once('include/book.php');

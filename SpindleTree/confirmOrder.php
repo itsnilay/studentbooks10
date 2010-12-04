@@ -1,7 +1,6 @@
 <?php
-$page_title ='SpindleTree | Order Confirm';
+$page_title ='SpindleTree | Order Confirmed';
 include('include/header.php');
-$page_special = "";
 ?>
 
         <h2>Order Confirmed</h2>
