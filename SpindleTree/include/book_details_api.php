@@ -14,10 +14,10 @@
 function draw_book_details_subnav($page_title){
     echo
     '<ul id="subnav" class="span-18 last">' .
-    '<li id="used_books" class="tab current"><a href="used_book_listing.php">Used Books</a></li>' .
+    '<li id="used_books" class="tab current"><a href="used_book_listing.php?cid='.$_GET['cid'].'&cat='.$_GET['cat'].'&sid='.$_GET['sid'].'&bkid='.$_GET['bkid'].'">Used Books</a></li>' .
     //'<li id="expert_reviews" class="tab"><a href="expert_reviews.php">Expert Reviews</a></li>' .
     //'<li id="used_books" class="tab"><a href="reviews.php">Reviews</a></li>' .
-    '<li id="book_details" class="tab"><a href="book_details.php">Details</a></li>' .
+    '<li id="book_details" class="tab"><a href="book_details.php?cid='.$_GET['cid'].'&cat='.$_GET['cat'].'&sid='.$_GET['sid'].'&bkid='.$_GET['bkid'].'">Details</a></li>' .
     '</ul>';
 }
 
