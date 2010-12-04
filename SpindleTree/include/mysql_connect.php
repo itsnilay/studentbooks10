@@ -68,11 +68,8 @@
         }else {
             $result = mysql_query("SELECT * FROM `book`");
             require_once("include/book.php");
-            //$i = 10000;
-            $i = 0;
             while($row = mysql_fetch_array($result)) {
-                $this->book[$i]=new Book($row);
-                $i++;
+                $this->book[$row['bookid']-10000]=new Book($row);
             }
             if (mysql_num_rows($result) > 0) return $result;
             else return null;

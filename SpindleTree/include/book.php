@@ -63,6 +63,8 @@
 
     public static function getBooksByCategory($category){
         $result = SpindleTreeDB::getInstance()->getBooksByCategory($category);
+        if ($result==null)
+            return null;
         $bkids = array();
         for($i = 0; $row = mysql_fetch_array($result); $i++){
             $bkids[$i] = new Book($row);
