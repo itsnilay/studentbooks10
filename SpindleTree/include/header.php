@@ -78,9 +78,11 @@ require_once('mysql_connect.php');//connect to database
                <span>
                 <?php
                 if (isset($_SESSION['uid'])AND (substr($_SERVER['PHP_SELF'], -10) != 'logout.php')){
-                          echo '<a href ="index.php?sid='.$sid.'">Home </a> | <a href= "logout.php?sid='.$sid.'">Logout</a>'; // UNLINKED: ' | <a href="contact.php?sid='.$sid.'">Contact</a> ';
+                          echo /* '<a href ="index.php?sid='.$sid.'">Home </a> | ' */ '<a href= "logout.php?sid='.$sid.'">Logout</a>' /* ' | <a href="contact.php?sid='.$sid.'">Contact</a>' */;
+                          // REMOVED link to Home (superfluous), REMOVED link to Contact (low priority)
                 }else{//not logged in
-                          echo '<a href="registration.php?sid='.$sid.'"> Register </a> | <a href="login.php?sid='.$sid.'"> Login </a> | <a href="forgot_password.php"> Forgot Password </a>';
+                          echo '<a href="registration.php?sid='.$sid.'"> Register </a> | <a href="login.php?sid='.$sid.'"> Login </a>' /* ' | <a href="forgot_password.php"> Forgot Password </a>' */;
+                          // REMOVED link to Forgot Password (now linked from Login page)
                 }
                 ?>
                 </span>
