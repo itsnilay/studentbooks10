@@ -3,8 +3,10 @@ $page_title ='SpindleTree | Order Confirm';
 include('include/header.php');
 $page_special = "";
 ?>
-	 <h2>Congratulations!!</h2>
-         <p> Your order is confirmed and requested Books will be shipped in 3-5 Business Days. </p>
+
+        <h2>Order Confirmed</h2>
+        <p>Your books will be shipped within 3-5 business days. Thanks for shopping SpindleTree!</p>
+
 <?php
 include('include/footer.php');
 ?>
