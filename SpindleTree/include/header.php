@@ -19,7 +19,17 @@ $dbInst = SpindleTreeDB::getInstance();
 
 //check for a page title value:
 if(!isset($page_title)){
-    $page_title = 'Welcome to SpindleTree';
+    if (isset($page_special) && isset($_GET[bkid])){
+            $query = $dbInst->getTitle($_GET[bkid]);
+            if ($query!=NULL){
+                $row = mysql_fetch_array($query);
+                $page_title = 'SpindleTree | '.$row['title'];
+            }else{
+                $page_title = 'SpindleTree | Book Not Found';
+            }
+    }
+    if (!isset($page_title))
+        $page_title = 'Welcome to SpindleTree';
 }
 
 function draw_category_dropdown($schid, $cid, $cat){
@@ -51,7 +61,7 @@ function draw_left_panel($sid){
     }
 }
 ?>
-    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -65,7 +75,7 @@ function draw_left_panel($sid){
     <![endif]-->
 </head>
 <?php
-require_once('mysql_connect.php');//connect to database
+    require_once('mysql_connect.php');//connect to database
 ?>
 <body>
     <div class="container" >
@@ -186,7 +196,7 @@ require_once('mysql_connect.php');//connect to database
                     </div>
         </div>
 
-        <?php if (isset($page_special) && $page_special=="BOOKS"){
+        <?php if (isset($page_special)){
 	  echo "
                 <div class='span-5'>
                     <div class='arrowlistmenu fade_bottom'>
@@ -209,8 +219,8 @@ require_once('mysql_connect.php');//connect to database
         }
         ?>
 
-        
-			  
 			 
 
-	
+
+
+        

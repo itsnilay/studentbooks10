@@ -1,8 +1,6 @@
 <?php
-$page_title ='SpindleTree | Principles of Software Engineering (Edition 8) - Schmoe, Joe';
 $page_special = "BOOKS";
 include('include/header.php');
-$page_special = "";
 include('include/book_details_api.php');
 include_once('include/book.php');
 
@@ -10,6 +8,12 @@ if(isset($_GET[bkid]))
     $book = $dbInst->getBookById($_GET[bkid]);
 else
     $book = $dbInst->getBookById(10001);
+
+if (!isset($book)){
+    echo '<p class="error">Book not found.</p>';
+    include('include/footer.php');
+    exit();
+}
 ?>
 
 <?php draw_book_details_main($book); ?>

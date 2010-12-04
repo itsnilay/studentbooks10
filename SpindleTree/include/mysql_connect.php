@@ -79,6 +79,14 @@
         }
     }
 
+    public function getTitle ($bookid) {
+        $result = mysql_query("SELECT title FROM `book` where bookid='".$bookid."'");
+        if (mysql_num_rows($result) > 0)
+        return $result;
+        else
+        return null;
+    }
+
      public function getBookImage ($bookid) {
         $result = mysql_query("SELECT bookimage FROM `book` where bookid='".$bookid."'");
         if (mysql_num_rows($result) > 0)
