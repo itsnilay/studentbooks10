@@ -1,4 +1,4 @@
-<?php $searchbox = "Prof. Hans van Vliet";
+<?php 
 
 $page_title ='SpindleTree | Search Results';
 $page_special="BOOKS";

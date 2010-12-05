@@ -21,4 +21,8 @@ if(isset($_GET['cid'])){
     $cid = urldecode($_GET['cid']);
 }else $cid = null;
 
+if(isset($_GET['searchbox'])){
+    $searchbox = urldecode($_GET['searchbox']);
+}else $searchbox = null;
+
 ?>

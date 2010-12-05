@@ -156,16 +156,16 @@ function draw_left_panel($sid){
                         <script language="javascript">
                             function searchNow(){
                                 var search = document.getElementById("searchbox").value;
-                                
+                               
                                 // the url which you have to reload is this page, but you add an action to the GET- or POST-variable
                                 var url="./search.php?search="+search;
-
+                                 alert(url);
                                 // Opens the url in the same window
-                                   window.open(url, "_self");
+                                 //  window.open(url, "_self");
 
                              }
                         </script>
-                        <button id="search_button" class="span-2 last" type="submit" onclick="searchNow();">Search</button>
+                        <button id="search_button" class="span-2 last" type="submit">Search</button>
                     <!--/div-->
                 </form>
             </div>
