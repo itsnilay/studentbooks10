@@ -148,7 +148,7 @@ function draw_left_panel($sid){
 
                              }
                         </script>
-                         // TODO: Consider moving dropdown school list away from search box to disassociate with search
+                         <?php // TODO: Consider moving dropdown school list away from search box to disassociate with search ?>
                          <select name="sid" class="span-4" onChange=changeCat(this,"<?php echo '&bkid='.$_GET['bkid'];?>")>
                             <option class="first" value="0"> Choose a School...</option>
                             <?php
