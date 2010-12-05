@@ -109,10 +109,6 @@ class ShoppingCartItem {
         return $this->book->getPageCount();
     }
 
-    public function getIsbn13(){
-        return $this->book->getIsbn13();
-    }
-
     public function getFormat(){
         return $this->book->getFormat();
     }

@@ -34,22 +34,18 @@ if (!isset($book)){
         <span class="detail-value span-6"><?php echo $book->getPageCount(); ?></span>
     </li>
     <li class="even">
-        <span class="detail span-4">ISBN-10</span>
+        <span class="detail span-4">ISBN-13</span>
         <span class="detail-value span-6"><?php echo $book->getIsbn(); ?></span>
     </li>
     <li class="odd">
-        <span class="detail span-4">ISBN-13</span>
-        <span class="detail-value span-6"><?php echo $book->getIsbn13(); ?></span>
-    </li>
-    <li class="even">
         <span class="detail span-4">Publisher</span>
         <span class="detail-value span-6"><?php echo $book->getPublisher(); ?></span>
     </li>
-    <li class="odd">
+    <li class="even">
         <span class="detail span-4">Date Published</span>
         <span class="detail-value span-6"><?php echo $book->getMonthPublished() .'/'. $book->getDayPublished() .'/'. $book->getYearPublished; ?></span>
     </li>
-    <li class="even">
+    <li class="odd">
         <span class="detail span-4">Language</span>
         <span class="detail-value span-6"><?php echo $book->getLanguage(); ?></span>
     </li>

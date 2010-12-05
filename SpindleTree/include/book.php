@@ -27,7 +27,6 @@
     private  $length;
     private  $weight;
     private  $pagecount;
-    private  $isbn13;
     private  $format;
     private  $yearpublished;
     private  $monthpublished;
@@ -127,7 +126,6 @@
         $this->length = 9.1;
         $this->weight = 3;
         $this->pagecount = 792;
-        $this->isbn13 = "978-0137035151";
         $this->format = "Hardcover";
         $this->publisher = "Addison Wesley";
         $this->yearpublished = 2010;
@@ -203,10 +201,6 @@
 
     public function getPageCount(){
         return $this->pagecount;
-    }
-
-    public function getIsbn13(){
-        return $this->isbn13;
     }
 
     public function getFormat(){
