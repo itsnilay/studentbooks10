@@ -6,7 +6,7 @@ include('include/books_listing_api.php');
 require_once("include/mysql_connect.php");
 
 //Book Listing according to search Criteria
-if($searchbox)
+if($searchbox && $searchbox != 'Enter Title, Author, Course ID, ISBN ...' /* This ain't elegant, but... */)
 {
     //Search Result books will be stored in this array
     $sbooks=array();
@@ -74,10 +74,10 @@ if($searchbox)
          draw_list_header_footer($page, $numBooks, $booksPerPage);
    }
    else{
-       $numBooks = sizeof($allbooks);
-        echo "<h2>No Results found for \"<U>".$trimsearch."</U>\"</h2> Please Browse these available Books..";
+       $numBooks = 0 /*sizeof($allbooks)*/;
+        echo "<h2>No Results found for \"<U>".$trimsearch."</U>\".</h2><h2><a href='./books_listing.php?p=1&cat=".$_GET[cat]."&cid=".$_GET[cid]."&sid=".$_GET[sid]."'><u>Click Here</u></a> to browse our books.</h2>";
          draw_list_header_footer($page, $numBooks, $booksPerPage);
-         draw_books_listing_list($page, $allbooks, $booksPerPage, $sid);
+         draw_books_listing_list($page, null /*$allbooks*/, $booksPerPage, $sid);
          draw_list_header_footer($page, $numBooks, $booksPerPage);
    }
 
@@ -104,7 +104,16 @@ else
     //TODO: Impelement Search
 
     ?>
-        <h2>Browse Books</h2>
+        <h2>Browse Books <?php
+                            // display category or course ID if selected
+                            if($_GET['sid']>0){
+                                if($_GET['cid'])
+                                    echo '('.$_GET['cid'].')';
+                                }elseif($_GET['cat'])
+                                    echo '('.$_GET['cat'].')';
+                          ?>
+        </h2>
+
         <?php draw_list_header_footer($page, $numBooks, $booksPerPage); ?>
         <?php draw_books_listing_list($page, $books, $booksPerPage, $sid); ?>
         <?php draw_list_header_footer($page, $numBooks, $booksPerPage); }//End of else?>

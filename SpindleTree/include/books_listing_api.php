@@ -116,9 +116,9 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
             <ul>
                 <?php
                     //Print pagination beginning
-                    if ($page > 1) echo '<li><a href="?p='.($page - 1).'&cat='.$_GET[cat].'">Previous | </a></li>';
+                    if ($page > 1) echo '<li><a href="?p='.($page - 1).'&cat='.$_GET[cat].'&cid='.$_GET[cid].'&sid='.$_GET[sid].'">Previous | </a></li>';
                     else echo '<li>Previous | </li>';
-                    if($page != 1) echo '<li><a href="?p=1&cat='.$_GET[cat].'">1 </a></li>';
+                    if($page != 1) echo '<li><a href="?p=1&cat='.$_GET[cat].'&cid='.$_GET[cid].'&sid='.$_GET[sid].'">1 </a></li>';
                     else echo '<li>1 </li>';
 
                     //print left abbreviation if needed
@@ -126,7 +126,7 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
 
                     //Print pagination middle
                     for($i=$begin; $i<$end; $i++){
-                        if($page != $i) echo '<li><a href="?p='.$i.'&cat='.$_GET[cat].'">'.$i.' </a></li>';
+                        if($page != $i) echo '<li><a href="?p='.$i.'&cat='.$_GET[cat].'&cid='.$_GET[cid].'&sid='.$_GET[sid].'">'.$i.' </a></li>';
                         else echo '<li>'.$i.' </li>';
                     }
 
@@ -135,10 +135,10 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
 
                     //Print pagination end
                     if($numPages > 1){
-                        if($page != $numPages) echo '<li><a href="?p='.$numPages.'&cat='.$_GET[cat].'">'.$numPages.' </a></li>';
+                        if($page != $numPages) echo '<li><a href="?p='.$numPages.'&cat='.$_GET[cat].'&cid='.$_GET[cid].'&sid='.$_GET[sid].'">'.$numPages.' </a></li>';
                         else echo '<li>'.$numPages.' </li>';
                     }
-                    if ($page < $end) echo '<li>|<a href="?p='.($page + 1).'&cat='.$_GET[cat].'"> Next</a></li>';
+                    if ($page < $end) echo '<li>|<a href="?p='.($page + 1).'&cat='.$_GET[cat].'&cid='.$_GET[cid].'&sid='.$_GET[sid].'"> Next</a></li>';
                     else echo '<li>| Next</li>';
                 ?>
             </ul>
