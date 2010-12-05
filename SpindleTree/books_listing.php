@@ -39,18 +39,26 @@ if($searchbox && $searchbox != 'Enter Title, Author, Course ID, ISBN ...' /* Thi
     //More Loose Search on each words
     $searcharray = explode(" ",$trimsearch);
 
-
     foreach($allbooks as $sbook){
         $searchtitle = explode(" ",$sbook->getTitle());
         $searchauthor = explode(" ",$sbook->getAuthor());
         $searchisbn = explode(" ",$sbook->getISBN());
         $searchauthor = preg_replace("/[^A-Za-z0-9]/","",$searchauthor);
-        $searchisbn = preg_replace("/[^A-Za-z0-9]/","",$searchisbn);
 
-       foreach($searcharray as $sa){
-           foreach($searchtitle as $st){
-               if(strcasecmp($sa,$st) == 0 )
+        foreach($searcharray as $sa){ //Check with all words from search box.
+           foreach($searchtitle as $st){ //Check with each word of all the titles of book
+               if(strcasecmp($sa,$st) == 0 ){
+                 //This is the logic to remove duplicate books we get when each word of the input query matches with same book's title
+                   $flag=0;
+                   foreach($sbooks as $sbk){
+
+                       if($sbk->getBookId() == $sbook->getBookId()){
+                           $flag =1;
+                       }
+                   }
+                   if($flag ==0)
                     $sbooks[]=$sbook;
+               }
            }
            foreach($searchauthor as $sauth){
                if(strcasecmp($sa,$sauth) == 0 )
@@ -58,8 +66,9 @@ if($searchbox && $searchbox != 'Enter Title, Author, Course ID, ISBN ...' /* Thi
            }
 
        }
-
+        
     }
+
     $numBooks = sizeof($sbooks);
 
     $booksPerPage = 5; //# of books to be displayed per page
@@ -73,7 +82,7 @@ if($searchbox && $searchbox != 'Enter Title, Author, Course ID, ISBN ...' /* Thi
          draw_books_listing_list($page, $sbooks, $booksPerPage, $sid);
          draw_list_header_footer($page, $numBooks, $booksPerPage);
    }
-   else{
+   else{ //If no books found.. Display all books with notifier..
        $numBooks = 0 /*sizeof($allbooks)*/;
         echo "<h2>No Results found for \"<U>".$trimsearch."</U>\".</h2><h2><a href='./books_listing.php?p=1&cat=".$_GET[cat]."&cid=".$_GET[cid]."&sid=".$_GET[sid]."'><u>Click Here</u></a> to browse our books.</h2>";
          draw_list_header_footer($page, $numBooks, $booksPerPage);

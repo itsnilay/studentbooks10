@@ -36,15 +36,13 @@ function draw_category_dropdown($schid, $cid, $cat){
     $result = SpindleTreeDB::getInstance()->getCategory($schid);
     while($row = mysql_fetch_array($result)) {
         if ($schid != 0)
-            //if ($cid == $row['courseid'])
-            //    echo "<option selected value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
-            //else
-                  echo "<option value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
+            if ($cid == $row['courseid']){
+                echo "<option selected value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
+            }else echo "<option value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
         else {
-            //if ($cat == $row['coursename'])
-            //    echo "<option selected value='".$row['coursename']."'>". $row['coursename']."</option>";
-            //else
-                  echo "<option value='".$row['coursename']."'>". $row['coursename']."</option>";
+            if ($cat == $row['coursename'])
+                echo "<option selected value='".$row['coursename']."'>". $row['coursename']."</option>";
+            else echo "<option value='".$row['coursename']."'>". $row['coursename']."</option>";
         }
     }
 }
@@ -103,33 +101,42 @@ function draw_left_panel($sid){
                     <a href="sign_in.php">Sign In</a> |
                     <a href="contact.php">Contact</a> |
                     -->
-                
+
             </div>
         </div>
         <div class="span-24 last">
             <div id="search_bar" class="span-22">
                 <form name="searchForm" action="books_listing.php">
                     <script type="text/javascript">
-                        function make_blank()
-                        {
-                        document.searchForm.searchbox.value ="";
+                        function make_blank(){
+                            if(document.searchForm.searchbox.value == "Enter Title, Author, Course ID, ISBN ...")
+                            document.searchForm.searchbox.value ="";
+                        }
+
+                        function changeTextColor(tBox, c) {
+                            if(c==1) { //textbox on focus
+                                tBox.style.color = "black";
+                            } else { //textbox out of focus
+                                tBox.style.color = "grey";
+                            }
                         }
                         </script>
-                    <input id="searchbox" name="searchbox" class="text span-10" type="text" value="Enter Title, Author, Course ID, ISBN ..." onclick="make_blank();"/>
-                    <button id="search_button" class="span-2 last" type="submit">Search</button>
-                    <?php
+                    <input id="searchbox" name="searchbox" class="text span-10" type="text" value="Enter Title, Author, Course ID, ISBN ..." style="color:grey;text-align:left;background:white" onclick="make_blank();" onfocus='changeTextColor(this, 1)' onblur='changeTextColor(this, 0)'/>
+
+                    <!-- Remooving the category Combo Box because it is of no use right now-->
+                    <!--?php
                     if($sid) echo '<select name="cid" class="span-5" id="category">';
                     else echo '<select name="cat" class="span-5" id="category">';?>
-                         <option class="first" value="0"> Choose a Category...</option>
-                         <?php draw_category_dropdown($sid, $cid, $cat); ?>
-                     </select>
+                         <option class="first" value="0"> Choose a Category...</option-->
+                         <!--?php draw_category_dropdown($sid, $cid, $cat); ?-->
+                     <!--/select-->
 
                         <!--Below java script block will be executed when School is selected and it will generate URL and pass arguments to call above PHP function of ComboBox catCombo(schId) -->
                         <script language="javascript">
                             function changeCat(schList){
-                                var catCombo = document.getElementById("category");
-                                while(catCombo.hasChildNodes())
-                                   catCombo.removeChild(catCombo.lastChild);
+                                //var catCombo = document.getElementById("category");
+                               // while(catCombo.hasChildNodes())
+                                //   catCombo.removeChild(catCombo.lastChild);
 
                                 var schoolid = schList.selectedIndex;
                                 // the url which you have to reload is this page, but you add an action to the GET- or POST-variable
@@ -144,7 +151,7 @@ function draw_left_panel($sid){
                             <option class="first" value="0"> Choose a School...</option>
                             <?php
                           $result = SpindleTreeDB::getInstance()->getSchool();
-                          
+
                           //call once to skip "general" option.
                           mysql_fetch_array($result);
                           $i=1;
@@ -156,18 +163,7 @@ function draw_left_panel($sid){
                                 $i++;
                             } ?>
                         </select>
-                        <script language="javascript">
-                            function searchNow(){
-                                var search = document.getElementById("searchbox").value;
-                               
-                                // the url which you have to reload is this page, but you add an action to the GET- or POST-variable
-                                var url="./search.php?search="+search;
-                                 alert(url);
-                                // Opens the url in the same window
-                                 //  window.open(url, "_self");
-
-                             }
-                        </script>
+                        <button id="search_button" class="span-2 last" type="submit">Search</button>
                     <!--/div-->
                 </form>
             </div>
@@ -221,8 +217,8 @@ function draw_left_panel($sid){
         }
         ?>
 
-			 
 
 
 
-        
+
+
