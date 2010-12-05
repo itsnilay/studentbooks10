@@ -19,7 +19,7 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
     $isFirst = true;
     $numBooks = sizeof($books);
 
-    $end = (($booksPerPage*$page)-1 < $numBooks)? ($booksPerPage*$page)-1 : $numBooks;
+    $end = (($booksPerPage*$page) < $numBooks)? ($booksPerPage*$page) : $numBooks;
     for ($i = ($page-1)*$booksPerPage; $i<$end; $i++)
     {
         $book = $books[$i];
