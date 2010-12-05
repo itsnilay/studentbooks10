@@ -21,11 +21,7 @@ if (isset($_POST['submitted'])){
              if(preg_match('/^[a-z\d_]{5,20}$/i', $trimmed['user_name'])){
                       $un = mysqli_real_escape_string($dbc, $trimmed['user_name']);
              }else{
-                     if(empty($trimmed['user_name'])){
-                        echo '<p class="error">Please enter a user name.</p>';
-                     }else{
-                        echo '<p class="error">User name must be 5-20 characters long.</p>';
-                     }
+                      echo '<p class="error">Please enter a valid user name.</p>';
              }
 
              //check for a email address:             
@@ -115,7 +111,7 @@ if (isset($_POST['submitted'])){
                                        $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br/>MySQL Error: ".mysqli_error($dbc));
 
                                         //finish the page:
-                                        echo '<h3>Thank you for registering! <a href="login.php">Click Here</a> to log into your account.</h3>';
+                                        echo '<h3>Thank you for registering! <a href="login.php"><u>Click Here</u></a> to log into your account.</h3>';
 
                                         mysqli_close($dbc);//close the database
                                         include('include/footer.php');
@@ -137,9 +133,10 @@ if (isset($_POST['submitted'])){
 <form action="registration.php" method="post">
 	<h3>Required:</h3>
         <p><label for="user_name" class="label">User Name: </label><input id="user_name" type="text" name="user_name" size="15" maxlength="20" value="<?php if (isset($trimmed['user_name'])) echo $trimmed['user_name']; ?>" /></p>
+	<p>User name must be 5-20 characters -- letters, numbers, underscores only.</p>
 	<p><label for="email" class="label">Email Address: </label><input id="email" type="text" name="email" size="20" maxlength="320" value="<?php if (isset($trimmed['email'])) echo $trimmed['email']; ?>"  /> </p>
 	<p><label for="password1" class="label">Password: </label><input id="password1" type="password" name="password1" size="10" maxlength="20" /></p>
-	<p>Use only letters and numbers. Must be between 4 and 20 characters long</p>
+	<p>Password must be 4-20 characters -- letters, numbers only.</p>
 	<p><label for="password2" class="label">Confirm Password: </label><input id="password2" type="password" name="password2" size="10" maxlength="20" /></p>
 	<hr/>
         <h3>Optional:</h3>
