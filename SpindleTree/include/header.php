@@ -122,6 +122,7 @@ function draw_left_panel($sid){
                         }
                         </script>
                     <input id="searchbox" name="searchbox" class="text span-10" type="text" value="Enter Title, Author, Course ID, ISBN ..." style="color:grey;text-align:left;background:white" onclick="make_blank();" onfocus='changeTextColor(this, 1)' onblur='changeTextColor(this, 0)'/>
+                    <button id="search_button" class="span-2 last" type="submit">Search</button>
 
                     <!-- Remooving the category Combo Box because it is of no use right now-->
                     <!--?php
@@ -133,21 +134,22 @@ function draw_left_panel($sid){
 
                         <!--Below java script block will be executed when School is selected and it will generate URL and pass arguments to call above PHP function of ComboBox catCombo(schId) -->
                         <script language="javascript">
-                            function changeCat(schList){
+                            function changeCat(schList,urlpostfix){
                                 //var catCombo = document.getElementById("category");
                                // while(catCombo.hasChildNodes())
                                 //   catCombo.removeChild(catCombo.lastChild);
 
                                 var schoolid = schList.selectedIndex;
                                 // the url which you have to reload is this page, but you add an action to the GET- or POST-variable
-                                var url="<?php echo $_SERVER[PHP_SELF]; ?>?sid="+schoolid;
+                                var url="<?php echo $_SERVER[PHP_SELF]; ?>?sid="+schoolid+urlpostfix;
 
                                 // Opens the url in the same window
                                    window.open(url, "_self");
 
                              }
                         </script>
-                         <select name="sid" class="span-4" onChange=changeCat(this)>
+                         // TODO: Consider moving dropdown school list away from search box to disassociate with search
+                         <select name="sid" class="span-4" onChange=changeCat(this,"<?php echo '&bkid='.$_GET['bkid'];?>")>
                             <option class="first" value="0"> Choose a School...</option>
                             <?php
                           $result = SpindleTreeDB::getInstance()->getSchool();
@@ -163,7 +165,6 @@ function draw_left_panel($sid){
                                 $i++;
                             } ?>
                         </select>
-                        <button id="search_button" class="span-2 last" type="submit">Search</button>
                     <!--/div-->
                 </form>
             </div>
