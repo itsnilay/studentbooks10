@@ -129,12 +129,14 @@ p{
     border: 1px solid #dadada;
     padding: 3px;
     height: 1em;
-    width: 408px;
+    width: 400px;
 }
 
 #search_button {
     padding: 3px;
     margin-top: 2px;
+    margin-left: 8px;
+    margin-right: 2px;
 }
 
 /*LEFT COLUMN NAV*/

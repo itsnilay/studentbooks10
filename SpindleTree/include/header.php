@@ -36,13 +36,15 @@ function draw_category_dropdown($schid, $cid, $cat){
     $result = SpindleTreeDB::getInstance()->getCategory($schid);
     while($row = mysql_fetch_array($result)) {
         if ($schid != 0)
-            if ($cid == $row['courseid']){
-                echo "<option selected value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
-            }else echo "<option value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
+            //if ($cid == $row['courseid'])
+            //    echo "<option selected value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
+            //else
+                  echo "<option value='".$row['courseid']."'>".$row['courseid']." - ". $row['coursename']."</option>";
         else {
-            if ($cat == $row['coursename'])
-                echo "<option selected value='".$row['coursename']."'>". $row['coursename']."</option>";
-            else echo "<option value='".$row['coursename']."'>". $row['coursename']."</option>";
+            //if ($cat == $row['coursename'])
+            //    echo "<option selected value='".$row['coursename']."'>". $row['coursename']."</option>";
+            //else
+                  echo "<option value='".$row['coursename']."'>". $row['coursename']."</option>";
         }
     }
 }
@@ -114,6 +116,7 @@ function draw_left_panel($sid){
                         }
                         </script>
                     <input id="searchbox" name="searchbox" class="text span-10" type="text" value="Enter Title, Author, Course ID, ISBN ..." onclick="make_blank();"/>
+                    <button id="search_button" class="span-2 last" type="submit">Search</button>
                     <?php
                     if($sid) echo '<select name="cid" class="span-5" id="category">';
                     else echo '<select name="cat" class="span-5" id="category">';?>
@@ -165,7 +168,6 @@ function draw_left_panel($sid){
 
                              }
                         </script>
-                        <button id="search_button" class="span-2 last" type="submit">Search</button>
                     <!--/div-->
                 </form>
             </div>
