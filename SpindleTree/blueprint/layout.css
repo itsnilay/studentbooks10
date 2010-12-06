@@ -141,7 +141,7 @@ p{
 
 /*LEFT COLUMN NAV*/
 .arrowlistmenu{
-    min-height:550px;
+    /*min-height:550px;*/
     width: 200px;
     background: #ffffff url('../img/rightnav_bg.png') repeat-x top right;
     float:left;
@@ -155,7 +155,8 @@ p{
     color: #444444;
     background: #dadada url('../img/blockdefault.gif') bottom left repeat-x;
     margin-bottom: 10px; /*bottom spacing between header and rest of content*/
-    padding: 4px 0 4px 10px; /*header text is indented 10px*/
+    margin-top: 10px;
+    padding: 4px 0px 4px 10px; /*header text is indented 10px*/
     height:25px;
 }
 
@@ -175,6 +176,7 @@ p{
     display: block;
     padding: 2px 0;
     padding-left: 19px; /*link text is indented 19px*/
+    padding-right: 19px;
     text-decoration: none;
     font-weight: bold;
 }

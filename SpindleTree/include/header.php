@@ -48,16 +48,28 @@ function draw_category_dropdown($schid, $cid, $cat){
 
 //This PHP Block will check the URL and if school is selected corresponding values will be displayed on comboBox
 function draw_left_panel($sid){
+
+    echo "<div class='arrowlistmenu fade_bottom'>";
     $result = SpindleTreeDB::getInstance()->getCategory($sid);
     if($sid){
-        while($row = mysql_fetch_array($result)) {
+          echo "<h3 class='headerbar'>Courses</h3>
+                <ul style='text-align:left;'>";
+          while($row = mysql_fetch_array($result)) {
                 echo "<li><a href='./books_listing.php?sid=".$sid."&cid=".urlencode($row['courseid'])."'>".$row['courseid']." - ". $row['coursename']."</a></li>";
-        }
-    }else {
-        while($row = mysql_fetch_array($result)) {
-                echo "<li><a href='./books_listing.php?sid=".$sid."&cat=".urlencode($row['coursename'])."'>".$row['coursename']."</a></li>";
-        }
+          }
+          echo "</ul>";
+          
+        $result = SpindleTreeDB::getInstance()->getCategory(0);
+    }//else {
+
+    echo "<h3 class='headerbar'>Categories</h3>
+          <ul style='text-align:left;'>";
+    while($row = mysql_fetch_array($result)) {
+            echo "<li><a href='./books_listing.php?sid=".$sid."&cat=".urlencode($row['coursename'])."'>".$row['coursename']."</a></li>";
     }
+    echo "</ul>
+          </div>";
+    //}
 }
 ?>
 
@@ -190,30 +202,26 @@ function draw_left_panel($sid){
                          </p>
                     </div>
                     <div class="span-2 last">
-                       <p><a href="view_cart.php"><img src="img/checkout_button.gif" alt="" /></a></p>
+                       <?php echo '<p><a href="view_cart.php?sid='.$_GET['sid'].'"><img src="img/checkout_button.gif" alt="" /></a></p>'; ?>
                     </div>
         </div>
 
         <?php if (isset($page_special)){
 	  echo "
                 <div class='span-5'>
-                    <div class='arrowlistmenu fade_bottom'>
-                        <h3 class='headerbar'>Categories</h3>
-                        <ul>";
-                  draw_left_panel($sid);
-                  echo" </ul>
-                    </div>
-                </div>
+               ";
+                draw_left_panel($sid);
+          echo "</div>
                 <div  class='span-19 last'>
                     <div id ='wrapper' class='span-18'>
                         <div id='wrapper_inner' class='span-18 last'>
-          ";
+               ";
         }else{
                 echo "
                 <div  class='span-24 last'>
                     <div id ='wrapper' class='span-23'>
                         <div id='wrapper_inner' class='span-23 last'>
-          ";
+                     ";
         }
         ?>
 

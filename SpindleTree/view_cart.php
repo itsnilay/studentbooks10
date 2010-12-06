@@ -78,7 +78,7 @@ require_once('include/header.php');
 
                             //print the row //$_SESSION['cart'][$row['bookid']]['price']
                             echo "<tr>
-                                        <td><a href='./book_details.php?bkid={$row['bookid']}'>{$row['title']}</a></td>
+                                        <td><a href='./book_details.php?sid=".$_GET['sid']."&bkid={$row['bookid']}'>{$row['title']}</a></td>
                                         <td>$"."{$_SESSION['cart'][$row['bookid']]['price']}</td>
                                         <td><input type=\"text\" size=\"3\" name=\"qty[{$row['bookid']}]\" value=\"{$_SESSION['cart'][$row['bookid']]['quantity']}\"/></td>
                                         <td>$".  number_format($subtotal, 2)."</td>
@@ -95,7 +95,7 @@ require_once('include/header.php');
                     </table>
 
                     <div style="width:50%;float:left;">
-                        <h4><a href="./books_listing.php"><u>Click Here</u></a> to continue shopping.</h4>
+                        <h4><a href="./books_listing.php?sid='.$_GET['sid'].'"><u>Click Here</u></a> to continue shopping.</h4>
                     </div>
                     <div style="width=50%;float:right;">
                         <input type="submit" name ="submit" value="Update Cart"/>
@@ -111,7 +111,7 @@ require_once('include/header.php');
         echo '<p class="info">Your cart is currently empty.</p>
             <img src="" alt="" />';
 
-        echo "<h3><a href='./books_listing.php'><u>Click Here</u></a> to browse our selection.</h3>";
+        echo "<h3><a href='./books_listing.php?sid=".$_GET['sid']."'><u>Click Here</u></a> to browse our selection.</h3>";
     }
 require_once('include/footer.php');
 

@@ -98,11 +98,11 @@ else
     if($cid){
         $books = SpindleTreeDB::getInstance()->getBooksByCourseId($cid);
     }else if ($category){
-        if ($sid){
-            $books = SpindleTreeDB::getInstance()->getBooksByCourseId($cid);
-        }else {
+        //if ($sid){
+        //    $books = SpindleTreeDB::getInstance()->getBooksByCourseId($cid);
+        //}else {
             $books = Book::getBooksByCategory($category);
-        }
+        //}
     }else $books = $dbInst->getAllBooks();
 
     $numBooks = sizeof($books);
@@ -115,11 +115,10 @@ else
     ?>
         <h2>Browse Books <?php
                             // display category or course ID if selected
-                            if($_GET['sid']>0){
-                                if($_GET['cid'])
-                                    echo '('.$_GET['cid'].')';
-                                }elseif($_GET['cat'])
-                                    echo '('.$_GET['cat'].')';
+                            if($_GET['sid'] > 0 && $_GET['cid']){
+                                echo '('.$_GET['cid'].')';
+                            }elseif($_GET['cat'])
+                                echo '('.$_GET['cat'].')';
                           ?>
         </h2>
 
