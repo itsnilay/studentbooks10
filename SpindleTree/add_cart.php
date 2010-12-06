@@ -10,10 +10,6 @@ if (isset($_GET['bkid']) && is_numeric($_GET['bkid'])){//check for book id
     //check if cart already contains book, if so increment quantity
     if (isset($_SESSION['cart'][$bookid])){
         $_SESSION['cart'][$bookid]['quantity']++;//add another
-        //echo "the quantity is now". $_SESSION['cart'][$bookid]['quantity'];
-        //diplay message
-        echo '<p>Another book has been added to your cart<br/>
-                <a href="books_listing.php">Continue Shopping on SpindleTree :)</a></p>';
     }else{//new product to the cart
         //get the books price from the datatbase
         require_once('include/mysql_connect.php');
@@ -29,18 +25,26 @@ if (isset($_GET['bkid']) && is_numeric($_GET['bkid'])){//check for book id
             //add to cart
             $_SESSION['cart'][$bookid] = array('quantity'=>1,'price'=> $price);
             
-            //display message
-            echo'<p>Book has been added to your shopping cart<br/>
-                <a href="books_listing.php">Continue Shopping on SpindleTree :)</a></p>';
-            
         }else{//not a valid book id
-            echo '<div class="error">This page has been accessed in error!</div>';
+            echo '<p class="error">This page has been accessed in error!</p>';
+
+            mysqli_close($dbc);
+            include('include/footer.php');
+
+            exit();
         }
         mysqli_close($dbc);
     }//end of isset($_SESSION['cart'][$bookid] conditional)
+
+    header('Location: view_cart.php?result=addSuccess');
     
+    //display message
+    //echo'<p class="info">A book has been added to your shopping cart.</p>
+    //    <h2><a href="books_listing.php"><u>Click Here</u></a> to continue shopping.</h2>
+    //    <h2><a href="view_cart.php"><u>Click Here</u></a> to view your cart.</h2>';
+  
 }else{//no print id
-    echo '<div class="error">This page has been accessed in error!</div>';
+    echo '<p class="error">This page has been accessed in error!</p>';
 }
 
 include('include/footer.php');

@@ -84,7 +84,7 @@ if($searchbox && $searchbox != 'Enter Title, Author, Course ID, ISBN ...' /* Thi
    }
    else{ //If no books found.. Display all books with notifier..
        $numBooks = 0 /*sizeof($allbooks)*/;
-        echo "<h2>No Results found for \"<U>".$trimsearch."</U>\".</h2><h2><a href='./books_listing.php?p=1&cat=".$_GET[cat]."&cid=".$_GET[cid]."&sid=".$_GET[sid]."'><u>Click Here</u></a> to browse our books.</h2>";
+        echo "<h2>No Results found for \"<U>".$trimsearch."</U>\".</h2><h2><a href='./books_listing.php?p=1&cat=".$_GET[cat]."&cid=".$_GET[cid]."&sid=".$_GET[sid]."'><u>Click Here</u></a> to browse our selection.</h2>";
          draw_list_header_footer($page, $numBooks, $booksPerPage);
          draw_books_listing_list($page, null /*$allbooks*/, $booksPerPage, $sid);
          draw_list_header_footer($page, $numBooks, $booksPerPage);

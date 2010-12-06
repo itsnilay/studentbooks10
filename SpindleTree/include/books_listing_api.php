@@ -58,7 +58,7 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
             
             <button type="submit" value="book-<?php// $book->getBookId(); ?>">+ Add to Cart</button>-->
             <input type="button" value="+ Add to Cart" onClick="window.location.href='add_cart.php?bkid=<?php echo $book->getBookId(); ?>'">
-            <input type="button" value="Proceed To Checkout &gt;&gt;" onClick="window.location.href='view_cart.php'">
+            <!--<input type="button" value="Proceed To Checkout &gt;&gt;" onClick="window.location.href='view_cart.php'">-->
 
             <!--
             <form action="shopping_cart.php">
