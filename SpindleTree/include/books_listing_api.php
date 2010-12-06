@@ -35,12 +35,12 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
     <div class="title_space span-18 last">
         <h2 class="title">
         <?php
-            echo "<a href='./book_details.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."'>".$book->getTitle()." </a>"?></h2>
+            echo "<a href='./book_details.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."&action=add'>".$book->getTitle()." </a>"?></h2>
         <span class="author"><?php echo $book->getAuthor(); ?></span>
     </div>
     <table width="100%" cellspacing="0" cellpadding="4" border="0"><tr valign="bottom">
         <td width="1%">
-            <?php echo "<a href='./book_details.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
+            <?php echo "<a href='./book_details.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."&action=add'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
 
         </td>
         <td>
@@ -51,14 +51,20 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
             <p class="cc_savings">Save <span>$<?php echo printf("%0.1f",$cc_savings)?></span> on the price at your bookstore!</p>
         </td>
         <td class="buttons">
+            <!--
             <script language="javascript">
                 function addToCart(){ alert("Selected book is added to Cart"); }
             </script>
-            <button type="submit" value="book-<?php $book->getBookId(); ?>" onclick=addToCart()>+ Add to Cart</button>
+            
+            <button type="submit" value="book-<?php// $book->getBookId(); ?>">+ Add to Cart</button>-->
+            <input type="button" value="+ Add to Cart" onClick="window.location.href='add_cart.php?bkid=<?php echo $book->getBookId(); ?>'">
+            <input type="button" value="Proceed To Checkout &gt;&gt;" onClick="window.location.href='view_cart.php'">
 
+            <!--
             <form action="shopping_cart.php">
-                <button type="submit" value="book-<?php $book->getBookId(); ?>" onclick=checkout()>+ Buy New & Checkout</button>
+                <button type="submit" value="book-<?php //$book->getBookId(); ?>" onclick=checkout()>+ Buy New & Checkout</button>
             </form>
+            -->
         </td>
     </tr></table>
 

@@ -37,6 +37,7 @@ function draw_book_details_main($book){
     $book_expert_rating = 3.5;
     $new_book_price = $book->getPrice();
     $bkid = $book->getBookId();
+    $bk_qty = $book->getBookQty();
     
     
     echo '
@@ -54,16 +55,15 @@ function draw_book_details_main($book){
                         <span class="new_price">$'; printf("%01.2f", $new_book_price); echo '</span>
                     </p>
                 </div>
-                <div class="buttons span-9 last">
-                    <script language="javascript">
-                        function addToCart(){ alert("Selected book is added to Cart"); }
-                    </script>
-                    <button type="submit" value="book-'. $bkid . '" onclick=addToCart()>+ Add to Cart</button>
-                    <!--
-                    <form action="shopping_cart.php">
-                        <button type="submit" value="book-'. $bkid . '" onclick=checkout()>+ Buy New & Checkout</button>
-                    </form>//-->
-                </div>
+                <div class="buttons span-9 last">';
+                    // if we still have this book in stock
+                    // show the 'Add to cart' button
+                    if ($bk_qty > 0) {
+                        echo'<input type="button" value="+ Add to Cart" onClick="window.location.href=\'add_cart.php?bkid='.$bkid.' \'">';
+                    } else {
+                        echo 'Out Of Stock';
+                    }
+                echo '</div>
             </div>
         </div>
     ';

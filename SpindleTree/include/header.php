@@ -1,11 +1,10 @@
 <?php  #script header.php
 
-
 /*start output buffering:
  * instead of immediately sending HTML to the web browser, store output temporary memory
  * (this is to eradicate those pesky headers already sent error messages, when using HTTP headers, redirect the user, or send cookies :) )
  */
-ob_start();
+ob_start(); 
 
 //initialize a session:
 session_start();
@@ -185,13 +184,13 @@ function draw_left_panel($sid){
                             $result = SpindleTreeDB::getInstance()->getAllBooks();
                             $num_rows = mysql_num_rows($result);
 
-                            echo "$num_rows item(s):\n";
+                            //echo "$num_rows item(s):\n";
                             ?>
-                             <span>$23,673.64</span>
+                             <span></span>
                          </p>
                     </div>
                     <div class="span-2 last">
-                       <p><a href="shopping_cart.php"><img src="img/checkout_button.gif" alt="" /></a></p>
+                       <p><a href="view_cart.php"><img src="img/checkout_button.gif" alt="" /></a></p>
                     </div>
         </div>
 
