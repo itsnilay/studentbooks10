@@ -14,10 +14,10 @@
 function draw_book_details_subnav($page_title){
     echo
     '<ul id="subnav" class="span-18 last">' .
-    '<li id="used_books" class="tab current"><a href="used_book_listing.php?cid='.$_GET['cid'].'&cat='.$_GET['cat'].'&sid='.$_GET['sid'].'&bkid='.$_GET['bkid'].'">Used Books</a></li>' .
+    '<li id="used_books" class="tab current"><a href="used_book_listing.php?cid='.$_GET['cid'].'&cat='.$_GET['cat'].'&sid='.$_GET['sid'].'">Used Books</a></li>' .
     //'<li id="expert_reviews" class="tab"><a href="expert_reviews.php">Expert Reviews</a></li>' .
     //'<li id="used_books" class="tab"><a href="reviews.php">Reviews</a></li>' .
-    '<li id="book_details" class="tab"><a href="book_details.php?cid='.$_GET['cid'].'&cat='.$_GET['cat'].'&sid='.$_GET['sid'].'&bkid='.$_GET['bkid'].'">Details</a></li>' .
+    '<li id="book_details" class="tab"><a href="book_details.php?cid='.$_GET['cid'].'&cat='.$_GET['cat'].'&sid='.$_GET['sid'].'">Details</a></li>' .
     '</ul>';
 }
 
@@ -37,7 +37,7 @@ function draw_book_details_main($book){
     $book_expert_rating = 3.5;
     $new_book_price = $book->getPrice();
     $bkid = $book->getBookId();
-    $bk_qty = $book->getBookQty();
+    
     
     
     echo '
@@ -58,11 +58,11 @@ function draw_book_details_main($book){
                 <div class="buttons span-9 last">';
                     // if we still have this book in stock
                     // show the 'Add to cart' button
-                    if ($bk_qty > 0) {
+                    //if ($bk_qty > 0) {
                         echo'<input type="button" value="+ Add to Cart" onClick="window.location.href=\'add_cart.php?bkid='.$bkid.' \'">';
-                    } else {
-                        echo 'Out Of Stock';
-                    }
+                    // } else {
+                    //    echo 'Out Of Stock';
+                    //}
                 echo '</div>
             </div>
         </div>
