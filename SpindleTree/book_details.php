@@ -6,8 +6,8 @@ include_once('include/book.php');
 
 if(isset($_GET[bkid]))
     $book = $dbInst->getBookById($_GET[bkid]);
-else
-    $book = $dbInst->getBookById(10001);
+//else
+//    $book = $dbInst->getBookById(10001);
 
 if (!isset($book)){
     echo '<p class="error">Book not found.</p>';

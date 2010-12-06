@@ -59,7 +59,7 @@ function draw_book_details_main($book){
                     // if we still have this book in stock
                     // show the 'Add to cart' button
                     //if ($bk_qty > 0) {
-                        echo'<input type="button" value="+ Add to Cart" onClick="window.location.href=\'add_cart.php?sid='.$_GET['sid'].'&bkid='.$bkid.' \'">';
+                        echo'<input type="button" value="+ Add to Cart" onClick="window.location.href=\'add_cart.php?sid='.$sid.'&bkid='.$bkid.' \'">';
                     // } else {
                     //    echo 'Out Of Stock';
                     //}

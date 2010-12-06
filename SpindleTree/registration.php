@@ -111,7 +111,7 @@ if (isset($_POST['submitted'])){
                                        $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br/>MySQL Error: ".mysqli_error($dbc));
 
                                         //finish the page:
-                                        echo '<h3>Thank you for registering! <a href="login.php"><u>Click Here</u></a> to log into your account.</h3>';
+                                        echo '<h3>Thank you for registering! <a href="login.php?sid='.$sid.'"><u>Click Here</u></a> to log into your account.</h3>';
 
                                         mysqli_close($dbc);//close the database
                                         include('include/footer.php');

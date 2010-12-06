@@ -202,7 +202,7 @@ function draw_left_panel($sid){
                          </p>
                     </div>
                     <div class="span-2 last">
-                       <?php echo '<p><a href="view_cart.php?sid='.$_GET['sid'].'"><img src="img/checkout_button.gif" alt="" /></a></p>'; ?>
+                       <?php echo '<p><a href="view_cart.php?sid='.$sid.'"><img src="img/checkout_button.gif" alt="" /></a></p>'; ?>
                     </div>
         </div>
 
