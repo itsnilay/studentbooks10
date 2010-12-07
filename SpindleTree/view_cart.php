@@ -5,7 +5,7 @@
  */
 
 //set the page title and include the header
-$page_title= 'SpindleTree | Your Shopping Cart';
+$page_special= 'SpindleTree | Your Shopping Cart';
 require_once('include/header.php');
     //check to see if form has been submitted(to update the cart)
     if(isset($_POST['submitted'])){
@@ -39,7 +39,7 @@ require_once('include/header.php');
 
     }//end of submit
 
-    if (isset($_GET['result']) && $_GET['result'] =='addSuccess') {
+    if ($_GET['result'] =='addSuccess') {
         echo '<p class="info">A book has been added to your shopping cart.</p>';
     }
 
@@ -98,11 +98,12 @@ require_once('include/header.php');
                         <h4><a href="./books_listing.php?sid='.$sid.'"><u>Click Here</u></a> to continue shopping.</h4>
                     </div>
                     <div style="width=50%;float:right;">
-                        <input type="submit" name ="submit" value="Update Cart"/>
-                        <input type="button" value="Checkout" onClick="window.location.href=\'checkOut.php\'"/>
+                        <input type="hidden" name="sid" value="'.$sid.'"/>
+                        <input type="hidden" name="submitted" value="TRUE"/>
+                        <input type="submit" name="submit" value="Update Cart"/>
+                        <input type="button" value="Checkout" onClick="window.location.href=\'checkOut.php?sid='.$sid.'\'"/>
                     </div>
                     <div style="width:100%;float:right" align="right">* Enter a quantity of 0 to remove an item.</div>
-                    <input type="hidden" name="submitted" value="TRUE"/>                 
                </fieldset>
             </form>';
 

@@ -147,7 +147,8 @@ if (isset($_POST['submitted'])){
                 printAddressForm(NULL,$trimmed);
          ?>
         <p><input type="submit" name="submit" value="Register" /></p>
-	<input type="hidden" name="submitted" value="TRUE" />
+        <input type="hidden" name="sid" value="<?php echo $sid; ?>" />
+        <input type="hidden" name="submitted" value="TRUE" />
     </form><!-- end of form -->
     </div>
 

@@ -73,7 +73,8 @@ if(isset($_POST['submitted'])){
     <div class = "form_box">
         <p><label for="email" class="label">Email:</label><input id="email" type="text" name="email" size="20" maxlength="40" value= "<?php  if(isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
         <p><input type="submit"  name="submit" value="Reset my Password" /></p>
-        <p><input type="hidden"  name="submitted" value="TRUE" /></p>
+        <input type="hidden" name="sid" value="<?php echo $sid; ?>" />
+        <input type="hidden" name="submitted" value="TRUE" />
     </div>
 </form>
 

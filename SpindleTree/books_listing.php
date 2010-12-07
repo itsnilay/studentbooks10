@@ -79,14 +79,14 @@ if($searchbox && $searchbox != 'Enter Title, Author, Course ID, ISBN ...' /* Thi
    if($sbooks){
          echo "<h2>Search Results for \"<U>".$trimsearch."</U>\"</h2>";
          draw_list_header_footer($page, $numBooks, $booksPerPage);
-         draw_books_listing_list($page, $sbooks, $booksPerPage, $sid);
+         draw_books_listing_list($page, $sbooks, $booksPerPage);
          draw_list_header_footer($page, $numBooks, $booksPerPage);
    }
    else{ //If no books found.. Display all books with notifier..
        $numBooks = 0 /*sizeof($allbooks)*/;
-        echo "<h2>No Results found for \"<U>".$trimsearch."</U>\".</h2><h2><a href='./books_listing.php?p=1&cat=".$category."&cid=".$cid."&sid=".$sid."'><u>Click Here</u></a> to browse our selection.</h2>";
+        echo "<h2>No Results found for \"<U>".$trimsearch."</U>\".</h2><h2><a href='./books_listing.php?p=1&cat=".urlencode($_GET['cat'])."&cid=".urlencode($_GET['cid'])."&sid=".$sid."'><u>Click Here</u></a> to browse our selection.</h2>";
          draw_list_header_footer($page, $numBooks, $booksPerPage);
-         draw_books_listing_list($page, null /*$allbooks*/, $booksPerPage, $sid);
+         draw_books_listing_list($page, null /*$allbooks*/, $booksPerPage);
          draw_list_header_footer($page, $numBooks, $booksPerPage);
    }
 
@@ -123,7 +123,7 @@ else
         </h2>
 
         <?php draw_list_header_footer($page, $numBooks, $booksPerPage); ?>
-        <?php draw_books_listing_list($page, $books, $booksPerPage, $sid); ?>
+        <?php draw_books_listing_list($page, $books, $booksPerPage); ?>
         <?php draw_list_header_footer($page, $numBooks, $booksPerPage); }//End of else?>
     <?php
     include('include/footer.php');

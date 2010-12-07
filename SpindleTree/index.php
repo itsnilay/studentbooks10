@@ -13,16 +13,16 @@ require_once('include/header.php');//open header
                 <br/>
                 <div class="content_wrapper">
                         <div class="rgt_border_column">
-                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10001"><img src="img/SE2.jpg" alt="" /></a>
+                            <a href="./book_details.php?cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.$sid.'&bkid=10001"><img src="img/SE2.jpg" alt="" /></a>
                         </div>
                         <div class="mid_column">
-                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10000"><img src="img/SE.jpg" alt="" /></a>
+                            <a href="./book_details.php?cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.$sid.'&bkid=10000"><img src="img/SE.jpg" alt="" /></a>
                         </div>
                          <div class="mid_column">
-                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10012"><img src="img/CO.jpg" alt="" /></a>
+                            <a href="./book_details.php?cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.$sid.'&bkid=10012"><img src="img/CO.jpg" alt="" /></a>
                         </div>
                          <div class="lft_border_column">
-                            <a href="./book_details.php?cid='.$cid.'&cat='.$cat.'&sid='.$sid.'&bkid=10008"><img src="img/AI.jpg" alt="" /></a>
+                            <a href="./book_details.php?cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.$sid.'&bkid=10008"><img src="img/AI.jpg" alt="" /></a>
                         </div>
                 </div>
                 <br/><h2>About Us</h2>

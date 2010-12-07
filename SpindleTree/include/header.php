@@ -160,7 +160,7 @@ function draw_left_panel($sid){
                              }
                         </script>
                          <?php // TODO: Consider moving dropdown school list away from search box to disassociate with search ?>
-                         <select name="sid" class="span-4" onChange=changeCat(this,"<?php echo '&bkid='.$_GET['bkid'];?>")>
+                         <select name="sid" class="span-4" onChange=changeCat(this,"<?php echo '&bkid='.urlencode($_GET['bkid']);?>")>
                             <option class="first" value="0"> Choose a School...</option>
                             <?php
                           $result = SpindleTreeDB::getInstance()->getSchool();

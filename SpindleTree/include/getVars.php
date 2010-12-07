@@ -8,21 +8,24 @@ else $page = $_GET['p'];
 if(isset($_GET['sid'])){
     $sid = $_GET['sid'];
     if ($sid < 0 || $sid > 5) $sid = 0;
+}elseif (isset($_POST['sid'])){
+    $sid = $_POST['sid'];
+    if ($sid < 0 || $sid > 5) $sid = 0;
 }else $sid = 0;
 
 //course variable is used to determine the category of books a user is searching for.
 if(isset($_GET['cat'])){
-    $category = urldecode($_GET['cat']);
+    $category = $_GET['cat'];
 }else $category = null;
 
 //TODO: Validate and sanitize category input.
 //cid variable is used to determine the course id of books currently being searched/browsed for
 if(isset($_GET['cid'])){
-    $cid = urldecode($_GET['cid']);
+    $cid = $_GET['cid'];
 }else $cid = null;
 
 if(isset($_GET['searchbox'])){
-    $searchbox = urldecode($_GET['searchbox']);
+    $searchbox = $_GET['searchbox'];
 }else $searchbox = null;
 
 ?>

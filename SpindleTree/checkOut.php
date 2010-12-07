@@ -74,7 +74,8 @@ if (isset($_POST['submitted'])){
             </p>
 
         <p><input type="submit" name="submit" value="Submit" /></p>
-	<input type="hidden" name="submitted" value="TRUE" />
+        <input type="hidden" name="sid" value="<?php echo $sid; ?>" />
+        <input type="hidden" name="submitted" value="TRUE" />
 
     </form>
     </div>

@@ -59,6 +59,7 @@ if(isset($_POST['submitted'])){
         <p><label for="email" class="label">Email:</label><input id="email" type="text" name="email" size ="20" maxlenght="40" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
         <p><label for="password1" class="label">Password:</label><input id="password1" type="password" name="password1" size ="20" maxlenght="20"  /></p>
         <input type="submit" name="submit" value="Login"/>
+        <input type="hidden" name="sid" value="<?php echo $sid; ?>" />
         <input type="hidden" name="submitted" value="TRUE"/>
     </div>
     <br/>

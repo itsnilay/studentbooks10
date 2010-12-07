@@ -7,7 +7,7 @@
  * @author Nilay/Andrew
  */
 
-function draw_books_listing_list($page, $books, $booksPerPage, $sid)
+function draw_books_listing_list($page, $books, $booksPerPage)
 {
 
 ?>
@@ -35,12 +35,12 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
     <div class="title_space span-18 last">
         <h2 class="title">
         <?php
-            echo "<a href='./book_details.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."&action=add'>".$book->getTitle()." </a>"?></h2>
+            echo "<a href='./book_details.php?cid=".urlencode($_GET['cid'])."&cat=".urlencode($_GET['cat'])."&sid=".urlencode($_GET['sid'])."&bkid=".$book->getBookId()."&action=add'>".$book->getTitle()." </a>"?></h2>
         <span class="author"><?php echo $book->getAuthor(); ?></span>
     </div>
     <table width="100%" cellspacing="0" cellpadding="4" border="0"><tr valign="bottom">
         <td width="1%">
-            <?php echo "<a href='./book_details.php?cid=".$cid."&cat=".$cat."&sid=".$sid."&bkid=".$book->getBookId()."&action=add'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
+            <?php echo "<a href='./book_details.php?cid=".urlencode($_GET['cid'])."&cat=".urlencode($_GET['cat'])."&sid=".urlencode($_GET['sid'])."&bkid=".$book->getBookId()."&action=add'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
 
         </td>
         <td>
@@ -49,7 +49,7 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
         </td>
         <td>
             <?php
-                if ($sid>0){
+                if ($_GET['sid'] > 0){
                     echo '<p class="cc_savings">Save <span>$';
                     printf("%0.2f",$cc_savings);
                     echo '</span> on the price at your bookstore!</p>';
@@ -63,7 +63,7 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
             </script>
             
             <button type="submit" value="book-<?php// $book->getBookId(); ?>">+ Add to Cart</button>-->
-            <?php echo '<input type="button" value="+ Add to Cart" onClick="location.href=\'add_cart.php?sid='.$sid.'&bkid='.$book->getBookId().'\'">'; ?>
+            <?php echo '<input type="button" value="+ Add to Cart" onClick="location.href=\'add_cart.php?sid='.urlencode($_GET['sid']).'&bkid='.$book->getBookId().'\'">'; ?>
             <!--<input type="button" value="Proceed To Checkout &gt;&gt;" onClick="window.location.href='view_cart.php'">-->
 
             <!--
@@ -128,9 +128,9 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
             <ul>
                 <?php
                     //Print pagination beginning
-                    if ($page > 1) echo '<li><a href="?p='.($page - 1).'&cat='.$category.'&cid='.$cid.'&sid='.$sid.'">Previous | </a></li>';
+                    if ($page > 1) echo '<li><a href="?p='.($page - 1).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">Previous | </a></li>';
                     else echo '<li>Previous | </li>';
-                    if($page != 1) echo '<li><a href="?p=1&cat='.$category.'&cid='.$cid.'&sid='.$sid.'">1 </a></li>';
+                    if($page != 1) echo '<li><a href="?p=1&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">1 </a></li>';
                     else echo '<li>1 </li>';
 
                     //print left abbreviation if needed
@@ -138,7 +138,7 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
 
                     //Print pagination middle
                     for($i=$begin; $i<$end; $i++){
-                        if($page != $i) echo '<li><a href="?p='.$i.'&cat='.$category.'&cid='.$cid.'&sid='.$sid.'">'.$i.' </a></li>';
+                        if($page != $i) echo '<li><a href="?p='.$i.'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">'.$i.' </a></li>';
                         else echo '<li>'.$i.' </li>';
                     }
 
@@ -147,10 +147,10 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
 
                     //Print pagination end
                     if($numPages > 1){
-                        if($page != $numPages) echo '<li><a href="?p='.$numPages.'&cat='.$category.'&cid='.$cid.'&sid='.$sid.'">'.$numPages.' </a></li>';
+                        if($page != $numPages) echo '<li><a href="?p='.$numPages.'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">'.$numPages.' </a></li>';
                         else echo '<li>'.$numPages.' </li>';
                     }
-                    if ($page < $end) echo '<li>|<a href="?p='.($page + 1).'&cat='.$category.'&cid='.$cid.'&sid='.$sid.'"> Next</a></li>';
+                    if ($page < $end) echo '<li>|<a href="?p='.($page + 1).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'"> Next</a></li>';
                     else echo '<li>| Next</li>';
                 ?>
             </ul>
