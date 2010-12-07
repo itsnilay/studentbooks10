@@ -207,22 +207,19 @@ function draw_left_panel($sid){
         </div>
 
         <?php if (isset($page_special)){
-	  echo "
-                <div class='span-5'>
-               ";
-                draw_left_panel($sid);
-          echo "</div>
-                <div  class='span-19 last'>
-                    <div id ='wrapper' class='span-18'>
-                        <div id='wrapper_inner' class='span-18 last'>
-               ";
-        }else{
-                echo "
-                <div  class='span-24 last'>
-                    <div id ='wrapper' class='span-23'>
-                        <div id='wrapper_inner' class='span-23 last'>
-                     ";
-        }
+                  echo "<div class='span-5'>";
+                        draw_left_panel($sid);
+                  echo "</div>
+                        <div  class='span-19 last'>
+                            <div id ='wrapper' class='span-18'>
+                                <div style='min-height:820px;' id='wrapper_inner' class='span-18 last'>
+                       ";
+              }else{
+                  echo "<div  class='span-24 last'>
+                            <div id ='wrapper' class='span-23'>
+                                <div id='wrapper_inner' class='span-23 last'>
+                       ";
+              }
         ?>
 
 

@@ -18,10 +18,9 @@ if (isset($_POST['submitted'])){
 
             mysqli_close($dbc); //close the database
 
-            $url = GLOBAL_BASE_URL . 'confirmOrder.php'; //define the URL:
-            ob_end_clean();// delete the existing buffer from header.php
+            //ob_end_clean();// delete the existing buffer from header.php
 
-            header("Location: $url");
+            header('Location: confirmOrder.php?sid='.$sid.'&result=orderSuccess');
             exit();
 
 }// end of main submit conditional
@@ -60,11 +59,19 @@ if (isset($_POST['submitted'])){
             // TODO: Make CC info form pretty
             ?>
             <p><label for="CC_name" class="label">Name on Card: </label><input id="CC_name" type="text" name="CC_name" size="15" maxlength="80" value="<?php if (isset($trimmed['CC_name'])) echo $trimmed['CC_name']; ?>" /></p>
-	    <p><label for="CC_number" class="label">Card Number: </label><input id="CC_number" type="text" name="CC_number" size="19" maxlength="80" value="<?php if (isset($trimmed['CC_number'])) echo $trimmed['CC_number']; ?>" /></p>
-            <p><label for="CCV2" class="label">CCV2: </label><input id="CC_vcode" type="text" name="CC_vcode" size="5" maxlength="4" value="" /> </p>
+                <div style="width:55%;float:left;">
+                    <label for="CC_number" class="label">Card Number: </label>
+                    <input id="CC_number" type="text" name="CC_number" size="19" maxlength="80" value="<?php if (isset($trimmed['CC_number'])) echo $trimmed['CC_number']; ?>" />
+                </div>
+                <div style="width:45%;float:left;">
+                    <label for="CCV2" class="label" style="width:20px;">CCV2: </label>
+                    <input id="CC_vcode" type="text" name="CC_vcode" size="5" maxlength="4" value="" />
+                </div>
             <?php // TODO: implement CC expiration date as value instead of text
             ?>
-            <p><label for="CC_expdate" class="label">Expiration Date: </label><input id="CC_expdate" type="text" name="CC_expdate" size="10" maxlength="20" value="" /></p>
+            <p><label for="CC_expdate" class="label">Expiration Date: </label><input id="CC_expdate" type="text" name="CC_expdate" size="10" maxlength="20" value="" />
+            &nbsp(format: MM/YY)
+            </p>
 
         <p><input type="submit" name="submit" value="Submit" /></p>
 	<input type="hidden" name="submitted" value="TRUE" />

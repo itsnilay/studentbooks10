@@ -22,20 +22,12 @@ if (!isset($book)){
 
 <ul id="used_books" class="span-18 last">
     <li class="odd">
-        <span class="detail span-4">Dimensions</span>
-        <span class="detail-value span-6">(<?php echo $book->getLength() .' x '. $book->getWidth() .' x '. $book->getHeight(); ?>)</span>
-    </li>
-    <li class="even">
-        <span class="detail span-4">Weight</span>
-        <span class="detail-value span-6"><?php echo $book->getWeight(); ?></span>
-    </li>
-    <li class="odd">
-        <span class="detail span-4">Page Count</span>
-        <span class="detail-value span-6"><?php echo $book->getPageCount(); ?></span>
-    </li>
-    <li class="even">
         <span class="detail span-4">ISBN-13</span>
         <span class="detail-value span-6"><?php echo $book->getIsbn(); ?></span>
+    </li>
+    <li class="even">
+        <span class="detail span-4">Page Count</span>
+        <span class="detail-value span-6"><?php echo $book->getPageCount(); ?></span>
     </li>
     <li class="odd">
         <span class="detail span-4">Publisher</span>
@@ -43,11 +35,19 @@ if (!isset($book)){
     </li>
     <li class="even">
         <span class="detail span-4">Date Published</span>
-        <span class="detail-value span-6"><?php echo $book->getMonthPublished() .'/'. $book->getDayPublished() .'/'. $book->getYearPublished; ?></span>
+        <span class="detail-value span-6"><?php echo $book->getMonthPublished() .'/'. $book->getDayPublished() .'/'. $book->getYearPublished(); ?></span>
     </li>
     <li class="odd">
         <span class="detail span-4">Language</span>
         <span class="detail-value span-6"><?php echo $book->getLanguage(); ?></span>
+    </li>
+    <li class="even">
+        <span class="detail span-4">Dimensions</span>
+        <span class="detail-value span-6"><?php echo $book->getLength() .'" x '. $book->getWidth() .'" x '. $book->getHeight() .'"'; ?></span>
+    </li>
+    <li class="odd">
+        <span class="detail span-4">Weight</span>
+        <span class="detail-value span-6"><?php echo $book->getWeight().' lb.'; ?></span>
     </li>
 </ul>
 

@@ -48,7 +48,13 @@ function draw_books_listing_list($page, $books, $booksPerPage, $sid)
             <p class="price">New: <span class="new_price">$<?php printf("%0.2f",$book->getPrice()); ?></span></p>
         </td>
         <td>
-            <p class="cc_savings">Save <span>$<?php echo printf("%0.1f",$cc_savings)?></span> on the price at your bookstore!</p>
+            <?php
+                if ($sid>0){
+                    echo '<p class="cc_savings">Save <span>$';
+                    printf("%0.2f",$cc_savings);
+                    echo '</span> on the price at your bookstore!</p>';
+                }
+            ?>
         </td>
         <td class="buttons">
             <!--

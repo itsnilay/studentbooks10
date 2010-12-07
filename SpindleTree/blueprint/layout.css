@@ -449,11 +449,30 @@ ul#cart_contents li .even {
 }
 
 /*FORM ELEMENTS*/
-input#user_name, input#email, input#password2, input#password1, input#address1, input#address2, input#state, input#city, input#zip, textarea#description, input#new_password{
+input#user_name, input#email, input#password2, input#password1, input#address1, input#address2, input#state, input#city, input#zip, textarea#description, input#new_password, input#CC_name, input#CC_number {
 	width: 250px;
 	border: 1px solid #d6d7de;
 	padding: 3px 0;
-	}
+    }
+
+input#CC_number {
+    width: 150px;
+    border: 1px solid #d6d7de;
+    padding: 3px 0;
+    padding-right: 0;
+}
+
+input#CC_vcode {
+    width: 50px;
+    border: 1px solid #d6d7de;
+    padding: 3px 0;
+}
+
+input#CC_expdate {
+    width: 100px;
+    border: 1px solid #d6d7de;
+    padding: 3px 0;
+}
 
 .form_box{
          border: 1px solid #dadada;

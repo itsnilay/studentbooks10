@@ -5,6 +5,12 @@ include('include/book_details_api.php');
 require_once("include/mysql_connect.php");
 include_once('include/book.php');
 
+if(isset($_GET['bkid']))
+{
+    $bkid = $_GET['bkid'];
+    $book = $dbInst->getBookById($_GET['bkid']);
+}
+
 
 if (isset($_GET[action2])){
         // Retrieve the GET parameters and executes the function
@@ -22,8 +28,12 @@ if (isset($_GET[action2])){
 function dispBookLstg($bkid)
 {
 $dbInst = SpindleTreeDB::getInstance();
-$book = $dbInst->getBook($bkid);
+$book = $dbInst->getBookById($bkid);
 //$book = $dbInst->getBook($_GET[id]);
+
+if (!isset($book)){
+    return;
+}
 
 //Set up some initial variables to be replaced
 $like_new_book_price = 38.26;
@@ -41,6 +51,16 @@ $terrible_book_amount = 3;
 <?php draw_book_details_subnav($book->getTitle());
 
 } ?>
+
+<?php
+    if (!isset($book)){
+        echo '<p class="error">Book not found.</p>';
+        include('include/footer.php');
+        exit();
+    }
+
+    dispBookLstg($bkid);
+?>
 
 <ul id="used_books" class="span-18 last">
     <li id="like_new" class="odd">
