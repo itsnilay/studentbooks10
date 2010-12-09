@@ -128,8 +128,12 @@ function draw_left_panel($sid){
                         function changeTextColor(tBox, c) {
                             if(c==1) { //textbox on focus
                                 tBox.style.color = "black";
-                            } else { //textbox out of focus
+                            }
+                            else { //textbox out of focus
+                                if(tBox.value==""){
                                 tBox.style.color = "grey";
+                                tBox.value="Enter Title, Author, Course ID, ISBN ...";
+                                }
                             }
                         }
                         </script>
