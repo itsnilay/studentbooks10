@@ -128,7 +128,9 @@ p{
 #searchbox {
     border: 1px solid #dadada;
     padding: 3px;
-    height: 1em;
+    height: 1.2em;
+    margin-top: 5px;
+    margin-bottom:5px;
     width: 400px;
 }
 

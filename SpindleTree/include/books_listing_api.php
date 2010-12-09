@@ -97,61 +97,89 @@ function draw_books_listing_list($page, $books, $booksPerPage)
      * @param <type> $size total number of paginated to be paginated.
      */
     function draw_pagination($page, $numBooks, $booksPerPage){
-            $MAX_PAGINATION_PAGES = 9; //# of pages to display without abbreviating pages.
+            $MAX_MIDPAGES = 5; //# of pages to display between first and last
 
             $numPages = ceil($numBooks/$booksPerPage);
-            if ($page > $numPages) $page = $numPages;
-            $isAbbrLeft = false;
-            $isAbbrRight = false;
-            $begin = 2;
-            $end = $numPages;
 
-            //figure out which page numbers we need to abbreviate
-            if($numPages > $MAX_PAGINATION_PAGES){
-                if($page > 5) $isAbbrLeft = true;
-                if(($numPages - $page) > 5) $isAbbrRight = true;
+            if ($page > $numPages)
+                $page = $numPages;
+            elseif ($page < 1)
+                $page = 1;
+
+            // set first page of middle range
+            $midStart = $page+3-$MAX_MIDPAGES;
+            if ($midStart > $numPages-$MAX_MIDPAGES+1)
+                $midStart = $numPages-$MAX_MIDPAGES+1;
+
+            // set last page of middle range
+            $midEnd = $midStart+$MAX_MIDPAGES-1;
+            if ($midEnd < $MAX_MIDPAGES)
+                $midEnd = $MAX_MIDPAGES;
+
+            // check middle range at low end
+            $isAbbrLeft = true;
+            if ($midStart <= 2){
+                $isAbbrLeft = false;
+                if ($midStart < 2)
+                    $midStart = 2;
             }
 
-            //abbreviate excess page numbers
-            if($isAbbrLeft && $isAbbrRight) {
-                $begin = $page - 3;
-                $end = $page + 3;
-            }else if ($isAbbrLeft){
-                $begin = $numPages - $MAX_PAGINATION_PAGES + 2;
-                $end = $numPages - 1;
-            }else if ($isAbbrRight){
-                $end = 8;
+            // check middle range at high end
+            $isAbbrRight = true;
+            if ($midEnd >= $numPages-1){
+                $isAbbrRight = false;
+                if ($midEnd > $numPages-1)
+                    $midEnd = $numPages-1;
             }
         //echo '<div>$page = '.$page.'; $begin = '.$begin.'; $end = '.$end.'; $numPages = '.$numPages.'; $isAbbrLeft = '.$isAbbrLeft.'; $isAbbrRight = '.$issAbbrRight.'; $MAX = '.$MAX_PAGINATION_PAGES.'; $numBooks = '.$numBooks.';<br>$booksPerPage = '.$booksPerPage.';</div>';
         ?>
         <div class="pagn span-8">
             <ul>
                 <?php
-                    //Print pagination beginning
-                    if ($page > 1) echo '<li><a href="?p='.($page - 1).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">Previous | </a></li>';
-                    else echo '<li>Previous | </li>';
-                    if($page != 1) echo '<li><a href="?p=1&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">1 </a></li>';
-                    else echo '<li>1 </li>';
+                    //print 'previous' pagelink
+                    if ($page > 1){
+                        echo '<li><a href="?';
+                        if ($_GET['searchbox']) echo 'searchbox='.urlencode($_GET['searchbox']).'&';
+                        echo 'p='.($page - 1).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">Previous </a>|</li>';
+                    }else echo '<li>Previous |</li>';
+
+                    //print first page
+                    if ($page > 1){
+                        echo '<li><a href="?';
+                        if ($_GET['searchbox']) echo 'searchbox='.urlencode($_GET['searchbox']).'&';
+                        echo 'p=1&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'"> 1 </a></li>';
+                    }else echo '<li> 1 </li>';
 
                     //print left abbreviation if needed
                     if ($isAbbrLeft) echo '... ';
 
-                    //Print pagination middle
-                    for($i=$begin; $i<$end; $i++){
-                        if($page != $i) echo '<li><a href="?p='.$i.'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">'.$i.' </a></li>';
-                        else echo '<li>'.$i.' </li>';
+                    //print middle range
+                    for($i=$midStart; $i<=$midEnd; $i++){
+                        if($page != $i){
+                            echo '<li><a href="?';
+                            if ($_GET['searchbox']) echo 'searchbox='.urlencode($_GET['searchbox']).'&';
+                            echo 'p='.$i.'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">'.$i.' </a></li>';
+                        }else echo '<li>'.$i.' </li>';
                     }
 
                     //print right abbreviation if needed
                     if ($isAbbrRight) echo '... ';
 
-                    //Print pagination end
+                    //print last page
                     if($numPages > 1){
-                        if($page != $numPages) echo '<li><a href="?p='.$numPages.'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">'.$numPages.' </a></li>';
-                        else echo '<li>'.$numPages.' </li>';
+                        if($page < $numPages){
+                            echo '<li><a href="?';
+                            if ($_GET['searchbox']) echo 'searchbox='.urlencode($_GET['searchbox']).'&';
+                            echo 'p='.$numPages.'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'">'.$numPages.' </a></li>';
+                        }else echo '<li>'.$numPages.' </li>';
                     }
-                    if ($page < $end) echo '<li>|<a href="?p='.($page + 1).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'"> Next</a></li>';
-                    else echo '<li>| Next</li>';
+
+                    //print 'next' pagelink
+                    if ($page < $numPages){
+                        echo '<li>|<a href="?';
+                        if ($_GET['searchbox']) echo 'searchbox='.urlencode($_GET['searchbox']).'&';
+                        echo 'p='.($page + 1).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'"> Next</a></li>';
+                    }else echo '<li>| Next</li>';
                 ?>
             </ul>
         </div>
