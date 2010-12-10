@@ -26,7 +26,7 @@ require_once('include/header.php');//open header
                         </div>
                 </div>
                 <br/><h2>About Us</h2>
-                <p>SpindleTree is the result of a collaborative effort in software engineering between students from <a href="http://www.sfsu.edu/">San Francisco State University</a> and <a href="http://www.fau.edu/">Florida Atlantic University</a> in the Fall semester of 2010, developed under the guidance of <a href="http://cs.sfsu.edu/dragutin/index.html">Dr. Dragutin Petrovic</a> at SFSU and <a href="http://www.cse.fau.edu/~shihong/">Dr. Shihong Huang</a> at FAU.</p>
+                <p>SpindleTree is the result of a collaborative effort in software engineering between students from <a href="http://www.sfsu.edu/">San Francisco State University</a> and <a href="http://www.fau.edu/">Florida Atlantic University</a> in the Fall semester of 2010, developed under the guidance of <a href="http://cs.sfsu.edu/dragutin/index.html">Dr. Dragutin Petkovic</a> at SFSU and <a href="http://www.cse.fau.edu/~shihong/">Dr. Shihong Huang</a> at FAU.</p>
                 <br/>
                 <p><b>Team SpindleTree</b></p>
                 <p><u>San Francisco State University</u><br/>
