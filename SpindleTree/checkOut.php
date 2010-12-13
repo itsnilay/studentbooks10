@@ -64,7 +64,7 @@ if (isset($_POST['submitted'])){
                     <input id="CC_number" type="text" name="CC_number" size="19" maxlength="80" value="<?php if (isset($trimmed['CC_number'])) echo $trimmed['CC_number']; ?>" />
                 </div>
                 <div style="width:45%;float:left;">
-                    <label for="CCV2" class="label" style="width:20px;">CCV2: </label>
+                    <label for="CCV2" class="label" style="width:30px;">CCV2: </label>
                     <input id="CC_vcode" type="text" name="CC_vcode" size="5" maxlength="4" value="" />
                 </div>
             <?php // TODO: implement CC expiration date as value instead of text
@@ -73,7 +73,7 @@ if (isset($_POST['submitted'])){
             &nbsp(format: MM/YY)
             </p>
 
-        <p><input type="submit" name="submit" value="Submit" /></p>
+        <p><input type="submit" name="submit" value="Submit" style="position: relative; left: 350px"/></p>
         <input type="hidden" name="sid" value="<?php echo $sid; ?>" />
         <input type="hidden" name="submitted" value="TRUE" />
 
