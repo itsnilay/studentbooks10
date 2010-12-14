@@ -1,5 +1,6 @@
 <?php
 /**
+ * @explanation
  * Draw the subnavigational menu for the Book Details pages.
  *
  * @param <string> $page_title the title of the current subpage of the book
@@ -22,6 +23,7 @@ function draw_book_details_subnav($page_title){
 }
 
 /**
+ * @explanation
  * Draw the main content subnavigational menu for the Book Details pages.
  *
  * @author Andrew
@@ -59,7 +61,7 @@ function draw_book_details_main($book){
                     // if we still have this book in stock
                     // show the 'Add to cart' button
                     //if ($bk_qty > 0) {
-                        echo'<input type="button" value="+ Add to Cart" onClick="window.location.href=\'add_cart.php?sid='.urlencode($_GET['sid']).'&bkid='.$bkid.' \'">';
+                        echo'<input style="float:right;" type="button" value="+ Add to Cart" onClick="window.location.href=\'add_cart.php?searchbox='.urlencode($_GET['searchbox']).'&p='.urlencode($_GET['p']).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'&bkid='.$bkid.' \'">';
                     // } else {
                     //    echo 'Out Of Stock';
                     //}

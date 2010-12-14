@@ -48,7 +48,7 @@ function my_error_handler($e_number, $e_message, $e_file, $e_line, $e_vars){
          echo'<div>'.$message.'</div><br/>';
      }else{//don't show the error
           //send an email to admin
-	  mail(GLOBAL_EMAIL, 'Site Error!', $message,'From: admin@spindletree.com');
+	  //mail(GLOBAL_EMAIL, 'Site Error!', $message,'From: admin@spindletree.com');
 	  
 	  //Only print an error message if the error isn't a notice
 	  if($e_number != E_NOTICE){

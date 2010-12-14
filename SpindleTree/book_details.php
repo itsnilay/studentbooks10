@@ -18,7 +18,7 @@ if (!isset($book)){
 
 <?php draw_book_details_main($book); ?>
 
-<?php draw_book_details_subnav($page_title); ?>
+<h2>Details</h2>
 
 <ul id="used_books" class="span-18 last">
     <li class="odd">

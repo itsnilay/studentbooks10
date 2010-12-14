@@ -1,5 +1,5 @@
 <?php
-require_once('include/header.php');//open header
+include('include/header.php');//open header
 ?>
 <h2>Welcome to SpindleTree!</h2>
 

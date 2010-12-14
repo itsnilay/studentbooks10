@@ -35,16 +35,14 @@ function draw_books_listing_list($page, $books, $booksPerPage)
     <div class="title_space span-18 last">
         <h2 class="title">
         <?php
-            echo "<a href='./book_details.php?cid=".urlencode($_GET['cid'])."&cat=".urlencode($_GET['cat'])."&sid=".urlencode($_GET['sid'])."&bkid=".$book->getBookId()."&action=add'>".$book->getTitle()." </a>"?></h2>
+            echo "<a href='./book_details.php?searchbox=".urlencode($_GET['searchbox'])."&p=".urlencode($_GET['p'])."&cid=".urlencode($_GET['cid'])."&cat=".urlencode($_GET['cat'])."&sid=".urlencode($_GET['sid'])."&bkid=".$book->getBookId()."&action=add'>".$book->getTitle()." </a>"?></h2>
         <span class="author"><?php echo $book->getAuthor(); ?></span>
     </div>
     <table width="100%" cellspacing="0" cellpadding="4" border="0"><tr valign="bottom">
         <td width="1%">
-            <?php echo "<a href='./book_details.php?cid=".urlencode($_GET['cid'])."&cat=".urlencode($_GET['cat'])."&sid=".urlencode($_GET['sid'])."&bkid=".$book->getBookId()."&action=add'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
-
+            <?php echo "<a href='./book_details.php?searchbox=".urlencode($_GET['searchbox'])."&p=".urlencode($_GET['p'])."&cid=".urlencode($_GET['cid'])."&cat=".urlencode($_GET['cat'])."&sid=".urlencode($_GET['sid'])."&bkid=".$book->getBookId()."&action=add'><img class='span-3' src='include/getBLOB.php?id=".$book->getBookId()."'></a>"?>
         </td>
         <td>
-            <p class="price">Used: <span class="used_price">$<?php printf("%0.2f",$book->getTerriblePrice()); ?></span></p>
             <p class="price">New: <span class="new_price">$<?php printf("%0.2f",$book->getPrice()); ?></span></p>
         </td>
         <td>
@@ -63,7 +61,7 @@ function draw_books_listing_list($page, $books, $booksPerPage)
             </script>
             
             <button type="submit" value="book-<?php// $book->getBookId(); ?>">+ Add to Cart</button>-->
-            <?php echo '<input type="button" value="+ Add to Cart" onClick="location.href=\'add_cart.php?sid='.urlencode($_GET['sid']).'&bkid='.$book->getBookId().'\'">'; ?>
+            <?php echo '<input type="button" value="+ Add to Cart" onClick="location.href=\'add_cart.php?searchbox='.urlencode($_GET['searchbox']).'&p='.urlencode($_GET['p']).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'&bkid='.$book->getBookId().'\'">'; ?>
             <!--<input type="button" value="Proceed To Checkout &gt;&gt;" onClick="window.location.href='view_cart.php'">-->
 
             <!--

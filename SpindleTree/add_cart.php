@@ -36,7 +36,7 @@ if (isset($_GET['bkid']) && is_numeric($_GET['bkid'])){//check for book id
         mysqli_close($dbc);
     }//end of isset($_SESSION['cart'][$bookid] conditional)
 
-    header('Location: view_cart.php?sid='.urlencode($_GET['sid']).'&result=addSuccess');
+    header('Location: view_cart.php?searchbox='.urlencode($_GET['searchbox']).'&p='.urlencode($_GET['p']).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'&result=addSuccess');
     
     //display message
     //echo'<p class="info">A book has been added to your shopping cart.</p>

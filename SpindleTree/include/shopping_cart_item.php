@@ -29,6 +29,10 @@ class ShoppingCartItem {
         return $value;
     }
 
+    public function getTotalQuantity(){
+        return $this->new_quantity + $this->like_new_quantity + $this->very_good_quantity + $this->good_quantity + $this->terrible_quantity;
+    }
+
     public function getNewQuantity(){
         return $this->new_quantity;
     }

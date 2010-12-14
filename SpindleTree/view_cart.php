@@ -57,7 +57,7 @@ require_once('include/header.php');
 	$r = mysqli_query ($dbc, $q);
 
         //create the form and a table:
-        echo '<form action="view_cart.php" method="post">
+        echo '<form action="view_cart.php?searchbox='.urlencode($_GET['searchbox']).'&p='.urlencode($_GET['p']).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'" method="post">
                 <fieldset>
                     <table>
                         <tr>
@@ -95,7 +95,8 @@ require_once('include/header.php');
                     </table>
 
                     <div style="width:50%;float:left;">
-                        <h4><a href="./books_listing.php?sid='.$sid.'"><u>Click Here</u></a> to continue shopping.</h4>
+
+                        <h4><a href="./books_listing.php?searchbox='.urlencode($_GET['searchbox']).'&p='.urlencode($_GET['p']).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'"><u>Click Here</u></a> to continue shopping.</h4>
                     </div>
                     <div style="width=50%;float:right;">
                         <input type="hidden" name="sid" value="'.$sid.'"/>

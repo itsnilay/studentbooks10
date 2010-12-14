@@ -138,7 +138,7 @@ function draw_left_panel($sid){
                         }
                         </script>
                     <input id="searchbox" name="searchbox" class="text span-10" type="text" value="Enter Title, Author, Course ID, ISBN ..." style="color:grey;text-align:left;background:white" onclick="make_blank();" onfocus='changeTextColor(this, 1)' onblur='changeTextColor(this, 0)'/>
-                    <button id="search_button" class="span-2 last" type="submit">Search</button>
+                    <button id="search_button" class="span-2" type="submit">Search</button>
 
                     <!-- Remooving the category Combo Box because it is of no use right now-->
                     <!--?php
@@ -165,7 +165,10 @@ function draw_left_panel($sid){
                              }
                         </script>
                          <?php // TODO: Consider moving dropdown school list away from search box to disassociate with search ?>
-                         <select name="sid" class="span-4" style="position: absolute; left: 910px" onChange=changeCat(this,"<?php echo '&bkid='.urlencode($_GET['bkid']);?>")>
+                        
+                        <span class="span-5" style="text-align:right;margin-top: 7px">Campus Compare:</span>
+
+                        <select name="sid" class="span-4 last" onChange=changeCat(this,"<?php echo '&searchbox='.urlencode($_GET['searchbox']).'&p='.urlencode($_GET['p']).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&bkid='.urlencode($_GET['bkid']);?>")>
                             <option class="first" value="0"> Choose a School...</option>
                             <?php
                           $result = SpindleTreeDB::getInstance()->getSchool();
@@ -207,7 +210,7 @@ function draw_left_panel($sid){
                          </p>
                     </div>
                     <div class="span-2 last">
-                       <?php echo '<p><a href="view_cart.php?sid='.$sid.'"><img src="img/checkout_button.gif" alt="" /></a></p>'; ?>
+                       <?php echo '<p><a href="view_cart.php?searchbox='.urlencode($_GET['searchbox']).'&p='.urlencode($_GET['p']).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'"><img src="img/checkout_button.gif" alt="" /></a></p>'; ?>
                     </div>
         </div>
 

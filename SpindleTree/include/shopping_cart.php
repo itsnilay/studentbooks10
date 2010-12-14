@@ -7,7 +7,6 @@
  */
 class ShoppingCart {
     private static $instance = null;
-
     public $items = array();
 
     /**
@@ -23,7 +22,7 @@ class ShoppingCart {
         return self::$instance;
     }
 
-    /**
+    /*
      * The clone and wakeup methods prevents external instantiation of copies of 
      * the Singleton class, thus eliminating the possibility of duplicate objects.
      */
@@ -37,18 +36,6 @@ class ShoppingCart {
     // private constructor
     private function __construct() {
         
-    }
-
-    /**
-     * @explanation
-     * Add a single item to the shopping cart.
-     *
-     * @param <Book> $book An instance of the Book class to be added to the shopping cart.
-     *
-     * @author Andrew
-     */
-    public function addItem($book){
-        $this->addItem($book, 1);
     }
 
     /**
@@ -78,7 +65,7 @@ class ShoppingCart {
      *
      * @param <uint> $id
      *
-     * @autho Andrew
+     * @author Andrew
      */
     public function deleteItem($id){
         unset($this->items[$id]);
@@ -127,21 +114,6 @@ class ShoppingCart {
 
     /**
      * @explanation
-     * Set the number of a specific item held by the shopping cart to the quantity specified.
-     *
-     * @param <Book> $book The item whose quantity is to be modified
-     * @param <uint> $quantity The number of the specified book which the shopping cart is to hold.
-     * @param <uint> $condition a condition constant as specified by the Book class.
-     *
-     * @author Andrew
-     */
-    public function setItemQuantity($book, $quantity, $condition){
-        setItemQuantity($book->getBookId(), $quantity, $condition);
-
-    }
-
-    /**
-     * @explanation
      * Get the quantity of items in the shopping cart of a given condition.
      *
      * @param <uint> $id the id of the item whose quantity we want to retrieve
@@ -186,6 +158,22 @@ class ShoppingCart {
             $value += $item->getTotalValue();
         }
         return $value;
+    }
+
+    /**
+     * @explanation
+     * Get the total number of items in the shopping cart.
+     *
+     * @return <uint> the total number of items in the shopping cart.
+     *
+     * @author Andrew
+     */
+    public function getTotalQuantity(){
+        $quantity = 0;
+        foreach($this->items as $item){
+            $quantity += $item->getTotalQuantity();
+        }
+        return $quantity;
     }
 
     /**
