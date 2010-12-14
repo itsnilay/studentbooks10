@@ -11,9 +11,6 @@ else $page = $_GET['p'];
 if(isset($_GET['sid'])){
     $sid = $_GET['sid'];
     if ($sid < 0 || $sid > 5) $sid = 0;
-}elseif (isset($_POST['sid'])){
-    $sid = $_POST['sid'];
-    if ($sid < 0 || $sid > 5) $sid = 0;
 }else {
     $_GET['sid'] = 0;
     $sid = 0;
