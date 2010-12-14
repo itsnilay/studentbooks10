@@ -59,6 +59,7 @@ require_once('include/header.php');
         //create the form and a table:
         echo '<form action="view_cart.php?searchbox='.urlencode($_GET['searchbox']).'&p='.urlencode($_GET['p']).'&cid='.urlencode($_GET['cid']).'&cat='.urlencode($_GET['cat']).'&sid='.urlencode($_GET['sid']).'" method="post">
                 <fieldset>
+                    <h3>My Cart</h3>
                     <table>
                         <tr>
                             <th>Title</th>
@@ -102,7 +103,7 @@ require_once('include/header.php');
                         <input type="hidden" name="sid" value="'.$sid.'"/>
                         <input type="hidden" name="submitted" value="TRUE"/>
                         <input type="submit" name="submit" value="Update Cart"/>
-                        <input type="button" value="Checkout" onClick="window.location.href=\'checkOut.php?sid='.$sid.'\'"/>
+                        <input type="button" value="Checkout" onClick="window.location.href=\'check_user.php?sid='.$sid.'\'"/>
                     </div>
                     <div style="width:100%;float:right" align="right">* Enter a quantity of 0 to remove an item.</div>
                </fieldset>

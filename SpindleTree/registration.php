@@ -110,8 +110,13 @@ if (isset($_POST['submitted'])){
                                        $q = "UPDATE user SET  active = NULL LIMIT 1 ";
                                        $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br/>MySQL Error: ".mysqli_error($dbc));
 
-                                        //finish the page:
-                                        echo '<h3>Thank you for registering! <a href="login.php?sid='.$sid.'"><u>Click Here</u></a> to log into your account.</h3>';
+                                        //finish the page: Changed by Nilay
+                                         if(isset($_POST['orderSuccess'])){
+                                             echo '<h3>Thank you for registering! <a href="login.php?sid='.$sid.'&result=orderSuccess"><u>Click Here</u></a> to log into your account.</h3>';
+
+                                         }
+                                         else
+                                               echo '<h3>Thank you for registering! <a href="login.php?sid='.$sid.'"><u>Click Here</u></a> to log into your account.</h3>';
 
                                         mysqli_close($dbc);//close the database
                                         include('include/footer.php');
@@ -139,16 +144,58 @@ if (isset($_POST['submitted'])){
 	<p>Password must be 4-20 characters -- letters, numbers only.</p>
 	<p><label for="password2" class="label">Confirm Password: </label><input id="password2" type="password" name="password2" size="10" maxlength="20" /></p>
 	<hr/>
-        <h3>Optional:</h3>
-        <?php
-            if (!isset($trimmed))
-                printAddressForm(NULL,NULL);
-            else
-                printAddressForm(NULL,$trimmed);
-         ?>
-        <p><input type="submit" name="submit" value="Register" /></p>
+        <h3>Optional:-</h3>
+
+         <h3>Billing Address</h3>
+            <?php
+                if (!isset($trimmed))
+                    printAddressForm("bill_",NULL);
+                else
+                    printAddressForm("bill_",$trimmed);
+            ?>
+            <hr/>
+
+            <h3>Shipping Address</h3>
+            <?php
+                if (!isset($trimmed))
+                    printAddressForm("ship_",NULL);
+                else
+                    printAddressForm("ship_",$trimmed);
+            ?>
+            <hr/>
+
+            <h3>Credit Card Info</h3>
+            <?php
+                /*  form IDs
+                 *  --------
+                 *  CC_name    : credit card holder's name (i.e., name on card)
+                 *  CC_number  : credit card number (max length 19, all digits [0-9])
+                 *  CC_vcode   : CCV2 number (max length 4, all digits [0-9])
+                 *  CC_expdate : card expiration date (month [1-12], year [00-99] <last 2 digits>)
+                 */
+            // TODO: Make CC info form pretty
+            ?>
+            <p><label for="CC_name" class="label">Name on Card: </label><input id="CC_name" type="text" name="CC_name" size="15" maxlength="80" value="<?php if (isset($trimmed['CC_name'])) echo $trimmed['CC_name']; ?>" /></p>
+                <div style="width:55%;float:left;">
+                    <label for="CC_number" class="label">Card Number: </label>
+                    <input id="CC_number" type="text" name="CC_number" size="19" maxlength="80" value="<?php if (isset($trimmed['CC_number'])) echo $trimmed['CC_number']; ?>" />
+                </div>
+                <div style="width:45%;float:left;">
+                    <label for="CCV2" class="label" style="width:30px;">CCV2: </label>
+                    <input id="CC_vcode" type="text" name="CC_vcode" size="5" maxlength="4" value="" />
+                </div>
+            <?php // TODO: implement CC expiration date as value instead of text
+            ?>
+            <p><label for="CC_expdate" class="label">Expiration Date: </label><input id="CC_expdate" type="text" name="CC_expdate" size="10" maxlength="20" value="" />
+            &nbsp(format: MM/YY)
+            </p>
+
+        <p><input type="submit" name="submit" value="Register" style="position: relative; left: 350px" /></p>
         <input type="hidden" name="sid" value="<?php echo $sid; ?>" />
         <input type="hidden" name="submitted" value="TRUE" />
+         <?php  if (isset($_GET['result']) && $_GET['result'] == 'orderSuccess'){ ?>
+        <input type="hidden" name="orderSuccess" value="TRUE"/>
+        <?php }?>
     </form><!-- end of form -->
     </div>
 

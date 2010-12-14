@@ -10,6 +10,7 @@ include('include/header.php');
 echo '<h1>Login</h1>';
 
 if(isset($_POST['submitted'])){
+
     require_once(GLOBAL_MYSQL);//connect to database
 
         //validate email address:
@@ -40,10 +41,18 @@ if(isset($_POST['submitted'])){
                 mysqli_free_result($r);
                 mysqli_close($dbc);
 
-                $url = GLOBAL_BASE_URL . 'index.php'; //define the URL:
-                ob_end_clean();// delete the existing buffer from header.php
 
-                header("Location: $url");
+
+                //Nilay Checkout fix
+                if(isset($_POST['orderSuccess'])){
+                    //header('Location: confirmOrder.php?sid='.$sid.'&result=orderSuccess');
+                    $url =  'confirmOrder.php?sid='.$sid.'&result=orderSuccess';
+                }
+                else
+                    $url = GLOBAL_BASE_URL . 'index.php'; //define the URL:
+                ob_end_clean();// delete the existing buffer from header.php
+                 
+                    header("Location: $url");
                 exit();
             }else{//no match was made
                 echo '<p class="error">Either the email address and password entered do not match those on file or you have not yet activated your account.</p>';
@@ -58,12 +67,16 @@ if(isset($_POST['submitted'])){
     <div class = "form_box">
         <p><label for="email" class="label">Email:</label><input id="email" type="text" name="email" size ="20" maxlenght="40" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
         <p><label for="password1" class="label">Password:</label><input id="password1" type="password" name="password1" size ="20" maxlenght="20"  /></p>
-        <input type="submit" name="submit" value="Login"/>
+        <input type="submit" name="submit" value="Login" style="position: relative; left: 350px"/>
         <input type="hidden" name="sid" value="<?php echo $sid; ?>" />
         <input type="hidden" name="submitted" value="TRUE"/>
+        <?php  if (isset($_GET['result']) && $_GET['result'] == 'orderSuccess'){ ?>
+        <input type="hidden" name="orderSuccess" value="TRUE"/>
+        <?php }?>
     </div>
     <br/>
-    <?php echo '<p>Forgot your password? <a href="./forgot_password.php?sid='.$sid.'">Click Here!</a></p>'; ?>
+     <?php echo '<p style="position: relative; left: 350px">New User? <a href="./registration.php?sid='.$sid.'&result=orderSuccess">Register!</a></p>'; ?>
+    <?php echo '<p style="position: relative; left: 350px">Forgot your password? <a href="./forgot_password.php?sid='.$sid.'&result=orderSuccess">Click Here!</a></p>'; ?>
 </form>
 
 <?php
